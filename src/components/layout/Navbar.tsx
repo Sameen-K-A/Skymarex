@@ -56,14 +56,14 @@ export default function Navbar() {
           className={cn(
             "mx-auto max-w-7xl",
             "transition-[padding,max-width,margin-top,border-radius,background-color,backdrop-filter] duration-500 ease-in-out py-1.5",
-            isScrolled && "px-6 bg-background/50 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5 mt-2 py-0"
+            isScrolled && "px-6 bg-background/50 max-w-4xl rounded-2xl border border-border/30 dark:border-border backdrop-blur-lg lg:px-5 mt-2 py-0"
           )}
         >
           <div className="relative flex flex-wrap items-center justify-between gap-2 lg:gap-0 py-2">
 
             <div className="flex w-full justify-between lg:w-auto py-2">
               <Link href="/" aria-label="home" className="flex gap-2 items-center">
-                <span className="pointer-events-none py-1 whitespace-pre-wrap bg-linear-to-b from-black to-gray-500 dark:from-white dark:to-gray-500 bg-clip-text text-xl font-bold leading-none text-transparent">
+                <span className="pointer-events-none py-1 whitespace-pre-wrap bg-white bg-clip-text text-xl font-bold leading-none text-transparent">
                   Skymarex
                 </span>
               </Link>
@@ -96,8 +96,8 @@ export default function Navbar() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "block px-4 py-2 rounded-full transition-all duration-300 ease-in-out hover:text-foreground hover:bg-muted/50",
-                        pathname === item.href ? "text-foreground bg-muted" : "text-muted-foreground"
+                        "block px-4 py-2 rounded-full transition-all duration-300 ease-in-out text-foreground hover:text-foreground hover:bg-muted/50",
+                        pathname === item.href ? " bg-muted" : ""
                       )}
                     >
                       <span>{item.name}</span>
