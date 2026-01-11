@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import HeroSection from "@/components/home/HeroSection"
 import AboutSection from "@/components/home/AboutSection"
+import ServicesSection from "@/components/home/ServicesSection"
 
 export const metadata: Metadata = {
   title: "Home",
@@ -12,6 +13,7 @@ export default function HomePage() {
     <div className="container mx-auto overflow-hidden">
       <HeroSection />
       <AboutSection />
+      <ServicesSection />
     </div>
   )
 }
