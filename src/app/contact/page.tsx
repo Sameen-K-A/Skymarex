@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import ContactFormSection from "@/components/contact/ContactFormSection"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -7,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="flex items-center justify-center min-h-[calc(100dvh)]">
-      <p className="text-2xl font-medium text-muted-foreground">Contact Page</p>
+    <div className="container mx-auto overflow-hidden pt-20">
+      <ContactFormSection />
     </div>
   )
 }
