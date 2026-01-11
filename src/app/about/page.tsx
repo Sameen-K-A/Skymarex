@@ -1,6 +1,7 @@
 import HeroSection from "@/components/about/HeroSection"
 import WhoWeAreSection from "@/components/about/WhoWeAreSection"
 import StatsSection from "@/components/about/StatsSection"
+import CTASection from "@/components/about/CTASection"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export default function AboutPage() {
       <HeroSection />
       <WhoWeAreSection />
       <StatsSection />
+      <CTASection />
     </div>
   )
 }
