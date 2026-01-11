@@ -8,7 +8,7 @@ import CertificatesSection from "@/components/home/CertificatesSection"
 import FAQSection from "@/components/shared/FAQSection"
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "Skymarex",
   description: "Welcome to Skymarex homepage",
 }
 
