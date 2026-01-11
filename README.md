@@ -34,10 +34,11 @@ The website is built with modern web technologies to ensure optimal performance,
 
 | Page | Description |
 |------|-------------|
-| 🏠 **Home** | Hero section with service highlights and company overview |
-| 📖 **About** | Company story, mission, vision, and core values |
-| 🛠️ **Services** | Detailed breakdown of logistics solutions offered |
-| 📞 **Contact** | Contact form and company location details |
+| 🏠 **Home** | Hero section with animated image grid, about section, services overview, perks, testimonials, certificates, and FAQs |
+| 📖 **About** | Company story, mission, vision, core values, and team information |
+| 🛠️ **Services** | Detailed service cards with hover effects, FAQs, and CTA section |
+| 📞 **Contact** | Contact form with Google Maps integration (theme-aware dark/light map) |
+| 🚫 **404** | Custom not found page with navigation back to home |
 
 ---
 
@@ -52,6 +53,7 @@ This project leverages cutting-edge technologies for optimal performance:
 | ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white) | Utility-first styling |
 | ![Framer Motion](https://img.shields.io/badge/Motion-0055FF?style=flat-square&logo=framer&logoColor=white) | Smooth animations |
 | ![Radix UI](https://img.shields.io/badge/Radix_UI-161618?style=flat-square&logo=radix-ui&logoColor=white) | Accessible UI components |
+| ![shadcn/ui](https://img.shields.io/badge/shadcn/ui-000?style=flat-square) | Pre-built UI components |
 | ![Lucide](https://img.shields.io/badge/Lucide_Icons-F56565?style=flat-square) | Beautiful icon library |
 | ![Vercel](https://img.shields.io/badge/Vercel-000?style=flat-square&logo=vercel) | Static deployment & hosting |
 
@@ -68,7 +70,7 @@ This project leverages cutting-edge technologies for optimal performance:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/skymarex.git
+   git clone https://github.com/Sameen-K-A/Skymarex.git
    cd skymarex
    ```
 
@@ -77,12 +79,22 @@ This project leverages cutting-edge technologies for optimal performance:
    npm install
    ```
 
-3. **Run the development server**
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+   
+   Update the following variables:
+   ```env
+   NEXT_PUBLIC_GOOGLE_MAP_EMBED_URL="your-google-maps-embed-url"
+   ```
+
+4. **Run the development server**
    ```bash
    npm run dev
    ```
 
-4. **Open in browser**
+5. **Open in browser**
    ```
    http://localhost:3000
    ```
@@ -101,22 +113,28 @@ npm start
 ```
 skymarex/
 ├── public/
-│   ├── images/          # Image assets
-│   ├── svgs/            # SVG graphics
-│   └── videos/          # Video content
+│   └── assets/
+│       └── images/       # Image assets
 ├── src/
 │   ├── app/
-│   │   ├── about/       # About page
-│   │   ├── contact/     # Contact page
-│   │   ├── services/    # Services page
-│   │   ├── layout.tsx   # Root layout
-│   │   ├── page.tsx     # Home page
-│   │   └── globals.css  # Global styles
+│   │   ├── about/        # About page
+│   │   ├── contact/      # Contact page
+│   │   ├── services/     # Services page
+│   │   ├── layout.tsx    # Root layout
+│   │   ├── page.tsx      # Home page
+│   │   ├── not-found.tsx # 404 page
+│   │   └── globals.css   # Global styles
 │   ├── components/
-│   │   ├── layout/      # Navbar, Footer
-│   │   ├── providers/   # Theme provider
-│   │   └── ui/          # Reusable UI components
-│   └── lib/             # Utility functions
+│   │   ├── home/         # Home page sections
+│   │   ├── about/        # About page sections
+│   │   ├── services/     # Services page sections
+│   │   ├── contact/      # Contact page sections
+│   │   ├── shared/       # Reusable sections (FAQs)
+│   │   ├── layout/       # Navbar, Footer, LoadingScreen
+│   │   ├── providers/    # Theme provider
+│   │   └── ui/           # UI components (Button, Input, Dialog, etc.)
+│   ├── constants/        # Static data (services, testimonials, etc.)
+│   └── lib/              # Utility functions
 ├── package.json
 ├── tailwind.config.ts
 └── tsconfig.json
@@ -126,12 +144,34 @@ skymarex/
 
 ## ✨ Key Features
 
+- 🎬 **Loading Screen** — Animated splash screen with Framer Motion
 - 🎨 **Modern Design** — Clean, professional UI with smooth animations
 - 📱 **Fully Responsive** — Optimized for all screen sizes
-- 🌙 **Theme Support** — Light/Dark mode switching
+- 🌙 **Theme Support** — Light/Dark mode switching with theme-aware components
 - ⚡ **High Performance** — Static generation for blazing fast loads
 - 🔍 **SEO Optimized** — Meta tags, Open Graph, and structured data
 - ♿ **Accessible** — WCAG compliant components with Radix UI
+- 🗺️ **Google Maps** — Theme-aware map integration (dark/light mode)
+- 📝 **Reusable Components** — FAQs, service cards, testimonials, and more
+
+---
+
+## 🎨 Components
+
+### Home Page Sections
+- **HeroSection** — Animated image grid with CTA
+- **AboutSection** — Company introduction with stats
+- **ServicesSection** — Service highlights with icons
+- **PerksSection** — Feature cards with numbered design
+- **TestimonialsSection** — Horizontal scroll testimonials with hover effects
+- **CertificatesSection** — Marquee with dialog popups
+- **FAQSection** — Accordion-style FAQs (reusable)
+
+### UI Components
+- Button, Input, Textarea, Label
+- Dialog, Accordion
+- Marquee, NumberTicker
+- WaveText, ShinyButton
 
 ---
 
