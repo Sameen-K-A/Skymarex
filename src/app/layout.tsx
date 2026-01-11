@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/providers/ThemeProvider"
+import { LoadingProvider } from "@/components/providers/LoadingContext"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
 import LoadingScreen from "@/components/layout/LoadingScreen"
@@ -44,12 +45,14 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <LoadingScreen />
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <LoadingProvider>
+            <LoadingScreen />
+            <div className="flex min-h-screen flex-col">
+              <Navbar />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </LoadingProvider>
         </ThemeProvider>
       </body>
     </html>

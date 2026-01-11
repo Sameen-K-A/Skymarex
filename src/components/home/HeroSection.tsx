@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Phone } from "lucide-react"
@@ -6,6 +8,7 @@ import { Marquee } from "@/components/ui/marquee"
 import { ShinyButton } from "@/components/ui/shiny-button"
 import WaveText from "@/components/ui/WaveText"
 import { HOME_GALLERY_IMAGES } from "@/constants/gallery"
+import { StaggerContainer, StaggerItem } from "@/components/ui/animations"
 
 interface ImageCardProps {
   img: string
@@ -84,29 +87,35 @@ export default function HeroSection() {
       <div className="container mx-auto h-full pt-32 pb-16 xl:py-0">
         <div className="flex flex-col xl:flex-row h-full gap-8 xl:gap-12">
 
-          <div className="flex flex-col justify-center xl:w-3/5 px-4 sm:px-8 ">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight mb-6">
-              You Plan the Shipment. <br />We Engineer the Compliance.
-            </h1>
+          <StaggerContainer className="flex flex-col justify-center xl:w-3/5 px-4 sm:px-8" staggerDelay={0.15}>
+            <StaggerItem>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight mb-6">
+                You Plan the Shipment. <br />We Engineer the Compliance.
+              </h1>
+            </StaggerItem>
 
-            <p className="text-muted-foreground text-sm sm:text-base mb-8 max-w-lg">
-              Experience a hassle-free, seamless relocation with efficient, professional moving services tailored to your needs.
-            </p>
+            <StaggerItem>
+              <p className="text-muted-foreground text-sm sm:text-base mb-8 max-w-lg">
+                Experience a hassle-free, seamless relocation with efficient, professional moving services tailored to your needs.
+              </p>
+            </StaggerItem>
 
-            <div className="flex flex-col sm:flex-row items-left gap-4">
-              <ShinyButton className="group px-6 py-3 w-fit">
-                Talk to a DG Expert
-              </ShinyButton>
+            <StaggerItem>
+              <div className="flex flex-col sm:flex-row items-left gap-4">
+                <ShinyButton className="group px-6 py-3 w-fit">
+                  Talk to a DG Expert
+                </ShinyButton>
 
-              <Link
-                href="/contact"
-                className="group inline-flex w-fit items-center gap-2 px-5 py-3 text-sm font-medium text-background bg-foreground rounded-lg border border-background hover:bg-foreground/90 transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <WaveText>Contact us</WaveText>
-              </Link>
-            </div>
-          </div>
+                <Link
+                  href="/contact"
+                  className="group inline-flex w-fit items-center gap-2 px-5 py-3 text-sm font-medium text-background bg-foreground rounded-lg border border-background hover:bg-foreground/90 transition-colors"
+                >
+                  <Phone className="w-4 h-4" />
+                  <WaveText>Contact us</WaveText>
+                </Link>
+              </div>
+            </StaggerItem>
+          </StaggerContainer>
 
           {/* Horizontal Marquee - Below XL */}
           <div className="flex xl:hidden flex-col flex-1">

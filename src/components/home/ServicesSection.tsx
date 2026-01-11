@@ -1,6 +1,9 @@
+"use client"
+
 import Link from "next/link"
 import { Scale, Handshake, Gavel } from "lucide-react"
 import WaveText from "../ui/WaveText"
+import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 const features = [
   {
@@ -26,43 +29,50 @@ const features = [
 export default function ServicesSection() {
   return (
     <section className="py-16 px-4 sm:px-8 lg:px-16 bg-foreground">
-      <div className="text-center mb-12 md:mb-16 max-w-5xl mx-auto">
-        <span className="text-sm text-background mb-4 block">
-          Driven by purpose
-        </span>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-background">
-          We're not just about trucks and timelines,
-          we're about trust and responsibility.
-        </h2>
-      </div>
+      <StaggerContainer className="text-center mb-12 md:mb-16 max-w-5xl mx-auto" staggerDelay={0.15}>
+        <StaggerItem>
+          <span className="text-sm text-background mb-4 block">
+            Driven by purpose
+          </span>
+        </StaggerItem>
+        <StaggerItem>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-background">
+            We're not just about trucks and timelines,
+            we're about trust and responsibility.
+          </h2>
+        </StaggerItem>
+      </StaggerContainer>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
         {features.map((feature, index) => (
-          <div
-            key={index}
-            className="bg-muted-foreground/20 rounded-2xl p-6 md:p-8 flex flex-col min-h-80"
-          >
-            <div className="flex items-start justify-between mb-auto">
-              <feature.icon className="w-10 h-10 text-background" strokeWidth={1.5} />
-              <span className="text-sm text-background">{feature.number}</span>
-            </div>
+          <Reveal key={index} delay={0.1 * index}>
+            <div
+              className="bg-muted-foreground/20 rounded-2xl p-6 md:p-8 flex flex-col min-h-80"
+            >
+              <div className="flex items-start justify-between mb-auto">
+                <feature.icon className="w-10 h-10 text-background" strokeWidth={1.5} />
+                <span className="text-sm text-background">{feature.number}</span>
+              </div>
 
-            <div className="mt-8">
-              <h3 className="text-2xl md:text-3xl font-medium mb-3 text-background">{feature.title}</h3>
-              <p className="text-sm text-background leading-relaxed">
-                {feature.description}
-              </p>
+              <div className="mt-8">
+                <h3 className="text-2xl md:text-3xl font-medium mb-3 text-background">{feature.title}</h3>
+                <p className="text-sm text-background leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
 
-      <Link
-        href="/services"
-        className="group inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-background rounded-lg hover:bg-background/90 transition-colors"
-      >
-        <WaveText>All Services</WaveText>
-      </Link>
+      <Reveal delay={0.3}>
+        <Link
+          href="/services"
+          className="group inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-background rounded-lg hover:bg-background/90 transition-colors"
+        >
+          <WaveText>All Services</WaveText>
+        </Link>
+      </Reveal>
     </section>
   )
 }

@@ -8,6 +8,7 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
   return (
@@ -45,20 +46,26 @@ const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
 export default function CertificatesSection() {
   return (
     <section className="py-16 bg-foreground overflow-hidden">
-      <div className="text-center mb-12 px-4 sm:px-8">
-        <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/20 text-background rounded-full mb-4">
-          Certificates
-        </span>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight max-w-xl mx-auto text-background">
-          Trusted by families and businesses alike
-        </h2>
-      </div>
+      <StaggerContainer className="text-center mb-12 px-4 sm:px-8" staggerDelay={0.15}>
+        <StaggerItem>
+          <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/20 text-background rounded-full mb-4">
+            Certificates
+          </span>
+        </StaggerItem>
+        <StaggerItem>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight max-w-xl mx-auto text-background">
+            Trusted by families and businesses alike
+          </h2>
+        </StaggerItem>
+      </StaggerContainer>
 
-      <Marquee className="[--duration:40s]">
-        {certificates.map((certificate) => (
-          <CertificateCard key={certificate.id} certificate={certificate} />
-        ))}
-      </Marquee>
+      <Reveal>
+        <Marquee className="[--duration:40s]">
+          {certificates.map((certificate) => (
+            <CertificateCard key={certificate.id} certificate={certificate} />
+          ))}
+        </Marquee>
+      </Reveal>
     </section>
   )
 }
