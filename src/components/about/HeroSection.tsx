@@ -10,7 +10,7 @@ const ImageCard = ({ img, index }: { img: string; index: number }) => {
     <figure
       className={cn(
         "relative overflow-hidden rounded-2xl h-full bg-muted",
-        isOdd ? "aspect-5/4" : "aspect-4/5"
+        isOdd ? "aspect-square" : "aspect-4/5"
       )}
     >
       <Image
@@ -38,7 +38,7 @@ function ImageMarquee() {
 
 export default function HeroSection() {
   return (
-    <section className="container mx-auto h-[min(100dvh,900px)] flex flex-col pt-30 pb-10">
+    <section className="container mx-auto h-[min(100dvh,900px)] flex flex-col pt-20 pb-10 mt-10">
       <div className="text-left px-4 sm:px-8 mb-10">
         <span className="inline-flex items-center px-4 py-2 text-xs font-semibold bg-foreground text-background rounded-full tracking-wider mb-3 sm:mb-4">
           Who We Are
