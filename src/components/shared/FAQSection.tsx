@@ -12,7 +12,7 @@ interface FAQSectionProps {
 export default function FAQSection({ badge, heading }: FAQSectionProps) {
   return (
     <section className="py-16 px-4 sm:px-8 lg:px-16 bg-foreground">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/20 text-background rounded-full mb-4">
             {badge}
@@ -30,16 +30,16 @@ export default function FAQSection({ badge, heading }: FAQSectionProps) {
               className="border-none"
             >
               <AccordionTrigger className="hover:no-underline p-0 [&>svg]:hidden cursor-pointer">
-                <div className="flex items-stretch gap-3 w-full">
+                <div className="flex items-center gap-3 w-full">
                   <div className="flex-1 bg-muted-foreground/20 rounded-xl px-6 py-4 text-left flex items-center">
-                    <span className="text-base font-medium text-background">{faq.question}</span>
+                    <span className="md:text-xl font-medium text-background">{faq.question}</span>
                   </div>
-                  <span className="aspect-square h-auto w-15 flex items-center justify-center shrink-0 bg-muted-foreground/20 rounded-full px-4">
+                  <span className="aspect-square h-13 w-13 md:h-15 md:w-15 flex items-center justify-center shrink-0 bg-muted-foreground/20 rounded-full px-4">
                     <Plus className="w-5 h-5 transition-transform duration-300 ease-in-out group-data-[state=open]:rotate-45 text-background" />
                   </span>
                 </div>
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground pt-4 pb-2 pr-16">
+              <AccordionContent className="text-muted pt-4 pb-2 px-2 md:text-lg">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
