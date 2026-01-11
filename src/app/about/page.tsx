@@ -1,5 +1,6 @@
 import HeroSection from "@/components/about/HeroSection"
 import WhoWeAreSection from "@/components/about/WhoWeAreSection"
+import StatsSection from "@/components/about/StatsSection"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export default function AboutPage() {
     <div className="container mx-auto overflow-hidden">
       <HeroSection />
       <WhoWeAreSection />
+      <StatsSection />
     </div>
   )
 }
