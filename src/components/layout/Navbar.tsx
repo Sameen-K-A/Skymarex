@@ -63,7 +63,7 @@ export default function Navbar() {
 
             <div className="flex w-full justify-between lg:w-auto py-2">
               <Link href="/" aria-label="home" className="flex gap-2 items-center">
-                <span className="pointer-events-none py-1 whitespace-pre-wrap bg-white bg-clip-text text-xl font-bold leading-none text-transparent">
+                <span className="pointer-events-none whitespace-pre-wrap bg-linear-to-b from-black to-gray-500 dark:from-white dark:to-gray-500 bg-clip-text text-xl sm:text-3xl ml-2 font-bold leading-none text-transparent">
                   Skymarex
                 </span>
               </Link>
