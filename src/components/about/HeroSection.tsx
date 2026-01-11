@@ -1,7 +1,10 @@
+"use client"
+
 import { cn } from "@/lib/utils"
 import { Marquee } from "@/components/ui/marquee"
 import Image from "next/image"
 import { ABOUT_GALLERY_IMAGES } from "@/constants/gallery"
+import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 const ImageCard = ({ img, index }: { img: string; index: number }) => {
   const isOdd = index % 2 === 1
@@ -39,20 +42,24 @@ function ImageMarquee() {
 export default function HeroSection() {
   return (
     <section className="container mx-auto h-[min(100dvh,900px)] flex flex-col pt-20 pb-10 mt-10">
-      <div className="text-left px-4 sm:px-8 mb-10">
-        <span className="inline-flex items-center px-4 py-2 text-xs font-semibold bg-foreground text-background rounded-full tracking-wider mb-3 sm:mb-4">
-          Who We Are
-        </span>
-        <h1 className="text-4xl md:text-5xl font-medium max-w-md md:max-w-2xl leading-tight">
-          Where emotion meets efficiency in every move
-        </h1>
-      </div>
+      <StaggerContainer className="text-left px-4 sm:px-8 mb-10" staggerDelay={0.15}>
+        <StaggerItem>
+          <span className="inline-flex items-center px-4 py-2 text-xs font-semibold bg-foreground text-background rounded-full tracking-wider mb-3 sm:mb-4">
+            Who We Are
+          </span>
+        </StaggerItem>
+        <StaggerItem>
+          <h1 className="text-4xl md:text-5xl font-medium max-w-md md:max-w-2xl leading-tight">
+            Where emotion meets efficiency in every move
+          </h1>
+        </StaggerItem>
+      </StaggerContainer>
 
-      <div className="flex-1 w-full flex items-center">
+      <Reveal className="flex-1 w-full flex items-center">
         <div className="w-full h-full">
           <ImageMarquee />
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
