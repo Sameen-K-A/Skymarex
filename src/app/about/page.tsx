@@ -1,3 +1,4 @@
+import HeroSection from "@/components/about/HeroSection"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -7,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="flex items-center justify-center min-h-[calc(100dvh)]">
-      <p className="text-2xl font-medium text-muted-foreground">About Page</p>
+    <div className="container mx-auto overflow-hidden">
+      <HeroSection />
     </div>
   )
 }
