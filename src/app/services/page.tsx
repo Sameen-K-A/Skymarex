@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import ServicesGridSection from "@/components/services/ServicesGridSection"
 
 export const metadata: Metadata = {
   title: "Services",
@@ -7,10 +8,8 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="flex items-center justify-center min-h-[calc(100dvh)]">
-      <p className="text-2xl font-medium text-muted-foreground">
-        Services Page
-      </p>
+    <div className="container mx-auto overflow-hidden pt-15">
+      <ServicesGridSection />
     </div>
   )
 }
