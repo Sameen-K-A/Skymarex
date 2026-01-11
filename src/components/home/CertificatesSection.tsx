@@ -13,7 +13,7 @@ const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="w-96 shrink-0 bg-muted-foreground/10 rounded-3xl p-4 pb-6 cursor-pointer">
+        <div className="w-72 md:w-96 shrink-0 bg-muted-foreground/10 rounded-3xl p-4 pb-6 cursor-pointer">
           <div className="relative aspect-5/3 rounded-2xl overflow-hidden bg-muted-foreground/20 mb-5">
             <Image
               src={certificate.image}
