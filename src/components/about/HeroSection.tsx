@@ -9,7 +9,7 @@ const ImageCard = ({ img, index }: { img: string; index: number }) => {
   return (
     <figure
       className={cn(
-        "relative overflow-hidden rounded-2xl h-full",
+        "relative overflow-hidden rounded-2xl h-full bg-muted",
         isOdd ? "aspect-5/4" : "aspect-4/5"
       )}
     >
@@ -18,7 +18,7 @@ const ImageCard = ({ img, index }: { img: string; index: number }) => {
         alt={`Gallery image ${index}`}
         fill
         sizes="(max-width: 768px) 50vw, 33vw"
-        className="object-cover bg-muted"
+        className="object-cover"
         priority={index <= 4}
         loading={index <= 4 ? "eager" : "lazy"}
       />
