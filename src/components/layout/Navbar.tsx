@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { ShinyButton } from "@/components/ui/shiny-button"
 import { Button } from "../ui/button"
 import { ThemeToggle } from "@/components/layout/ThemeToggle"
+import QuoteDialog from "@/components/shared/QuoteDialog"
 
 const menuItems = [
   { name: "Home", href: "/" },
@@ -134,9 +135,11 @@ export default function Navbar() {
 
               <div className="flex w-full items-center justify-center gap-2">
                 <ThemeToggle />
-                <ShinyButton>
-                  Get a Quote
-                </ShinyButton>
+                <QuoteDialog>
+                  <ShinyButton>
+                    Get a Quote
+                  </ShinyButton>
+                </QuoteDialog>
               </div>
             </div>
           </div>

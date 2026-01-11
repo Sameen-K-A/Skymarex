@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import WaveText from "@/components/ui/WaveText"
 import { StaggerContainer, StaggerItem } from "@/components/ui/animations"
+import QuoteDialog from "@/components/shared/QuoteDialog"
 
 export default function CTASection() {
   return (
@@ -31,15 +32,14 @@ export default function CTASection() {
               <WaveText>Book your move now</WaveText>
             </Link>
 
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition-all"
-            >
-              <span className="border-b-2 border-foreground pb-0.5">
-                <WaveText>Get a free quote</WaveText>
-              </span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <QuoteDialog>
+              <button className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition-all cursor-pointer">
+                <span className="border-b-2 border-foreground pb-0.5">
+                  <WaveText>Get a free quote</WaveText>
+                </span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </button>
+            </QuoteDialog>
           </div>
         </StaggerItem>
       </StaggerContainer>
