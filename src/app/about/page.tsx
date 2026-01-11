@@ -1,6 +1,7 @@
 import HeroSection from "@/components/about/HeroSection"
 import WhoWeAreSection from "@/components/about/WhoWeAreSection"
 import StatsSection from "@/components/about/StatsSection"
+import TeamSection from "@/components/about/TeamSection"
 import CTASection from "@/components/about/CTASection"
 import type { Metadata } from "next"
 
@@ -15,6 +16,7 @@ export default function AboutPage() {
       <HeroSection />
       <WhoWeAreSection />
       <StatsSection />
+      <TeamSection />
       <CTASection />
     </div>
   )
