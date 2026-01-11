@@ -1,5 +1,8 @@
+"use client"
+
 import Image from "next/image"
 import { services, IService } from "@/constants/services"
+import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 const ServiceCard = ({ service }: { service: IService }) => {
   return (
@@ -25,18 +28,24 @@ const ServiceCard = ({ service }: { service: IService }) => {
 export default function ServicesGridSection() {
   return (
     <section className="py-16 md:py-24 px-4 sm:px-8 bg-background">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-4">
-          Our services
-        </h1>
-        <p className="text-muted-foreground font-medium max-w-md mx-auto">
-          We offer a full range of moving solutions designed to make your relocation seamless, stress-free, and efficient.
-        </p>
-      </div>
+      <StaggerContainer className="text-center mb-12" staggerDelay={0.15}>
+        <StaggerItem>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-4">
+            Our services
+          </h1>
+        </StaggerItem>
+        <StaggerItem>
+          <p className="text-muted-foreground font-medium max-w-md mx-auto">
+            We offer a full range of moving solutions designed to make your relocation seamless, stress-free, and efficient.
+          </p>
+        </StaggerItem>
+      </StaggerContainer>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {services.map((service) => (
-          <ServiceCard key={service.id} service={service} />
+        {services.map((service, index) => (
+          <Reveal key={service.id} delay={0.1 * index}>
+            <ServiceCard service={service} />
+          </Reveal>
         ))}
       </div>
     </section>
