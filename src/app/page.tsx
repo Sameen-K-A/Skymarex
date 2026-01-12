@@ -16,15 +16,19 @@ export default function HomePage() {
   return (
     <div className="container mx-auto overflow-hidden">
       <HeroSection />
-      <AboutSection />
-      <ServicesSection />
+      <div className="bg-foreground">
+        <AboutSection />
+        <ServicesSection />
+      </div>
       <PerksSection />
-      <TestimonialsSection />
-      <CertificatesSection />
-      <FAQSection
-        badge="Need help?"
-        heading="Frequently asked questions"
-      />
+      <div className="bg-foreground">
+        <TestimonialsSection />
+        <CertificatesSection />
+        <FAQSection
+          badge="Need help?"
+          heading="Frequently asked questions"
+        />
+      </div>
     </div>
   )
 }

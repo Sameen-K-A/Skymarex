@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Phone } from "lucide-react"
+import { FaWhatsapp } from "react-icons/fa"
 import { cn } from "@/lib/utils"
 import { Marquee } from "@/components/ui/marquee"
 import { ShinyButton } from "@/components/ui/shiny-button"
@@ -22,7 +22,7 @@ const ImageCard = ({ img, index, variant = "horizontal" }: ImageCardProps) => {
       className={cn(
         "relative overflow-hidden rounded-2xl bg-muted shrink-0",
         variant === "vertical"
-          ? "aspect-4/5 min-h-96"
+          ? "aspect-4/5 min-h-105"
           : "aspect-4/5 min-h-64 md:min-h-80"
       )}
     >
@@ -87,30 +87,30 @@ export default function HeroSection() {
       <div className="container mx-auto h-full pt-32 pb-16 xl:py-0">
         <div className="flex flex-col xl:flex-row h-full gap-8 xl:gap-12">
 
-          <StaggerContainer className="flex flex-col justify-center xl:w-3/5 px-4 sm:px-8" staggerDelay={0.15}>
+          <StaggerContainer className="flex flex-col justify-center xl:w-3/5 px-4 sm:px-8 md:px-12" staggerDelay={0.15}>
             <StaggerItem>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight mb-6">
+              <h1 className="text-3xl sm:text-[2.42rem] font-medium tracking-tighter leading-tight mb-3">
                 You Plan the Shipment. <br />We Engineer the Compliance.
               </h1>
             </StaggerItem>
 
             <StaggerItem>
-              <p className="text-muted-foreground text-sm sm:text-base mb-8 max-w-lg">
+              <p className="text-sm font-medium sm:text-base mb-6 max-w-lg opacity-90 tracking-tighter">
                 Experience a hassle-free, seamless relocation with efficient, professional moving services tailored to your needs.
               </p>
             </StaggerItem>
 
             <StaggerItem>
               <div className="flex flex-col sm:flex-row items-left gap-4">
-                <ShinyButton className="group px-6 py-3 w-fit">
+                <ShinyButton className="group px-6 py-[0.900rem] text-base w-fit font-semibold">
                   Talk to a DG Expert
                 </ShinyButton>
 
                 <Link
                   href="/contact"
-                  className="group inline-flex w-fit items-center gap-2 px-5 py-3 text-sm font-medium text-background bg-foreground rounded-lg border border-background hover:bg-foreground/90 transition-colors"
+                  className="group inline-flex w-fit items-center gap-1 px-6 py-2.5 text-sm font-semibold text-background bg-foreground rounded-lg border border-background hover:bg-foreground/90 transition-colors"
                 >
-                  <Phone className="w-4 h-4" />
+                  <FaWhatsapp size={28} />
                   <WaveText>Contact us</WaveText>
                 </Link>
               </div>

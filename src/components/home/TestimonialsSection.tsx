@@ -6,10 +6,10 @@ import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animation
 
 function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
   return (
-    <div className="group relative w-72 sm:w-80 shrink-0 h-96 rounded-2xl overflow-hidden cursor-pointer">
+    <div className="group relative w-72 sm:w-90 shrink-0 h-102 rounded-2xl overflow-hidden cursor-pointer">
       {/* Default State - White card */}
       <div className="absolute inset-0 bg-muted-foreground/20 p-8 flex flex-col transition-opacity duration-300 group-hover:opacity-0">
-        <p className="text-background text-lg font-medium leading-relaxed flex-1">
+        <p className="text-background text-base md:text-lg font-medium leading-relaxed flex-1">
           {testimonial.quote}
         </p>
 
@@ -42,7 +42,7 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
 
         <div className="absolute bottom-0 left-0 right-0 p-6">
-          <p className="text-white text-lg font-medium leading-tight mb-4">
+          <p className="text-white text-base md:text-lg font-medium leading-tight mb-4">
             {testimonial.quote}
           </p>
           <div className="border-t border-white border-dashed pt-4 mt-4" />
@@ -56,16 +56,16 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-8 bg-foreground overflow-hidden">
+    <section className="py-12 px-4 sm:px-8 overflow-hidden">
       <StaggerContainer className="text-center mb-12" staggerDelay={0.15}>
         <StaggerItem>
-          <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/20 text-background rounded-full mb-4">
+          <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/10 text-background rounded-full mb-4">
             Trusted by customers
           </span>
         </StaggerItem>
         <StaggerItem>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-background">
-            Trusted by families and<br className="hidden sm:block" />
+          <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background">
+            Trusted by families and <br className="hidden sm:block" />
             businesses alike
           </h2>
         </StaggerItem>

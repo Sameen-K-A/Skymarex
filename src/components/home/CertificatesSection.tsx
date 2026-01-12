@@ -14,7 +14,7 @@ const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="w-72 md:w-96 shrink-0 bg-muted-foreground/10 rounded-3xl p-4 pb-6 cursor-pointer">
+        <div className="w-72 md:w-96 shrink-0 bg-muted-foreground/10 rounded-3xl p-5 pb-6 cursor-pointer">
           <div className="relative aspect-5/3 rounded-2xl overflow-hidden bg-muted-foreground/20 mb-5">
             <Image
               src={certificate.image}
@@ -23,8 +23,8 @@ const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
               className="object-cover"
             />
           </div>
-          <h3 className="text-xl font-semibold mb-2 text-background">{certificate.title}</h3>
-          <p className="text-background leading-relaxed">
+          <h3 className="text-lg md:text-xl font-medium mb-2 text-background">{certificate.title}</h3>
+          <p className="text-background leading-tight text-sm md:text-base">
             {certificate.description}
           </p>
         </div>
@@ -45,15 +45,15 @@ const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
 
 export default function CertificatesSection() {
   return (
-    <section className="py-16 bg-foreground overflow-hidden">
+    <section className="py-12 overflow-hidden">
       <StaggerContainer className="text-center mb-12 px-4 sm:px-8" staggerDelay={0.15}>
         <StaggerItem>
-          <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/20 text-background rounded-full mb-4">
+          <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/10 text-background rounded-full mb-4">
             Certificates
           </span>
         </StaggerItem>
         <StaggerItem>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight max-w-xl mx-auto text-background">
+          <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background max-w-xl mx-auto">
             Trusted by families and businesses alike
           </h2>
         </StaggerItem>

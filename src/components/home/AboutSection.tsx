@@ -14,57 +14,59 @@ const stats = [
 
 export default function AboutSection() {
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-8 lg:px-16 bg-foreground">
-      <StaggerContainer staggerDelay={0.12}>
-        <StaggerItem>
-          <div className="flex flex-col items-start gap-1 mb-6">
-            <div className="relative">
-              <span className="block w-10 h-1 bg-primary rounded-full" />
-              <span className="absolute left-1/2 -translate-x-1/2 top-0 w-1.5 h-1.5 bg-primary rounded-full" />
-            </div>
-            <span className="text-lg text-muted-foreground">About Us</span>
-          </div>
-        </StaggerItem>
-
-        <StaggerItem>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-background leading-tight mb-6">
-            Logistics Without<br />the Headaches
-          </h2>
-        </StaggerItem>
-
-        <StaggerItem>
-          <p className="text-muted text-sm sm:text-xl mb-8">
-            At <strong className="text-background">Time Global Shipping</strong>, we are more than just a logistics provider; we are a strategic partner dedicated to empowering businesses in an increasingly complex global market. With over <strong className="text-background">35 years of industry-leading experience</strong>, we specialize in crafting tailored logistics solutions that combine precision, reliability, and innovation.
-          </p>
-        </StaggerItem>
-
-        <StaggerItem>
-          <Link
-            href="/about"
-            className="group inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-background text-foreground rounded-lg hover:bg-background/90 transition-colors mb-12"
-          >
-            <WaveText>Learn more</WaveText>
-          </Link>
-        </StaggerItem>
-      </StaggerContainer>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {stats.map((stat, index) => (
-          <Reveal key={index} delay={0.1 * index}>
-            <div className="flex items-center gap-4">
-              <div className="w-20 h-20 bg-muted-foreground/20 flex items-center justify-center shrink-0">
-                <stat.icon className="w-10 h-10 text-background" strokeWidth={1} />
+    <section className="py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        <StaggerContainer staggerDelay={0.12}>
+          <StaggerItem>
+            <div className="flex flex-col items-start gap-1 mb-3">
+              <div className="relative">
+                <span className="block w-8 h-0.5 bg-primary rounded-full" />
+                <span className="absolute left-1/2 -translate-x-1/2 top-0 w-1 h-1 bg-primary rounded-full" />
               </div>
-              <div>
-                <div className="text-2xl md:text-3xl text-background font-bold">
-                  <NumberTicker value={stat.value} />
-                  <span>+</span>
+              <span className="text-muted font-medium opacity-60">About Us</span>
+            </div>
+          </StaggerItem>
+
+          <StaggerItem>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.45rem] font-medium tracking-tight leading-[1.2] mb-4 text-background">
+              Logistics Without<br />the Headaches
+            </h2>
+          </StaggerItem>
+
+          <StaggerItem>
+            <p className="text-muted/90 text-sm sm:text-lg font-medium mb-4">
+              At <strong>Time Global Shipping</strong>, we are more than just a logistics provider; we are a strategic partner dedicated to empowering businesses in an increasingly complex global market. With over <strong>35 years of industry-leading experience</strong>, we specialize in crafting tailored logistics solutions that combine precision, reliability, and innovation.
+            </p>
+          </StaggerItem>
+
+          <StaggerItem>
+            <Link
+              href="/about"
+              className="group inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-background text-foreground rounded-lg hover:bg-background/90 transition-colors mb-12"
+            >
+              <WaveText>Learn more</WaveText>
+            </Link>
+          </StaggerItem>
+        </StaggerContainer>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {stats.map((stat, index) => (
+            <Reveal key={index} delay={0.1 * index}>
+              <div className="flex items-center gap-4">
+                <div className="w-24 h-22 bg-muted-foreground/20 flex items-center justify-center shrink-0">
+                  <stat.icon className="w-12 h-12 text-background" strokeWidth={0.8} />
                 </div>
-                <p className="text-sm text-muted-foreground font-semibold">{stat.label}</p>
+                <div>
+                  <div className="text-2xl md:text-3xl text-background font-semibold tracking-tighter" style={{ transform: 'scaleY(0.852)' }}>
+                    <NumberTicker value={stat.value} className="tracking-tighter" />
+                    <span>+</span>
+                  </div>
+                  <p className="text-muted font-medium opacity-60 text-sm">{stat.label}</p>
+                </div>
               </div>
-            </div>
-          </Reveal>
-        ))}
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   )
