@@ -3,7 +3,6 @@
 import { useTheme } from "next-themes"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
 import { toast } from "sonner"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -11,28 +10,9 @@ import { Label } from "@/components/ui/label"
 import { Button } from "../ui/button"
 import WaveText from "../ui/WaveText"
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
+import { contactFormSchema, ContactFormData } from "@/schema/validations"
 
 const MAP_URL = process.env.NEXT_PUBLIC_GOOGLE_MAP_EMBED_URL!
-
-const contactFormSchema = z.object({
-  name: z
-    .string()
-    .min(3, "Name must be at least 3 characters")
-    .max(50, "Name must be less than 50 characters"),
-  email: z
-    .email("Please enter a valid email address"),
-  phone: z
-    .string()
-    .min(1, "Phone number is required")
-    .regex(/^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, "Please enter a valid phone number"),
-  message: z
-    .string()
-    .max(2000, "Message must be less than 2000 characters")
-    .optional()
-    .or(z.literal("")),
-})
-
-type ContactFormData = z.infer<typeof contactFormSchema>
 
 export default function ContactFormSection() {
   const { resolvedTheme } = useTheme()
