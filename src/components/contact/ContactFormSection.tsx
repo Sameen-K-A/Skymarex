@@ -5,6 +5,7 @@ import { useTheme } from "next-themes"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
+import emailjs from "@emailjs/browser"
 import ReCAPTCHA from "react-google-recaptcha"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -16,6 +17,9 @@ import { contactFormSchema, ContactFormData } from "@/schema/validations"
 
 const MAP_URL = process.env.NEXT_PUBLIC_GOOGLE_MAP_EMBED_URL!
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!
+const EMAILJS_CONTACT_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID!
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
 
 export default function ContactFormSection() {
   const { resolvedTheme } = useTheme()
@@ -53,9 +57,18 @@ export default function ContactFormSection() {
         return
       }
 
-      console.log("Contact Form Data:", data)
-
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      // Send email via EmailJS
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_CONTACT_TEMPLATE_ID,
+        {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          message: data.message || "No message provided",
+        },
+        EMAILJS_PUBLIC_KEY
+      )
 
       toast.success("Message sent successfully!", {
         description: "We'll get back to you as soon as possible.",

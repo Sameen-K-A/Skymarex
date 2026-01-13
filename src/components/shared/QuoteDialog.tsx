@@ -4,6 +4,7 @@ import { useState, useRef } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
+import emailjs from "@emailjs/browser"
 import ReCAPTCHA from "react-google-recaptcha"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogDescription } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
@@ -15,6 +16,9 @@ import WaveText from "@/components/ui/WaveText"
 import { quoteFormSchema, QuoteFormData } from "@/schema/validations"
 
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!
+const EMAILJS_QUOTE_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_QUOTE_TEMPLATE_ID!
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
 
 const cargoTypes = [
   { value: "sea-cargo", label: "Sea Cargo" },
@@ -70,9 +74,26 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
         return
       }
 
-      console.log("Quote Form Data:", data)
+      // Get cargo type label
+      const cargoTypeLabel = cargoTypes.find(c => c.value === data.cargoType)?.label || data.cargoType
 
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      // Send email via EmailJS
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_QUOTE_TEMPLATE_ID,
+        {
+          fullName: data.fullName,
+          email: data.email,
+          phoneNumber: data.phoneNumber,
+          source: data.source,
+          destination: data.destination,
+          cargoType: cargoTypeLabel,
+          commodity: data.commodity,
+          volume: data.volume,
+          comments: data.comments || "No additional comments",
+        },
+        EMAILJS_PUBLIC_KEY
+      )
 
       toast.success("Quote request submitted!", {
         description: "We'll get back to you with a quotation soon.",
