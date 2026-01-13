@@ -7,7 +7,7 @@ import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animation
 const ServiceCard = ({ service }: { service: IService }) => {
   return (
     <div className="group bg-muted/50 rounded-2xl p-4 pb-5">
-      <div className="relative aspect-5/3 rounded-xl overflow-hidden bg-muted-foreground/10 mb-4">
+      <div className="relative aspect-5/3 rounded-xl overflow-hidden bg-muted-foreground/10 mb-6">
         <Image
           src={service.image}
           alt={service.title}
@@ -15,10 +15,10 @@ const ServiceCard = ({ service }: { service: IService }) => {
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />
       </div>
-      <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2 px-2">
+      <h3 className="text-lg md:text-xl font-medium text-foreground mb-4 px-2 leading-tight tracking-tighter line-clamp-1">
         {service.title}
       </h3>
-      <p className="text-sm md:text-base text-muted-foreground leading-relaxed px-2">
+      <p className="text-sm md:text-base text-foreground leading-tight tracking-tight px-2 line-clamp-2">
         {service.description}
       </p>
     </div>
@@ -27,15 +27,15 @@ const ServiceCard = ({ service }: { service: IService }) => {
 
 export default function ServicesGridSection() {
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-8 bg-background">
-      <StaggerContainer className="text-center mb-12" staggerDelay={0.15}>
+    <section className="py-16 md:py-24 md:pt-26 px-4 sm:px-8 bg-background">
+      <StaggerContainer className="text-center mb-15" staggerDelay={0.15}>
         <StaggerItem>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-4">
+          <h1 className="text-4xl md:text-5xl lg:text-[3.65rem] font-medium leading-tight text-foreground mb-4">
             Our services
           </h1>
         </StaggerItem>
         <StaggerItem>
-          <p className="text-muted-foreground font-medium max-w-md mx-auto">
+          <p className="font-medium max-w-md mx-auto leading-tight tracking-tighter">
             We offer a full range of moving solutions designed to make your relocation seamless, stress-free, and efficient.
           </p>
         </StaggerItem>
