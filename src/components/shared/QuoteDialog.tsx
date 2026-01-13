@@ -1,9 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
+import ReCAPTCHA from "react-google-recaptcha"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter, DialogDescription } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -12,6 +13,8 @@ import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import WaveText from "@/components/ui/WaveText"
 import { quoteFormSchema, QuoteFormData } from "@/schema/validations"
+
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
 const cargoTypes = [
   { value: "sea-cargo", label: "Sea Cargo" },
@@ -28,6 +31,8 @@ interface QuoteDialogProps {
 
 export default function QuoteDialog({ children }: QuoteDialogProps) {
   const [open, setOpen] = useState(false)
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   const { register, handleSubmit, reset, setValue, watch, formState: { errors, isSubmitting } } = useForm<QuoteFormData>({
     resolver: zodResolver(quoteFormSchema),
@@ -42,6 +47,29 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
 
   const onSubmit = async (data: QuoteFormData) => {
     try {
+      // Verify reCAPTCHA
+      if (!recaptchaToken) {
+        toast.error("Please complete the reCAPTCHA verification")
+        return
+      }
+
+      // Verify token with backend
+      const verifyResponse = await fetch("/api/verify-recaptcha", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: recaptchaToken }),
+      })
+
+      const verifyResult = await verifyResponse.json()
+      if (!verifyResult.success) {
+        toast.error("reCAPTCHA verification failed", {
+          description: "Please try again.",
+        })
+        recaptchaRef.current?.reset()
+        setRecaptchaToken(null)
+        return
+      }
+
       console.log("Quote Form Data:", data)
 
       await new Promise((resolve) => setTimeout(resolve, 1000))
@@ -51,6 +79,8 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
       })
 
       reset()
+      recaptchaRef.current?.reset()
+      setRecaptchaToken(null)
       setOpen(false)
     } catch (error) {
       console.error("Error submitting form:", error)
@@ -237,13 +267,24 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
                 <p className="text-sm text-destructive">{errors.comments.message}</p>
               )}
             </div>
+
+            {RECAPTCHA_SITE_KEY && (
+              <div className="overflow-hidden w-[302px]" style={{ clipPath: 'inset(0 0.5px 2px 0)' }}>
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={(token) => setRecaptchaToken(token)}
+                  onExpired={() => setRecaptchaToken(null)}
+                />
+              </div>
+            )}
           </div>
 
           <DialogFooter className="px-6 py-4 border-t shrink-0">
             <Button
               type="submit"
               size="lg"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !recaptchaToken}
               className="group w-full bg-primary hover:bg-primary/90 text-white font-semibold h-12 disabled:opacity-70"
             >
               <WaveText>{isSubmitting ? "Submitting..." : "Submit"}</WaveText>

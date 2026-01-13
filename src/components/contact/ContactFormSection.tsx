@@ -1,9 +1,11 @@
 "use client"
 
+import { useState, useRef } from "react"
 import { useTheme } from "next-themes"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
+import ReCAPTCHA from "react-google-recaptcha"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
@@ -13,9 +15,12 @@ import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animation
 import { contactFormSchema, ContactFormData } from "@/schema/validations"
 
 const MAP_URL = process.env.NEXT_PUBLIC_GOOGLE_MAP_EMBED_URL!
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
 export default function ContactFormSection() {
   const { resolvedTheme } = useTheme()
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -25,6 +30,29 @@ export default function ContactFormSection() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
+      // Verify reCAPTCHA
+      if (!recaptchaToken) {
+        toast.error("Please complete the reCAPTCHA verification")
+        return
+      }
+
+      // Verify token with backend
+      const verifyResponse = await fetch("/api/verify-recaptcha", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: recaptchaToken }),
+      })
+
+      const verifyResult = await verifyResponse.json()
+      if (!verifyResult.success) {
+        toast.error("reCAPTCHA verification failed", {
+          description: "Please try again.",
+        })
+        recaptchaRef.current?.reset()
+        setRecaptchaToken(null)
+        return
+      }
+
       console.log("Contact Form Data:", data)
 
       await new Promise((resolve) => setTimeout(resolve, 1000))
@@ -34,6 +62,8 @@ export default function ContactFormSection() {
       })
 
       reset()
+      recaptchaRef.current?.reset()
+      setRecaptchaToken(null)
     } catch (error) {
       console.error("Error submitting form:", error)
       toast.error("Something went wrong", {
@@ -121,10 +151,22 @@ export default function ContactFormSection() {
                   />
                 </div>
 
+                {RECAPTCHA_SITE_KEY && (
+                  <div className="overflow-hidden w-[302px]" style={{ clipPath: 'inset(0 0.5px 2px 0)' }}>
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey={RECAPTCHA_SITE_KEY}
+                      onChange={(token) => setRecaptchaToken(token)}
+                      onExpired={() => setRecaptchaToken(null)}
+                      theme={"light"}
+                    />
+                  </div>
+                )}
+
                 <Button
                   type="submit"
                   size={"lg"}
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !recaptchaToken}
                   className="group w-full bg-primary font-semibold h-12 text-white disabled:opacity-70"
                 >
                   <WaveText>{isSubmitting ? "Sending..." : "Submit"}</WaveText>
