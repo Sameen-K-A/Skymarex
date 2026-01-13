@@ -15,22 +15,22 @@ export default function ContactFormSection() {
 
   return (
     <section className="py-16 bg-background">
-      <div className="px-4 sm:px-8 lg:px-16">
+      <div className="px-4 sm:px-8">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
           <StaggerContainer className="space-y-6" staggerDelay={0.1}>
-            <StaggerItem>
+            <StaggerItem className="mb-15">
               <div>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-4">
+                <h1 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-foreground mb-4">
                   Get in touch with us
                 </h1>
-                <p className="text-muted-foreground max-w-lg">
+                <p className="text-muted-foreground font-medium max-w-lg leading-tight tracking-tighter">
                   Our friendly team is here to help. Reach out by phone, email, or through our contact form, we&apos;ll get back to you promptly and make your moving experience smooth from start to finish.
                 </p>
               </div>
             </StaggerItem>
 
             <StaggerItem>
-              <form className="space-y-5">
+              <form className="space-y-5 lg:px-10">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="text-foreground">
                     Name<span className="text-primary">*</span>
@@ -41,7 +41,7 @@ export default function ContactFormSection() {
                     type="text"
                     placeholder="John Doe"
                     required
-                    className="bg-muted-foreground/20 border-none text-foreground placeholder:text-muted-foreground h-12"
+                    className="bg-muted dark:bg-muted-foreground/40 border-none text-foreground placeholder:text-muted-foreground h-12"
                   />
                 </div>
 
@@ -55,20 +55,20 @@ export default function ContactFormSection() {
                     type="email"
                     placeholder="john@example.com"
                     required
-                    className="bg-muted-foreground/20 border-none text-foreground placeholder:text-muted-foreground h-12"
+                    className="bg-muted dark:bg-muted-foreground/40 border-none text-foreground placeholder:text-muted-foreground h-12"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-foreground">
-                    Phone number
+                    Phone number<span className="text-primary">*</span>
                   </Label>
                   <Input
                     id="phone"
                     name="phone"
                     type="tel"
                     placeholder="+1 (555) 000-0000"
-                    className="bg-muted-foreground/20 border-none text-foreground placeholder:text-muted-foreground h-12"
+                    className="bg-muted dark:bg-muted-foreground/40 border-none text-foreground placeholder:text-muted-foreground h-12"
                   />
                 </div>
 
@@ -81,7 +81,7 @@ export default function ContactFormSection() {
                     name="message"
                     placeholder="Write your message here"
                     rows={4}
-                    className="bg-muted-foreground/20 border-none text-foreground placeholder:text-muted-foreground resize-none"
+                    className="bg-muted dark:bg-muted-foreground/40 border-none text-foreground placeholder:text-muted-foreground resize-none h-30"
                   />
                 </div>
 
