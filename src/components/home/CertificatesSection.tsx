@@ -7,7 +7,10 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
+  DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog"
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
@@ -30,6 +33,10 @@ const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
         </div>
       </DialogTrigger>
       <DialogContent className="p-2 bg-background border-none">
+        <VisuallyHidden>
+          <DialogTitle>{certificate.title}</DialogTitle>
+          <DialogDescription>Certificate image preview</DialogDescription>
+        </VisuallyHidden>
         <div className="relative aspect-4/3 w-full rounded-xl overflow-hidden">
           <Image
             src={certificate.image}

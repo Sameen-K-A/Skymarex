@@ -146,8 +146,17 @@
   body {
     @apply bg-background text-foreground;
     font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
-    transform: scaleY(1.05);
-    transform-origin: top;
+  }
+
+  /* Stretch text elements vertically for taller letter proportions */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    transform: scaleY(1.07);
+    transform-origin: bottom;
   }
 }
 

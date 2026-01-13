@@ -49,7 +49,7 @@ export default function AboutSection() {
           </StaggerItem>
         </StaggerContainer>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
           {stats.map((stat, index) => (
             <Reveal key={index} delay={0.1 * index}>
               <div className="flex items-center gap-4">
