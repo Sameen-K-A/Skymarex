@@ -5,6 +5,7 @@ import { LoadingProvider } from "@/components/providers/LoadingContext"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
 import LoadingScreen from "@/components/layout/LoadingScreen"
+import { Toaster } from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
   title: {
@@ -58,6 +59,7 @@ export default function RootLayout({
               <Footer />
             </div>
           </LoadingProvider>
+          <Toaster richColors position="bottom-center" theme="light" closeButton={true} />
         </ThemeProvider>
       </body>
     </html>

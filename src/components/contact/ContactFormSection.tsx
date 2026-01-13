@@ -1,6 +1,10 @@
 "use client"
 
 import { useTheme } from "next-themes"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
+import { toast } from "sonner"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
@@ -10,8 +14,53 @@ import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animation
 
 const MAP_URL = process.env.NEXT_PUBLIC_GOOGLE_MAP_EMBED_URL!
 
+const contactFormSchema = z.object({
+  name: z
+    .string()
+    .min(3, "Name must be at least 3 characters")
+    .max(50, "Name must be less than 50 characters"),
+  email: z
+    .email("Please enter a valid email address"),
+  phone: z
+    .string()
+    .min(1, "Phone number is required")
+    .regex(/^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, "Please enter a valid phone number"),
+  message: z
+    .string()
+    .max(2000, "Message must be less than 2000 characters")
+    .optional()
+    .or(z.literal("")),
+})
+
+type ContactFormData = z.infer<typeof contactFormSchema>
+
 export default function ContactFormSection() {
   const { resolvedTheme } = useTheme()
+
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    mode: "onChange",
+    reValidateMode: "onChange",
+  })
+
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      console.log("Contact Form Data:", data)
+
+      await new Promise((resolve) => setTimeout(resolve, 1000))
+
+      toast.success("Message sent successfully!", {
+        description: "We'll get back to you as soon as possible.",
+      })
+
+      reset()
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      toast.error("Something went wrong", {
+        description: "Please try again later.",
+      })
+    }
+  };
 
   return (
     <section className="py-16 bg-background">
@@ -30,19 +79,21 @@ export default function ContactFormSection() {
             </StaggerItem>
 
             <StaggerItem>
-              <form className="space-y-5 lg:px-10">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 lg:px-10">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="text-foreground">
                     Name<span className="text-primary">*</span>
                   </Label>
                   <Input
                     id="name"
-                    name="name"
                     type="text"
                     placeholder="John Doe"
-                    required
+                    {...register("name")}
                     className="bg-muted dark:bg-muted-foreground/40 border-none text-foreground placeholder:text-muted-foreground h-12"
                   />
+                  {errors.name && (
+                    <p className="text-sm text-destructive">{errors.name.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -51,12 +102,14 @@ export default function ContactFormSection() {
                   </Label>
                   <Input
                     id="email"
-                    name="email"
                     type="email"
                     placeholder="john@example.com"
-                    required
+                    {...register("email")}
                     className="bg-muted dark:bg-muted-foreground/40 border-none text-foreground placeholder:text-muted-foreground h-12"
                   />
+                  {errors.email && (
+                    <p className="text-sm text-destructive">{errors.email.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -65,11 +118,14 @@ export default function ContactFormSection() {
                   </Label>
                   <Input
                     id="phone"
-                    name="phone"
                     type="tel"
                     placeholder="+1 (555) 000-0000"
+                    {...register("phone")}
                     className="bg-muted dark:bg-muted-foreground/40 border-none text-foreground placeholder:text-muted-foreground h-12"
                   />
+                  {errors.phone && (
+                    <p className="text-sm text-destructive">{errors.phone.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -78,9 +134,9 @@ export default function ContactFormSection() {
                   </Label>
                   <Textarea
                     id="message"
-                    name="message"
                     placeholder="Write your message here"
                     rows={4}
+                    {...register("message")}
                     className="bg-muted dark:bg-muted-foreground/40 border-none text-foreground placeholder:text-muted-foreground resize-none h-30"
                   />
                 </div>
@@ -88,9 +144,10 @@ export default function ContactFormSection() {
                 <Button
                   type="submit"
                   size={"lg"}
-                  className="group w-full bg-primary font-semibold h-12 text-white"
+                  disabled={isSubmitting}
+                  className="group w-full bg-primary font-semibold h-12 text-white disabled:opacity-70"
                 >
-                  <WaveText>Submit</WaveText>
+                  <WaveText>{isSubmitting ? "Sending..." : "Submit"}</WaveText>
                 </Button>
               </form>
             </StaggerItem>
