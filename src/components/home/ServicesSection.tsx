@@ -36,7 +36,7 @@ export default function ServicesSection() {
           </span>
         </StaggerItem>
         <StaggerItem>
-          <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background">
+          <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium leading-tight text-background">
             We're not just about trucks and timelines,
             we're about trust and responsibility.
           </h2>

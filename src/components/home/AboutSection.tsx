@@ -34,7 +34,7 @@ export default function AboutSection() {
           </StaggerItem>
 
           <StaggerItem>
-            <p className="text-muted/90 text-sm sm:text-lg font-medium mb-4">
+            <p className="text-muted/90 text-base sm:text-lg font-medium mb-4">
               At <strong>Time Global Shipping</strong>, we are more than just a logistics provider; we are a strategic partner dedicated to empowering businesses in an increasingly complex global market. With over <strong>35 years of industry-leading experience</strong>, we specialize in crafting tailored logistics solutions that combine precision, reliability, and innovation.
             </p>
           </StaggerItem>
@@ -49,7 +49,7 @@ export default function AboutSection() {
           </StaggerItem>
         </StaggerContainer>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {stats.map((stat, index) => (
             <Reveal key={index} delay={0.1 * index}>
               <div className="flex items-center gap-4">

@@ -34,7 +34,7 @@ export default function WhoWeAreSection() {
           </StaggerItem>
 
           <StaggerItem>
-            <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium text-background leading-tight mb-8">
+            <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium text-background leading-tight mb-8">
               We&apos;re more than movers we&apos;re your partners in making
               relocation simple, secure, and worry-free from start to finish.
             </h2>

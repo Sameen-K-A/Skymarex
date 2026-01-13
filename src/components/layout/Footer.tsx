@@ -30,29 +30,29 @@ export default function Footer() {
           <StaggerItem>
             <div className="flex justify-around w-fit xl:min-w-xs">
               <div className="space-y-2 sm:space-y-6">
-                <h3 className="text-foreground font-semibold text-center sm:text-left">Links</h3>
-                <div className="space-y-4 space-x-4 flex flex-row sm:flex-col">
+                <h3 className="text-foreground text-xl font-semibold text-center sm:text-left">Links</h3>
+                <div className="space-y-2 space-x-4 flex flex-row sm:flex-col">
                   <Link
                     href="/"
-                    className="block text-muted-foreground text-xs transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
+                    className="block text-muted-foreground text-base transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
                   >
                     Home
                   </Link>
                   <Link
                     href="/about"
-                    className="block text-muted-foreground text-xs transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
+                    className="block text-muted-foreground text-base transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
                   >
                     About
                   </Link>
                   <Link
                     href="/services"
-                    className="block text-muted-foreground text-xs transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
+                    className="block text-muted-foreground text-base transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
                   >
                     Services
                   </Link>
                   <Link
                     href="/contact"
-                    className="block text-muted-foreground text-xs transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
+                    className="block text-muted-foreground text-base transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
                   >
                     Contact
                   </Link>
@@ -68,7 +68,7 @@ export default function Footer() {
               Ship With Us
             </span>
 
-            <p className="text-xs text-center mb-2">
+            <p className="text-base text-center mb-2">
               Copyright &copy; {new Date().getFullYear()} All rights reserved by
               Skymarex
             </p>

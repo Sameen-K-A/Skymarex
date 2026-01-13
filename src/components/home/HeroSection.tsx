@@ -23,7 +23,7 @@ const ImageCard = ({ img, index, variant = "horizontal" }: ImageCardProps) => {
         "relative overflow-hidden rounded-2xl bg-muted shrink-0",
         variant === "vertical"
           ? "aspect-4/5 min-h-105"
-          : "aspect-4/5 min-h-64 md:min-h-80"
+          : "aspect-4/5 min-h-50 md:min-h-80"
       )}
     >
       <Image

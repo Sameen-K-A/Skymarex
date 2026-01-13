@@ -31,7 +31,7 @@ export default function PerksSection() {
       <div className="max-w-3xl mx-auto">
         <StaggerContainer className="text-center mb-12" staggerDelay={0.15}>
           <StaggerItem>
-            <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight mb-4">
+            <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium leading-tight mb-4">
               Perks of Shipping With Us
             </h2>
           </StaggerItem>
