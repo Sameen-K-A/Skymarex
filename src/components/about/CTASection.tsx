@@ -8,7 +8,7 @@ import QuoteDialog from "@/components/shared/QuoteDialog"
 
 export default function CTASection() {
   return (
-    <section className="relative py-12 md:py-24 px-4 sm:px-8 bg-background">
+    <section className="relative py-12 md:py-30 px-4 sm:px-8 bg-background">
       <div className="absolute inset-0 bg-background" />
 
       <StaggerContainer className="relative z-10 max-w-lg md:max-w-2xl mx-auto text-center" staggerDelay={0.15}>
@@ -18,7 +18,7 @@ export default function CTASection() {
           </span>
         </StaggerItem>
         <StaggerItem>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-foreground leading-tight mb-8 md:mb-10">
+          <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium text-foreground leading-tight mb-8 md:mb-10">
             Let&apos;s make your next move effortless and worry-free.
           </h2>
         </StaggerItem>

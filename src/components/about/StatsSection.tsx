@@ -23,8 +23,8 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="py-16 lg:py-24 px-4 sm:px-8 bg-foreground">
-      <div className="flex flex-col xl:flex-row lg:items-center lg:justify-between gap-10 lg:gap-16">
+    <section className="py-10 px-4 sm:px-8 bg-foreground">
+      <div className="flex flex-col xl:flex-row lg:items-start lg:justify-between gap-10 lg:gap-16">
 
         <StaggerContainer className="w-full xl:max-w-sm" staggerDelay={0.15}>
           <StaggerItem>
@@ -33,7 +33,7 @@ export default function StatsSection() {
             </span>
           </StaggerItem>
           <StaggerItem>
-            <h2 className="text-3xl md:text-4xl font-medium leading-tight text-background">
+            <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background">
               Our numbers speak for themselves
             </h2>
           </StaggerItem>

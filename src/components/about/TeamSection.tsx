@@ -6,9 +6,9 @@ import { Reveal } from "@/components/ui/animations"
 
 export default function TeamSection() {
   return (
-    <section className="py-16  px-4 sm:px-8 bg-foreground">
+    <section className="py-8 px-4 sm:px-8 bg-foreground">
       <Reveal>
-        <h2 className="text-3xl md:text-4xl font-medium leading-tight mb-10 md:mb-14 text-background">
+        <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight mb-10 md:mb-14 text-background">
           Our hardworking movers
         </h2>
       </Reveal>
