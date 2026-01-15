@@ -1,62 +1,77 @@
 "use client"
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaInstagram, FaFacebook, FaYoutube, FaTwitter } from "react-icons/fa";
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations";
 
+const footerLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/contact", label: "Contact" },
+];
+
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="container mx-auto p-4 sm:p-8 border-t">
       <div className="max-w-7xl mx-auto pt-5">
 
-        <StaggerContainer className="flex flex-col sm:flex-row gap-5 justify-between items-center sm:items-start" staggerDelay={0.15}>
-          <StaggerItem>
-            <div className="text-center sm:text-left">
+        {/* Desktop: 3 columns | Mobile: stacked */}
+        <StaggerContainer className="flex flex-col lg:flex-row gap-8 lg:gap-4 justify-between items-center lg:items-start" staggerDelay={0.15}>
+
+          {/* Mobile: Logo first | Desktop: Hidden here (shown in center) */}
+          <StaggerItem className="lg:hidden">
+            <Link href="/">
+              <span className="pointer-events-none whitespace-pre-wrap bg-linear-to-b from-black to-gray-500 dark:from-white dark:to-gray-500 bg-clip-text text-3xl font-bold leading-none text-transparent">
+                Skymarex
+              </span>
+            </Link>
+          </StaggerItem>
+
+          {/* Right Column: Address */}
+          <StaggerItem className="lg:flex-1 order-3 lg:order-3">
+            <address className="not-italic leading-relaxed flex flex-col text-center lg:text-left lg:ml-auto lg:w-fit text-sm text-muted-foreground">
+              <span>123 Business Street</span>
+              <span>Suite 456</span>
+              <span>New York, NY 10001</span>
+              <span>United States</span>
+            </address>
+          </StaggerItem>
+
+          {/* Center Column: Logo (Desktop only) */}
+          <StaggerItem className="hidden lg:block lg:flex-1 order-1 lg:order-2">
+            <div className="text-center pt-5">
               <Link href="/">
-                <span className="pointer-events-none whitespace-pre-wrap bg-linear-to-b from-black to-gray-500 dark:from-white dark:to-gray-500 bg-clip-text text-xl sm:text-3xl ml-2 font-bold leading-none text-transparent">
+                <span className="pointer-events-none whitespace-pre-wrap bg-linear-to-b from-black to-gray-500 dark:from-white dark:to-gray-500 bg-clip-text text-5xl font-bold leading-none text-transparent">
                   Skymarex
                 </span>
               </Link>
-
-              <address className="not-italic text-muted-foreground text-xs mt-4 ml-2 leading-relaxed">
-                123 Business Street<br />
-                Suite 456<br />
-                New York, NY 10001<br />
-                United States
-              </address>
             </div>
           </StaggerItem>
 
-          <StaggerItem>
-            <div className="flex justify-around w-fit xl:min-w-xs">
-              <div className="space-y-2 sm:space-y-6">
-                <h3 className="text-foreground text-xl font-semibold text-center sm:text-left">Links</h3>
-                <div className="space-y-2 space-x-4 flex flex-row sm:flex-col">
-                  <Link
-                    href="/"
-                    className="block text-muted-foreground text-base transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    href="/about"
-                    className="block text-muted-foreground text-base transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
-                  >
-                    About
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="block text-muted-foreground text-base transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
-                  >
-                    Services
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="block text-muted-foreground text-base transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2"
-                  >
-                    Contact
-                  </Link>
-                </div>
+          {/* Left Column: Links */}
+          <StaggerItem className="lg:flex-1 order-2 lg:order-1">
+            <div className="lg:text-left">
+              <h3 className="hidden lg:block text-foreground text-xl font-semibold mb-4">Links</h3>
+              <div className="flex flex-row lg:flex-col lg:items-start gap-6 lg:gap-2">
+                {footerLinks.map((link) => {
+                  const isActive = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`text-sm transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2 ${isActive
+                        ? "text-foreground underline underline-offset-3 decoration-primary decoration-2"
+                        : "text-muted-foreground"
+                        }`}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </StaggerItem>
