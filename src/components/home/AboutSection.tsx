@@ -60,8 +60,8 @@ export default function AboutSection() {
             </Link>
           </StaggerItem>
           <StaggerItem className="flex justify-center">
-            <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/10 text-background rounded-full mb-12">
-              <span>
+            <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/10 text-background rounded-full mb-12 text-center">
+              <span className="text-center">
                 <strong>SKYMAREX</strong> — Your trusted partner in safe, compliant, and seamless global logistics.
               </span>
             </span>

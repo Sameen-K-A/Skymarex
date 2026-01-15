@@ -1,6 +1,9 @@
 "use client"
 
+import { useRef } from "react"
 import Image from "next/image"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { testimonials } from "@/constants/testimonials";
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
@@ -55,30 +58,92 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
 }
 
 export default function TestimonialsSection() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 320 // Card width + gap
+      scrollContainerRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
+      })
+    }
+  }
+
   return (
     <section className="py-12 px-4 sm:px-8 overflow-hidden">
-      <StaggerContainer className="text-center mb-6 md:mb-12" staggerDelay={0.15}>
-        <StaggerItem>
-          <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/10 text-background rounded-full mb-4">
-            Trusted by customers
-          </span>
-        </StaggerItem>
-        <StaggerItem>
-          <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium leading-tight text-background">
-            Trusted by families and <br className="hidden sm:block" />
-            businesses alike
-          </h2>
-        </StaggerItem>
-      </StaggerContainer>
+      {/* Header with arrows (desktop only) */}
+      <div className="relative mb-6 md:mb-12">
+        <StaggerContainer className="text-center" staggerDelay={0.15}>
+          <StaggerItem>
+            <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/10 text-background rounded-full mb-4">
+              Trusted by customers
+            </span>
+          </StaggerItem>
+          <StaggerItem>
+            <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium leading-tight text-background">
+              Trusted by families and <br className="hidden sm:block" />
+              businesses alike
+            </h2>
+          </StaggerItem>
+        </StaggerContainer>
+
+        {/* Arrow controls - desktop: top right */}
+        <div className="hidden lg:flex absolute right-0 top-1/2 gap-2">
+          <Button
+            variant="ghost"
+            size="icon-lg"
+            onClick={() => scroll("left")}
+            className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft className="w-7 h-7 text-background font" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon-lg"
+            onClick={() => scroll("right")}
+            className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="w-7 h-7 text-background font" />
+          </Button>
+        </div>
+      </div>
 
       {/* Scrollable container */}
       <Reveal>
-        <div className="flex gap-4 overflow-x-scroll pb-4 scrollbar-hide -mx-4 px-4 sm:-mx-8 sm:px-8 lg:-mx-16 lg:px-16">
+        <div
+          ref={scrollContainerRef}
+          className="flex gap-4 overflow-x-scroll pb-4 scrollbar-hide -mx-4 px-4 sm:-mx-8 sm:px-8 lg:-mx-16 lg:px-16"
+        >
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} />
           ))}
         </div>
       </Reveal>
+
+      {/* Arrow controls - mobile: centered below cards */}
+      <div className="flex lg:hidden justify-center gap-2 mt-4">
+        <Button
+          variant="ghost"
+          size="icon-lg"
+          onClick={() => scroll("left")}
+          className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg"
+          aria-label="Scroll left"
+        >
+          <ChevronLeft className="w-7 h-7 text-background font-bold" />
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon-lg"
+          onClick={() => scroll("right")}
+          className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg"
+          aria-label="Scroll right"
+        >
+          <ChevronRight className="w-7 h-7 text-background font-bold" />
+        </Button>
+      </div>
     </section>
   )
 }

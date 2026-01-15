@@ -63,12 +63,10 @@ export default function Footer() {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={`text-sm transition-all duration-200 hover:text-foreground hover:underline hover:underline-offset-3 hover:decoration-primary hover:decoration-2 ${isActive
-                        ? "text-foreground underline underline-offset-3 decoration-primary decoration-2"
-                        : "text-muted-foreground"
-                        }`}
+                      className={`relative text-sm transition-colors duration-200 hover:text-foreground group ${isActive ? "text-foreground" : "text-muted-foreground"}`}
                     >
                       {link.label}
+                      <span className={`absolute left-0 -bottom-0.5 h-0.5 bg-primary transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
                     </Link>
                   );
                 })}
