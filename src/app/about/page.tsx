@@ -1,6 +1,7 @@
 import HeroSection from "@/components/about/HeroSection"
-import WhoWeAreSection from "@/components/about/WhoWeAreSection"
+import YourTrustedPartnerSection from "@/components/about/YourTrustedPartnerSection"
 import TeamSection from "@/components/about/TeamSection"
+import WhatMakesUsDifferentSection from "@/components/about/WhatMakesUsDifferentSection"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -12,7 +13,8 @@ export default function AboutPage() {
   return (
     <div className="container mx-auto overflow-hidden">
       <HeroSection />
-      <WhoWeAreSection />
+      <YourTrustedPartnerSection />
+      <WhatMakesUsDifferentSection />
       <TeamSection />
     </div>
   )

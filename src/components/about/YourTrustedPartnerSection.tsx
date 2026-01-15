@@ -23,7 +23,7 @@ const features = [
   },
 ]
 
-export default function WhoWeAreSection() {
+export default function YourTrustedPartnerSection() {
   return (
     <section className="py-16 md:py-24 md:pt-30 px-4 sm:px-8 bg-foreground">
       <div className="max-w-4xl mx-auto text-center">

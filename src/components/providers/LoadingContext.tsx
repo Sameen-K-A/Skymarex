@@ -16,6 +16,8 @@ export function LoadingProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+
     const timer = setTimeout(() => {
       setIsLoading(false)
     }, 2600)
