@@ -17,7 +17,7 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
           <div className="flex items-center gap-3">
             <div className="w-16 h-16 rounded-xl bg-muted-foreground/20 overflow-hidden relative">
               <Image
-                src={testimonial.avatar}
+                src={testimonial.image}
                 alt={testimonial.name}
                 fill
                 className="object-cover"
