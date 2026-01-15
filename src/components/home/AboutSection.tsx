@@ -50,19 +50,19 @@ export default function AboutSection() {
               every step.
             </p>
           </StaggerItem>
-          <StaggerItem>
-            <p className="text-muted/90 text-base sm:text-lg font-medium mb-4">
-              <strong>SKYMAREX</strong> — Your trusted partner in safe, compliant, and seamless global logistics.
-            </p>
-          </StaggerItem>
 
           <StaggerItem>
             <Link
               href="/about"
-              className="group inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-background text-foreground rounded-lg hover:bg-background/90 transition-colors mb-12"
+              className="group inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-background text-foreground rounded-lg hover:bg-background/90 transition-colors mb-4"
             >
               <WaveText>Learn more</WaveText>
             </Link>
+          </StaggerItem>
+          <StaggerItem className="flex justify-center">
+            <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/10 text-background rounded-full mb-12">
+              <strong>SKYMAREX</strong> — Your trusted partner in safe, compliant, and seamless global logistics.
+            </span>
           </StaggerItem>
         </StaggerContainer>
 
