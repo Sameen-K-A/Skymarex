@@ -57,7 +57,7 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
 export default function TestimonialsSection() {
   return (
     <section className="py-12 px-4 sm:px-8 overflow-hidden">
-      <StaggerContainer className="text-center mb-12" staggerDelay={0.15}>
+      <StaggerContainer className="text-center mb-6 md:mb-12" staggerDelay={0.15}>
         <StaggerItem>
           <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/10 text-background rounded-full mb-4">
             Trusted by customers

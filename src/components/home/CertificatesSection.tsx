@@ -53,7 +53,7 @@ const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
 export default function CertificatesSection() {
   return (
     <section className="py-12 overflow-hidden">
-      <StaggerContainer className="text-center mb-12 px-4 sm:px-8" staggerDelay={0.15}>
+      <StaggerContainer className="text-center mb-6 md:mb-12 px-4 sm:px-8" staggerDelay={0.15}>
         <StaggerItem>
           <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/10 text-background rounded-full mb-6">
             Compliance You Can Count On

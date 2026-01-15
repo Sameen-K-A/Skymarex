@@ -14,7 +14,7 @@ export default function FAQSection({ badge, heading }: FAQSectionProps) {
   return (
     <section className="py-12 pb-24 px-4 sm:px-8 lg:px-16 bg-foreground">
       <div className="max-w-4xl mx-auto">
-        <StaggerContainer className="text-center mb-15" staggerDelay={0.15}>
+        <StaggerContainer className="text-center mb-8 md:mb-15" staggerDelay={0.15}>
           <StaggerItem>
             <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/20 text-background rounded-full mb-4">
               {badge}
