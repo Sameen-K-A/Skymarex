@@ -96,7 +96,8 @@ export default function HeroSection() {
 
             <StaggerItem>
               <p className="text-sm font-medium sm:text-base mb-6 max-w-lg opacity-90 tracking-tighter">
-                Experience a hassle-free, seamless relocation with efficient, professional moving services tailored to your needs.
+                Experience hassle-free logistics with expertly managed compliance, efficient coordination,
+                and seamless logistics solutions with Dangerous Goods handling, tailored to your shipment.
               </p>
             </StaggerItem>
 

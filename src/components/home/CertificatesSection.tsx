@@ -55,19 +55,19 @@ export default function CertificatesSection() {
     <section className="py-12 overflow-hidden">
       <StaggerContainer className="text-center mb-12 px-4 sm:px-8" staggerDelay={0.15}>
         <StaggerItem>
-          <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/10 text-background rounded-full mb-4">
-            Certificates
+          <span className="inline-flex items-center px-4 py-2 text-xs font-medium bg-muted-foreground/10 text-background rounded-full mb-6">
+            Compliance You Can Count On
           </span>
         </StaggerItem>
         <StaggerItem>
-          <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background max-w-xl mx-auto">
-            Trusted by families and businesses alike
+          <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background max-w-3xl mx-auto">
+            Certified and trained, our team ensures safe, compliant, and reliable shipments every time.
           </h2>
         </StaggerItem>
       </StaggerContainer>
 
       <Reveal>
-        <Marquee className="[--duration:40s]">
+        <Marquee className="[--duration:40s]" pauseOnHover>
           {certificates.map((certificate) => (
             <CertificateCard key={certificate.id} certificate={certificate} />
           ))}

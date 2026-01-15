@@ -7,9 +7,10 @@ import WaveText from "../ui/WaveText"
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 const stats = [
-  { value: 576, label: "Project Completed", icon: Package },
+  { value: 576, label: "Shipment Completed", icon: Package },
   { value: 687, label: "Happy Customers", icon: Package },
-  { value: 890, label: "Delivered in Time", icon: Package },
+  { value: 890, label: "Industry experience", icon: Package },
+  { value: 24, label: "Delivered in Time", icon: Package },
 ]
 
 export default function AboutSection() {
@@ -35,7 +36,23 @@ export default function AboutSection() {
 
           <StaggerItem>
             <p className="text-muted/90 text-base sm:text-lg font-medium mb-4">
-              At <strong>Time Global Shipping</strong>, we are more than just a logistics provider; we are a strategic partner dedicated to empowering businesses in an increasingly complex global market. With over <strong>35 years of industry-leading experience</strong>, we specialize in crafting tailored logistics solutions that combine precision, reliability, and innovation.
+              <strong>SKYMAREX</strong> is a specialized logistics company focused on the safe and compliant handling of
+              Dangerous Goods. Backed by a team with <strong>15+</strong> years of industry experience and expertise
+              across air and sea freight, multimodal transport, and secure warehousing, we deliver
+              seamless, reliable, and precision-driven logistics solutions tailored to our clients’ needs.
+            </p>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="text-muted/90 text-base sm:text-lg font-medium mb-4">
+              Driven by a customer-first approach and practical innovation, SKYMAREX partners with
+              businesses to streamline supply chains, eliminate operational headaches, and deliver lasting
+              peace of mind. We don’t just move cargo—we manage responsibility, safety, and trust at
+              every step.
+            </p>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="text-muted/90 text-base sm:text-lg font-medium mb-4">
+              <strong>SKYMAREX</strong> — Your trusted partner in safe, compliant, and seamless global logistics.
             </p>
           </StaggerItem>
 
@@ -49,7 +66,7 @@ export default function AboutSection() {
           </StaggerItem>
         </StaggerContainer>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           {stats.map((stat, index) => (
             <Reveal key={index} delay={0.1 * index}>
               <div className="flex items-center gap-4">

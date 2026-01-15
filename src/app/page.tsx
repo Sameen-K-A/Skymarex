@@ -22,8 +22,8 @@ export default function HomePage() {
       </div>
       <PerksSection />
       <div className="bg-foreground">
-        <TestimonialsSection />
         <CertificatesSection />
+        <TestimonialsSection />
         <FAQSection
           badge="Need help?"
           heading="Frequently asked questions"

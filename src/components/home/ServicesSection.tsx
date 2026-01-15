@@ -9,20 +9,20 @@ const features = [
   {
     icon: Scale,
     number: "01",
-    title: "Integrity & Ethics",
-    description: "We uphold the highest standards of honesty, confidentiality, & professionalism in every matter",
+    title: "Integrity & Responsibility",
+    description: "We uphold the highest standards of professionalism, safety, and transparency in every shipment.",
   },
   {
     icon: Handshake,
     number: "02",
-    title: "Client-Centered",
-    description: "Our approach is tailored to each client's unique legal needs, ensuring strategic and representation",
+    title: "Client-Focused Solutions",
+    description: "Each logistics plan is tailored to your unique business needs, ensuring smooth and reliable operations.",
   },
   {
     icon: Gavel,
     number: "03",
-    title: "Legal Solution",
-    description: "We combine legal expertise with modern strategies to provide solutions that meet today's challenges",
+    title: "Compliance & Customs Expertise",
+    description: "From regulatory compliance to customs brokering, we provide end-to-end solutions for safe and efficient delivery",
   },
 ]
 
@@ -37,8 +37,7 @@ export default function ServicesSection() {
         </StaggerItem>
         <StaggerItem>
           <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium leading-tight text-background">
-            We're not just about trucks and timelines,
-            we're about trust and responsibility.
+            We’re not just about moving cargo—we’re about trust, safety, and seamless compliance.
           </h2>
         </StaggerItem>
       </StaggerContainer>
@@ -46,19 +45,43 @@ export default function ServicesSection() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-5">
         {features.map((feature, index) => (
           <Reveal key={index} delay={0.1 * index}>
-            <div
-              className="bg-muted-foreground/10 rounded-2xl p-6 md:p-8 flex flex-col min-h-84"
-            >
-              <div className="flex items-start justify-between mb-auto">
-                <feature.icon className="w-10 h-10 text-background" strokeWidth={1.5} />
-                <span className="text-sm text-background">{feature.number}</span>
+            <div className="bg-muted-foreground/15 rounded-2xl rounded-tr-none overflow-hidden flex flex-col min-h-84 relative">
+              {/* Main content area */}
+              <div className="p-6 md:p-8 flex flex-col flex-1">
+                <div className="flex items-start justify-between mb-auto">
+                  <feature.icon className="w-10 h-10 text-background" strokeWidth={1.5} />
+                </div>
+
+                <div className="mt-8">
+                  <h3 className="text-xl md:text-2xl font-medium mb-3 text-background">{feature.title}</h3>
+                  <p className="text-sm text-muted/80 font-medium leading-tight">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
 
-              <div className="mt-8">
-                <h3 className="text-2xl md:text-3xl font-medium mb-3 text-background">{feature.title}</h3>
-                <p className="text-sm text-muted/80 font-medium leading-tight">
-                  {feature.description}
-                </p>
+              {/* Inverted radius corner with number */}
+              <div className="absolute top-0 right-0">
+                <div className="relative">
+                  {/* Number badge */}
+                  <div className="bg-foreground/50 text-background font-mono text-base px-2 py-2 aspect-square h-12 w-12 rounded-bl-2xl flex justify-center items-center">
+                    {feature.number}
+                  </div>
+                  {/* Inverted radius - left side */}
+                  <div
+                    className="absolute -left-4 top-0 w-4 h-4 bg-transparent -rotate-90"
+                    style={{
+                      background: 'radial-gradient(circle at 0 0, transparent 16px, color-mix(in srgb, var(--foreground) 50%, transparent) 16px)'
+                    }}
+                  />
+                  {/* Inverted radius - bottom side */}
+                  <div
+                    className="absolute right-0 -bottom-4 w-4 h-4 bg-transparent rotate-90 scale-y-[-1]"
+                    style={{
+                      background: 'radial-gradient(circle at 100% 0, transparent 16px, color-mix(in srgb, var(--foreground) 50%, transparent) 16px)'
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </Reveal>
@@ -70,7 +93,7 @@ export default function ServicesSection() {
           href="/services"
           className="group inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-background rounded-lg hover:bg-background/90 transition-colors"
         >
-          <WaveText>All Services</WaveText>
+          <WaveText>Explore Our Services</WaveText>
         </Link>
       </Reveal>
     </section>
