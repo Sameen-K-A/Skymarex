@@ -64,7 +64,7 @@ export default function TestimonialsSection() {
           </span>
         </StaggerItem>
         <StaggerItem>
-          <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background">
+          <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium leading-tight text-background">
             Trusted by families and <br className="hidden sm:block" />
             businesses alike
           </h2>

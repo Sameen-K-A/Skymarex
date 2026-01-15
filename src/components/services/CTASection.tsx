@@ -18,7 +18,7 @@ export default function CTASection() {
           </span>
         </StaggerItem>
         <StaggerItem>
-          <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium text-foreground leading-tight mb-8 md:mb-10">
+          <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium text-foreground leading-tight mb-8 md:mb-10">
             Let&apos;s make your next move effortless and worry-free.
           </h2>
         </StaggerItem>

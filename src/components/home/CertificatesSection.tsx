@@ -60,7 +60,7 @@ export default function CertificatesSection() {
           </span>
         </StaggerItem>
         <StaggerItem>
-          <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background max-w-3xl mx-auto">
+          <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium leading-tight text-background max-w-3xl mx-auto">
             Certified and trained, our team ensures safe, compliant, and reliable shipments every time.
           </h2>
         </StaggerItem>
