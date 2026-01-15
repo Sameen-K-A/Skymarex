@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { X } from "lucide-react"
 import { Marquee } from "@/components/ui/marquee"
 import { certificates, ICertificate } from "@/constants/certificates"
 import {
@@ -9,6 +10,7 @@ import {
   DialogTrigger,
   DialogTitle,
   DialogDescription,
+  DialogClose,
 } from "@/components/ui/dialog"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
@@ -32,17 +34,24 @@ const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
           </p>
         </div>
       </DialogTrigger>
-      <DialogContent className="p-2 bg-background border-none">
+      <DialogContent className="p-2 bg-foreground border-none rounded-2xl sm:max-w-2xl h-fit gap-0" showCloseButton={false}>
         <VisuallyHidden>
           <DialogTitle>{certificate.title}</DialogTitle>
           <DialogDescription>Certificate image preview</DialogDescription>
         </VisuallyHidden>
-        <div className="relative aspect-4/3 w-full rounded-xl overflow-hidden">
+
+        <div className="relative">
+          <DialogClose className="absolute cursor-pointer top-1 right-1 z-50 w-10 h-10 rounded-full bg-white hover:bg-white/90 focus:ring-0 focus:ring-offset-0 focus:outline-none focus:border-0 flex items-center justify-center transition-colors shadow-lg">
+            <X className="w-5 h-5 text-black" />
+          </DialogClose>
+
           <Image
             src={certificate.image}
             alt={certificate.title}
-            fill
-            className="object-contain"
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="object-contain rounded-xl w-full h-auto"
           />
         </div>
       </DialogContent>
@@ -67,7 +76,7 @@ export default function CertificatesSection() {
       </StaggerContainer>
 
       <Reveal>
-        <Marquee className="[--duration:40s]" pauseOnHover>
+        <Marquee className="[--duration:40s]">
           {certificates.map((certificate) => (
             <CertificateCard key={certificate.id} certificate={certificate} />
           ))}
