@@ -34,7 +34,7 @@ const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
           </p>
         </div>
       </DialogTrigger>
-      <DialogContent className="p-2 bg-foreground border-none rounded-2xl sm:max-w-2xl h-fit gap-0" showCloseButton={false}>
+      <DialogContent className="p-2 bg-foreground border-none rounded-2xl sm:max-w-2xl gap-0" showCloseButton={false}>
         <VisuallyHidden>
           <DialogTitle>{certificate.title}</DialogTitle>
           <DialogDescription>Certificate image preview</DialogDescription>
@@ -51,7 +51,7 @@ const CertificateCard = ({ certificate }: { certificate: ICertificate }) => {
             width={0}
             height={0}
             sizes="100vw"
-            className="object-contain rounded-xl w-full h-auto"
+            className="object-contain rounded-xl w-full h-fit"
           />
         </div>
       </DialogContent>
