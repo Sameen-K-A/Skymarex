@@ -8,17 +8,25 @@ import QuoteDialog from "@/components/shared/QuoteDialog"
 
 export default function CTASection() {
   return (
-    <section className="relative py-20 md:py-30 px-4 sm:px-8 bg-background">
-      <div className="absolute inset-0 bg-background" />
+    <section className="relative py-20 md:py-30 px-4 sm:px-8 overflow-hidden">
+
+      <video
+        autoPlay loop muted playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      >
+        <source src="/videos/services/CTA_background.mp4" type="video/mp4" />
+      </video>
+
+      <div className="absolute inset-0 bg-black/70 z-0" />
 
       <StaggerContainer className="relative z-10 max-w-lg md:max-w-2xl mx-auto text-center" staggerDelay={0.15}>
         <StaggerItem>
-          <span className="inline-flex items-center px-4 py-2 text-xs font-semibold bg-foreground text-background rounded-full tracking-wider mb-6">
+          <span className="inline-flex items-center px-4 py-2 text-xs font-semibold bg-white text-black rounded-full tracking-wider mb-6">
             Start your journey
           </span>
         </StaggerItem>
         <StaggerItem>
-          <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium text-foreground leading-tight mb-8 md:mb-10">
+          <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium text-white leading-tight mb-8 md:mb-10">
             Let&apos;s make your next move effortless and worry-free.
           </h2>
         </StaggerItem>
@@ -33,8 +41,8 @@ export default function CTASection() {
             </Link>
 
             <QuoteDialog>
-              <button className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition-all cursor-pointer">
-                <span className="border-b-2 border-foreground pb-0.5">
+              <button className="group inline-flex items-center gap-2 text-sm font-medium text-white transition-all cursor-pointer">
+                <span className="border-b-2 border-white pb-0.5">
                   <WaveText>Get a free quote</WaveText>
                 </span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
