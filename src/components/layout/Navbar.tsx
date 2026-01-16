@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils"
 import { ShinyButton } from "@/components/ui/shiny-button"
 import { Button } from "../ui/button"
 import { ThemeToggle } from "@/components/layout/ThemeToggle"
+import { GradientLogo } from "@/components/ui/GradientLogo"
 import QuoteDialog from "@/components/shared/QuoteDialog"
 
 const menuItems = [
@@ -64,9 +65,12 @@ export default function Navbar() {
 
             <div className="flex w-full justify-between lg:w-auto py-2">
               <Link href="/" aria-label="home" className="flex gap-2 items-center">
-                <span className="pointer-events-none whitespace-pre-wrap bg-linear-to-b from-black to-gray-500 dark:from-white dark:to-gray-500 bg-clip-text text-xl sm:text-3xl ml-2 font-bold leading-none text-transparent">
-                  Skymarex
-                </span>
+                <GradientLogo
+                  width={150}
+                  height={50}
+                  logoSrc="/svgs/logoNav.svg"
+                  className="-mt-1 md:-mt-2 ml-2"
+                />
               </Link>
 
               <Button

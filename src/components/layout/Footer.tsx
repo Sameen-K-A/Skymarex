@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaInstagram, FaFacebook, FaYoutube, FaTwitter } from "react-icons/fa";
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations";
+import { GradientLogo } from "@/components/ui/GradientLogo";
 
 const footerLinks = [
   { href: "/", label: "Home" },
@@ -25,9 +26,7 @@ export default function Footer() {
           {/* Mobile: Logo first | Desktop: Hidden here (shown in center) */}
           <StaggerItem className="lg:hidden">
             <Link href="/">
-              <span className="pointer-events-none whitespace-pre-wrap bg-linear-to-b from-black to-gray-500 dark:from-white dark:to-gray-500 bg-clip-text text-3xl font-bold leading-none text-transparent">
-                Skymarex
-              </span>
+              <GradientLogo width={150} height={45} />
             </Link>
           </StaggerItem>
 
@@ -44,10 +43,8 @@ export default function Footer() {
           {/* Center Column: Logo (Desktop only) */}
           <StaggerItem className="hidden lg:block lg:flex-1 order-1 lg:order-2">
             <div className="text-center pt-5">
-              <Link href="/">
-                <span className="pointer-events-none whitespace-pre-wrap bg-linear-to-b from-black to-gray-500 dark:from-white dark:to-gray-500 bg-clip-text text-5xl font-bold leading-none text-transparent">
-                  Skymarex
-                </span>
+              <Link href="/" className="inline-block">
+                <GradientLogo width={200} height={60} className="mx-auto" />
               </Link>
             </div>
           </StaggerItem>
@@ -55,7 +52,6 @@ export default function Footer() {
           {/* Left Column: Links */}
           <StaggerItem className="lg:flex-1 order-2 lg:order-1">
             <div className="lg:text-left">
-              <h3 className="hidden lg:block text-foreground text-xl font-semibold mb-4">Links</h3>
               <div className="flex flex-row lg:flex-col lg:items-start gap-6 lg:gap-2">
                 {footerLinks.map((link) => {
                   const isActive = pathname === link.href;

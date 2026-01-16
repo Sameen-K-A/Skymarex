@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 
 export default function LoadingScreen() {
@@ -29,7 +30,7 @@ export default function LoadingScreen() {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="fixed inset-0 z-9999 flex items-center justify-center bg-background"
         >
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20, scale: 0.95, transition: { duration: 0.4 } }}
@@ -37,10 +38,17 @@ export default function LoadingScreen() {
               duration: 0.6,
               ease: [0.25, 0.46, 0.45, 0.94]
             }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground"
           >
-            Skymarex
-          </motion.h1>
+            <Image
+              src="/svgs/logoMain.svg"
+              alt="Skymarex"
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="dark:invert w-48 md:w-75 h-auto"
+              priority
+            />
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
