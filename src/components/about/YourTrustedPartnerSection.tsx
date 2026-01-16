@@ -63,24 +63,24 @@ export default function YourTrustedPartnerSection() {
             ))}
           </div>
 
-          <StaggerItem>
+          <Reveal delay={0.2}>
             <p className="text-muted/80 text-sm font-medium sm:text-lg max-w-2xl mx-auto mt-12 tracking-tighter">
               Deliver with Confidence
             </p>
-          </StaggerItem>
-          <StaggerItem>
+          </Reveal>
+          <Reveal delay={0.2}>
             <p className="text-muted/80 text-sm font-medium sm:text-lg max-w-2xl mx-auto tracking-tighter">
               Explore our full range of tailored logistics and compliance services.
             </p>
-          </StaggerItem>
-          <StaggerItem>
+          </Reveal>
+          <Reveal delay={0.2}>
             <Link
               href="/services"
               className="group inline-flex items-center justify-center px-6 py-3 mt-6 text-base font-medium bg-background text-foreground rounded-lg hover:bg-background/90 transition-colors"
             >
               <WaveText>Explore Services</WaveText>
             </Link>
-          </StaggerItem>
+          </Reveal>
 
         </StaggerContainer>
       </div>

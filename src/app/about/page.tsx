@@ -1,5 +1,6 @@
 import HeroSection from "@/components/about/HeroSection"
 import YourTrustedPartnerSection from "@/components/about/YourTrustedPartnerSection"
+import MissionVisionSection from "@/components/about/MissionVisionSection"
 import TeamSection from "@/components/about/TeamSection"
 import WhatMakesUsDifferentSection from "@/components/about/WhatMakesUsDifferentSection"
 import type { Metadata } from "next"
@@ -14,6 +15,7 @@ export default function AboutPage() {
     <div className="container mx-auto overflow-hidden">
       <HeroSection />
       <YourTrustedPartnerSection />
+      <MissionVisionSection />
       <WhatMakesUsDifferentSection />
       <TeamSection />
     </div>
