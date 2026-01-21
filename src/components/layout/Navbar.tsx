@@ -65,12 +65,22 @@ export default function Navbar() {
 
             <div className="flex w-full justify-between lg:w-auto py-2">
               <Link href="/" aria-label="home" className="flex gap-2 items-center">
-                <GradientLogo
-                  width={150}
-                  height={50}
-                  logoSrc="/svgs/logoNav.svg"
-                  className="-mt-1 md:-mt-2 ml-2"
-                />
+                <div className="block md:hidden">
+                  <GradientLogo
+                    width={120}
+                    height={40}
+                    logoSrc="/svgs/logoNav.svg"
+                    className="-mt-2 ml-2"
+                  />
+                </div>
+                <div className="hidden md:block">
+                  <GradientLogo
+                    width={150}
+                    height={50}
+                    logoSrc="/svgs/logoNav.svg"
+                    className="-mt-2 ml-2"
+                  />
+                </div>
               </Link>
 
               <Button

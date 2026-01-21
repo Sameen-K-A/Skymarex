@@ -47,7 +47,7 @@ export function GradientLogo({
         style={{
           width,
           height,
-          background: "linear-gradient(180deg,rgba(255, 255, 255, 1) 10%, rgba(201, 201, 201, 1) 100%)",
+          background: "linear-gradient(180deg,rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 50%, rgba(201, 201, 201, 1) 60%)",
           ...maskStyles,
         }}
       />

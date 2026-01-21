@@ -7,7 +7,7 @@ export default function MissionVisionSection() {
   return (
     <section className="py-16 px-4 sm:px-8 bg-foreground">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <StaggerContainer className="space-y-10" staggerDelay={0.15}>
             <div className="space-y-4">
               <Reveal delay={0.2}>
@@ -36,13 +36,14 @@ export default function MissionVisionSection() {
             </div>
           </StaggerContainer>
 
-          <Reveal delay={0.2}>
-            <div className="relative aspect-4/3 rounded-3xl overflow-hidden bg-muted-foreground/20">
+          <Reveal delay={0.2} className="w-full">
+            <div className="relative aspect-4/3 w-full rounded-3xl overflow-hidden bg-muted-foreground/20">
               <Image
                 src="/images/about/mission-vision.jpg"
                 alt="Our team collaborating"
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </Reveal>

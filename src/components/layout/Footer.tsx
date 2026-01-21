@@ -33,10 +33,10 @@ export default function Footer() {
           {/* Right Column: Address */}
           <StaggerItem className="lg:flex-1 order-3 lg:order-3">
             <address className="not-italic leading-relaxed flex flex-col text-center lg:text-left lg:ml-auto lg:w-fit text-sm text-muted-foreground">
-              <span>123 Business Street</span>
-              <span>Suite 456</span>
-              <span>New York, NY 10001</span>
-              <span>United States</span>
+              <span>SKYMAREX INTERNATIONAL CARGO LLC OFFICE</span>
+              <span>NO-M-23, SILVER HOME</span>
+              <span>BUILDING,ABU HAIL, M FLOOR</span>
+              <span>PO BOX NUMBER: 118467</span>
             </address>
           </StaggerItem>
 
