@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   description: "Welcome to Skymarex - Your trusted partner",
   keywords: ["skymarex", "portfolio", "services"],
   authors: [{ name: "Skymarex" }],
+  icons: {
+    icon: "/svgs/Favicon.svg",
+  },
   openGraph: {
     title: "Skymarex",
     description: "Welcome to Skymarex - Your trusted partner",

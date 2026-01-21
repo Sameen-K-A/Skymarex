@@ -57,11 +57,11 @@ export default function Navbar() {
         <div
           className={cn(
             "mx-auto max-w-7xl",
-            "transition-[padding,max-width,margin-top,border-radius,background-color,backdrop-filter] duration-500 ease-in-out py-1.5",
-            isScrolled && "px-6 bg-background/50 max-w-4xl rounded-2xl border border-border/30 dark:border-border backdrop-blur-lg lg:px-5 mt-2 py-0"
+            "transition-[padding,max-width,margin-top,border-radius,background-color,backdrop-filter] duration-500 ease-in-out",
+            isScrolled && "px-6 bg-background/50 max-w-4xl rounded-2xl border border-border/30 dark:border-border backdrop-blur-lg lg:px-5 mt-2"
           )}
         >
-          <div className="relative flex flex-wrap items-center justify-between gap-2 lg:gap-0 py-2">
+          <div className="relative flex flex-wrap items-center justify-between gap-2 lg:gap-0 py-1.5">
 
             <div className="flex w-full justify-between lg:w-auto py-2">
               <Link href="/" aria-label="home" className="flex gap-2 items-center">
