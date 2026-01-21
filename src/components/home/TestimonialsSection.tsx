@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState, useEffect, useCallback } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -59,6 +59,29 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
 
 export default function TestimonialsSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  const checkScrollPosition = useCallback(() => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
+      setCanScrollLeft(scrollLeft > 0)
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1)
+    }
+  }, [])
+
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (container) {
+      checkScrollPosition()
+      container.addEventListener("scroll", checkScrollPosition)
+      window.addEventListener("resize", checkScrollPosition)
+      return () => {
+        container.removeEventListener("scroll", checkScrollPosition)
+        window.removeEventListener("resize", checkScrollPosition)
+      }
+    }
+  }, [checkScrollPosition])
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -94,7 +117,8 @@ export default function TestimonialsSection() {
             variant="ghost"
             size="icon-lg"
             onClick={() => scroll("left")}
-            className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg"
+            disabled={!canScrollLeft}
+            className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed"
             aria-label="Scroll left"
           >
             <ChevronLeft className="w-7 h-7 text-background font" />
@@ -103,7 +127,8 @@ export default function TestimonialsSection() {
             variant="ghost"
             size="icon-lg"
             onClick={() => scroll("right")}
-            className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg"
+            disabled={!canScrollRight}
+            className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed"
             aria-label="Scroll right"
           >
             <ChevronRight className="w-7 h-7 text-background font" />
@@ -129,7 +154,8 @@ export default function TestimonialsSection() {
           variant="ghost"
           size="icon-lg"
           onClick={() => scroll("left")}
-          className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg"
+          disabled={!canScrollLeft}
+          className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed"
           aria-label="Scroll left"
         >
           <ChevronLeft className="w-7 h-7 text-background font-bold" />
@@ -138,7 +164,8 @@ export default function TestimonialsSection() {
           variant="ghost"
           size="icon-lg"
           onClick={() => scroll("right")}
-          className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg"
+          disabled={!canScrollRight}
+          className="bg-muted-foreground/10 hover:bg-muted-foreground/20 rounded-lg disabled:opacity-30 disabled:cursor-not-allowed"
           aria-label="Scroll right"
         >
           <ChevronRight className="w-7 h-7 text-background font-bold" />
