@@ -1,23 +1,23 @@
 "use client"
 
-import { Coins, Clock, Lightbulb } from "lucide-react"
+import Image from "next/image"
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 import Link from "next/link"
 import WaveText from "../ui/WaveText"
 
 const features = [
   {
-    icon: Coins,
+    iconSrc: "/svgs/Improved-financial-clarity.svg",
     title: "Improved Financial",
     subtitle: "Clarity",
   },
   {
-    icon: Clock,
-    title: "On-Time,",
-    subtitle: "Every Time",
+    iconSrc: "/svgs/On-Time-Every-timesvg.svg",
+    title: "On-Time, Every",
+    subtitle: "Time",
   },
   {
-    icon: Lightbulb,
+    iconSrc: "/svgs/Full-Service-solutionssvg.svg",
     title: "Full-Service",
     subtitle: "Solutions",
   },
@@ -25,7 +25,7 @@ const features = [
 
 export default function YourTrustedPartnerSection() {
   return (
-    <section className="py-16 md:py-24 md:pt-30 px-4 sm:px-8 bg-foreground">
+    <section className="py-18 px-4 sm:px-8 bg-foreground">
       <div className="max-w-4xl mx-auto text-center">
 
         <StaggerContainer staggerDelay={0.12}>
@@ -37,7 +37,7 @@ export default function YourTrustedPartnerSection() {
 
           <StaggerItem>
             <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium text-background leading-tight mb-8">
-              We’re more than movers—we’re your partners in making logistics simple, secure, and
+              We're more than movers—we're your partners in making logistics simple, secure, and
               worry-free from start to finish.
             </h2>
           </StaggerItem>
@@ -49,14 +49,20 @@ export default function YourTrustedPartnerSection() {
             </p>
           </StaggerItem>
 
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-12">
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 md:gap-12 max-w-130 mx-auto items-end">
             {features.map((feature, index) => (
               <Reveal key={index} delay={0.1 * index}>
                 <div className="flex flex-col items-center gap-3">
-                  <feature.icon strokeWidth={1} className="w-8 h-8 sm:w-10 sm:h-10 text-background" />
+                  <Image
+                    src={feature.iconSrc}
+                    alt={feature.title}
+                    width={40}
+                    height={0}
+                    className="w-8 sm:w-10 h-auto invert dark:invert-0"
+                  />
                   <div className="text-center">
-                    <p className="text-muted/80 text-sm font-medium tracking-tighter">{feature.title}</p>
-                    <p className="text-muted/80 text-sm font-medium tracking-tighter">{feature.subtitle}</p>
+                    <p className="text-background text-xs font-medium sm:text-base tracking-tighter">{feature.title}</p>
+                    <p className="text-background text-xs font-medium sm:text-base tracking-tighter">{feature.subtitle}</p>
                   </div>
                 </div>
               </Reveal>

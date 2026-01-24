@@ -4,8 +4,8 @@ import AboutSection from "@/components/home/AboutSection"
 import ServicesSection from "@/components/home/ServicesSection"
 import PerksSection from "@/components/home/PerksSection"
 import TestimonialsSection from "@/components/home/TestimonialsSection"
-import CertificatesSection from "@/components/home/CertificatesSection"
-import FAQSection from "@/components/shared/FAQSection"
+// import CertificatesSection from "@/components/home/CertificatesSection"
+// import FAQSection from "@/components/shared/FAQSection"
 
 export const metadata: Metadata = {
   title: "Skymarex",
@@ -22,12 +22,16 @@ export default function HomePage() {
       </div>
       <PerksSection />
       <div className="bg-foreground">
-        <CertificatesSection />
+        {/* 
+          <CertificatesSection />
+         */}
         <TestimonialsSection />
-        <FAQSection
-          badge="Need help?"
-          heading="Frequently asked questions"
-        />
+        {/* 
+          <FAQSection
+            badge="Need help?"
+            heading="Frequently asked questions"
+          /> 
+        */}
       </div>
     </div>
   )

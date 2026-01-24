@@ -17,6 +17,9 @@ export const contactFormSchema = z.object({
     .max(2000, "Message must be less than 2000 characters")
     .optional()
     .or(z.literal("")),
+  recaptchaToken: z
+    .string()
+    .min(1, "Please complete the reCAPTCHA verification"),
 })
 
 export type ContactFormData = z.infer<typeof contactFormSchema>
@@ -57,6 +60,9 @@ export const quoteFormSchema = z.object({
     .max(2000, "Comments must be less than 2000 characters")
     .optional()
     .or(z.literal("")),
+  recaptchaToken: z
+    .string()
+    .min(1, "Please complete the reCAPTCHA verification"),
 })
 
 export type QuoteFormData = z.infer<typeof quoteFormSchema>

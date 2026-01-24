@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaInstagram, FaFacebook, FaYoutube, FaTwitter } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations";
 import { GradientLogo } from "@/components/ui/GradientLogo";
 
@@ -33,10 +34,10 @@ export default function Footer() {
           {/* Right Column: Address */}
           <StaggerItem className="lg:flex-1 order-3 lg:order-3">
             <address className="not-italic leading-relaxed flex flex-col text-center lg:text-left lg:ml-auto lg:w-fit text-sm text-muted-foreground">
-              <span>SKYMAREX INTERNATIONAL CARGO LLC OFFICE</span>
-              <span>NO-M-23, SILVER HOME</span>
-              <span>BUILDING,ABU HAIL, M FLOOR</span>
-              <span>PO BOX NUMBER: 118467</span>
+              <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_1}</span>
+              <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_2}</span>
+              <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_3}</span>
+              <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_4}</span>
             </address>
           </StaggerItem>
 
@@ -73,43 +74,42 @@ export default function Footer() {
 
         <Reveal delay={0.2}>
           <div className="p-4">
-            <span className="block mx-auto text-center mb-5 pb-5 bg-linear-to-t opacity-30 from-black to-gray-500/10 dark:from-white dark:to-gray-500/10 bg-clip-text text-4xl sm:text-6xl md:text-8xl font-bold leading-none text-transparent">
+            <span className="block mx-auto text-center mb-5 pb-5 bg-linear-to-t opacity-30 from-black to-gray-500/10 dark:from-white dark:to-gray-500/10 bg-clip-text text-5xl line-clamp-1 sm:text-6xl md:text-8xl font-bold leading-none text-transparent">
               Ship With Us
             </span>
 
-            <p className="text-base text-center mb-2">
+            <p className="text-base text-center mb-5">
               Copyright &copy; {new Date().getFullYear()} All rights reserved by
               Skymarex
             </p>
 
             <div className="flex justify-center gap-2 md:gap-4 text-lg md:text-xl text-foreground">
               <a
-                href="https://instagram.com"
+                href={process.env.NEXT_PUBLIC_INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-base flex justify-center items-center gap-2 text-foreground/50 hover:text-foreground transition-colors duration-200"
               >
-                <FaInstagram className="hover:text-muted-foreground transition-colors duration-200" />
+                <FaInstagram />
+                <span>Instagram</span>
               </a>
               <a
-                href="https://facebook.com"
+                href={process.env.NEXT_PUBLIC_FACEBOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-base flex justify-center items-center gap-2 text-foreground/50 hover:text-foreground transition-colors duration-200"
               >
-                <FaFacebook className="hover:text-muted-foreground transition-colors duration-200" />
+                <FaFacebook />
+                <span>Facebook</span>
               </a>
               <a
-                href="https://youtube.com"
+                href={process.env.NEXT_PUBLIC_XTWITTER_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-base flex justify-center items-center gap-2 text-foreground/50 hover:text-foreground transition-colors duration-200"
               >
-                <FaYoutube className="hover:text-muted-foreground transition-colors duration-200" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaTwitter className="hover:text-muted-foreground transition-colors duration-200" />
+                <FaXTwitter />
+                <span>Twitter</span>
               </a>
             </div>
           </div>

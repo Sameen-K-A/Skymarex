@@ -2,7 +2,7 @@ export interface ITestimonial {
   quote: string;
   name: string;
   location: string;
-  image: string;
+  image?: string;
 }
 
 export const testimonials: ITestimonial[] = [
@@ -16,7 +16,6 @@ export const testimonials: ITestimonial[] = [
     quote: "I was worried about damage, but every piece arrived just as it left. Highly recommend! The movers were on time, courteous.",
     name: "Michael Kee",
     location: "Seattle, WA",
-    image: "/images/home/testimonials/testimonial1.jpg",
   },
   {
     quote: "Moving always feels overwhelming, but they truly made it a breeze",
@@ -34,7 +33,6 @@ export const testimonials: ITestimonial[] = [
     quote: "Professional team from start to finish. They handled our fragile items with care and delivered everything on schedule.",
     name: "Robert Chen",
     location: "San Francisco, CA",
-    image: "/images/home/testimonials/testimonial1.jpg",
   },
   {
     quote: "Best moving experience I've ever had. The crew was friendly, efficient, and took great care of our belongings.",
@@ -46,7 +44,6 @@ export const testimonials: ITestimonial[] = [
     quote: "Fantastic service! They made our cross-country move stress-free. Highly recommend to anyone looking for reliable movers.",
     name: "David Thompson",
     location: "Miami, FL",
-    image: "/images/home/testimonials/testimonial1.jpg",
   },
   {
     quote: "Exceeded all expectations. Quick, careful, and affordable. Will definitely use them again for our next move.",

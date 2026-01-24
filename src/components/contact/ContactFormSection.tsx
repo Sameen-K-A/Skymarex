@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useRef } from "react"
 import { useTheme } from "next-themes"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -23,28 +23,24 @@ const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
 
 export default function ContactFormSection() {
   const { resolvedTheme } = useTheme()
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
   const recaptchaRef = useRef<ReCAPTCHA>(null)
 
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
+  const { register, handleSubmit, reset, setValue, formState: { errors, isSubmitting } } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
     mode: "onChange",
     reValidateMode: "onChange",
+    defaultValues: {
+      recaptchaToken: "",
+    },
   })
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      // Verify reCAPTCHA
-      if (!recaptchaToken) {
-        toast.error("Please complete the reCAPTCHA verification")
-        return
-      }
-
       // Verify token with backend
       const verifyResponse = await fetch("/api/verify-recaptcha", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: recaptchaToken }),
+        body: JSON.stringify({ token: data.recaptchaToken }),
       })
 
       const verifyResult = await verifyResponse.json()
@@ -53,7 +49,7 @@ export default function ContactFormSection() {
           description: "Please try again.",
         })
         recaptchaRef.current?.reset()
-        setRecaptchaToken(null)
+        setValue("recaptchaToken", "", { shouldValidate: true })
         return
       }
 
@@ -76,7 +72,6 @@ export default function ContactFormSection() {
 
       reset()
       recaptchaRef.current?.reset()
-      setRecaptchaToken(null)
     } catch (error) {
       console.error("Error submitting form:", error)
       toast.error("Something went wrong", {
@@ -165,21 +160,26 @@ export default function ContactFormSection() {
                 </div>
 
                 {RECAPTCHA_SITE_KEY && (
-                  <div className="overflow-hidden w-[302px]" style={{ clipPath: 'inset(0 0.5px 2px 0)' }}>
-                    <ReCAPTCHA
-                      ref={recaptchaRef}
-                      sitekey={RECAPTCHA_SITE_KEY}
-                      onChange={(token) => setRecaptchaToken(token)}
-                      onExpired={() => setRecaptchaToken(null)}
-                      theme={"light"}
-                    />
+                  <div className="space-y-2">
+                    <div className="w-[302px]">
+                      <ReCAPTCHA
+                        ref={recaptchaRef}
+                        sitekey={RECAPTCHA_SITE_KEY}
+                        onChange={(token) => setValue("recaptchaToken", token || "", { shouldValidate: true })}
+                        onExpired={() => setValue("recaptchaToken", "", { shouldValidate: true })}
+                        theme={"light"}
+                      />
+                    </div>
+                    {errors.recaptchaToken && (
+                      <p className="text-sm text-destructive">{errors.recaptchaToken.message}</p>
+                    )}
                   </div>
                 )}
 
                 <Button
                   type="submit"
                   size={"lg"}
-                  disabled={isSubmitting || !recaptchaToken}
+                  disabled={isSubmitting}
                   className="group w-full bg-primary font-semibold h-12 text-white disabled:opacity-70"
                 >
                   <WaveText>{isSubmitting ? "Sending..." : "Submit"}</WaveText>

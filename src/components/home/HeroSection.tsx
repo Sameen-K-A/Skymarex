@@ -103,17 +103,21 @@ export default function HeroSection() {
 
             <StaggerItem>
               <div className="flex flex-col sm:flex-row items-left gap-4">
-                <ShinyButton className="group px-6 py-[0.900rem] text-base w-fit font-semibold">
-                  Talk to a DG Expert
-                </ShinyButton>
+                <Link href="/contact">
+                  <ShinyButton className="group px-6 py-[0.900rem] text-base w-fit font-semibold">
+                    Talk to a DG Expert
+                  </ShinyButton>
+                </Link>
 
-                <Link
-                  href="/contact"
+                <a
+                  href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex w-fit items-center gap-1 px-6 py-2.5 text-sm font-semibold text-background bg-foreground rounded-lg border border-background hover:bg-foreground/90 transition-colors"
                 >
                   <FaWhatsapp size={28} />
                   <WaveText>Contact us</WaveText>
-                </Link>
+                </a>
               </div>
             </StaggerItem>
           </StaggerContainer>

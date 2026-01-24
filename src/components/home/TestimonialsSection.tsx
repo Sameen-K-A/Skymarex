@@ -3,13 +3,16 @@
 import { useRef, useState, useEffect, useCallback } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { FaUserAlt } from "react-icons/fa"
 import { Button } from "@/components/ui/button"
 import { testimonials } from "@/constants/testimonials";
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
+  const hasImage = testimonial.image && testimonial.image.trim() !== ""
+
   return (
-    <div className="group relative w-72 sm:w-90 shrink-0 h-102 rounded-2xl overflow-hidden cursor-pointer">
+    <div className="group relative w-72 sm:w-90 shrink-0 h-102 rounded-2xl overflow-hidden cursor-default">
       {/* Default State - White card */}
       <div className="absolute inset-0 bg-muted-foreground/20 p-8 flex flex-col transition-opacity duration-300 group-hover:opacity-0">
         <p className="text-background text-base md:text-lg font-medium leading-relaxed flex-1">
@@ -18,13 +21,18 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
 
         <div className="border-t border-muted-foreground/50 border-dashed pt-4 mt-4">
           <div className="flex items-center gap-3">
-            <div className="w-16 h-16 rounded-xl bg-muted-foreground/20 overflow-hidden relative">
-              <Image
-                src={testimonial.image}
-                alt={testimonial.name}
-                fill
-                className="object-cover"
-              />
+            <div className="w-16 h-16 rounded-xl bg-muted-foreground/20 overflow-hidden relative flex items-center justify-center">
+              {hasImage ? (
+                <Image
+                  src={testimonial.image!}
+                  alt={testimonial.name}
+                  fill
+                  sizes="64px"
+                  className="object-cover"
+                />
+              ) : (
+                <FaUserAlt className="w-7 h-7 text-muted-foreground/60" />
+              )}
             </div>
             <div>
               <p className="font-medium text-background">{testimonial.name}</p>
@@ -34,14 +42,21 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
         </div>
       </div>
 
-      {/* Hover State - Full image */}
+      {/* Hover State - Full image or gradient only */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <Image
-          src={testimonial.image}
-          alt={testimonial.name}
-          fill
-          className="object-cover"
-        />
+        {hasImage ? (
+          <Image
+            src={testimonial.image!}
+            alt={testimonial.name}
+            fill
+            sizes="(max-width: 640px) 288px, 360px"
+            className="object-cover"
+          />
+        ) : (
+          <div className="w-full h-full bg-muted-foreground/30 flex items-center justify-center">
+            <FaUserAlt className="w-[70%] h-auto text-muted-foreground/40" />
+          </div>
+        )}
         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
 
         <div className="absolute bottom-0 left-0 right-0 p-6">

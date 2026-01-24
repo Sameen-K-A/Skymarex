@@ -1,25 +1,25 @@
 "use client"
 
 import Link from "next/link"
-import { Scale, Handshake, Gavel } from "lucide-react"
+import Image from "next/image"
 import WaveText from "../ui/WaveText"
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 const features = [
   {
-    icon: Scale,
+    iconSrc: "/svgs/Integrity-Responsibility.svg",
     number: "01",
     title: "Integrity & Responsibility",
     description: "We uphold the highest standards of professionalism, safety, and transparency in every shipment.",
   },
   {
-    icon: Handshake,
+    iconSrc: "/svgs/Client-Centeredsvg.svg",
     number: "02",
     title: "Client-Focused Solutions",
     description: "Each logistics plan is tailored to your unique business needs, ensuring smooth and reliable operations.",
   },
   {
-    icon: Gavel,
+    iconSrc: "/svgs/Legal-Solutionsvg.svg",
     number: "03",
     title: "Compliance & Customs Expertise",
     description: "From regulatory compliance to customs brokering, we provide end-to-end solutions for safe and efficient delivery",
@@ -37,7 +37,7 @@ export default function ServicesSection() {
         </StaggerItem>
         <StaggerItem>
           <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium leading-tight text-background">
-            We’re not just about moving cargo—we’re about trust, safety, and seamless compliance.
+            We're not just about moving cargo—we're about trust, safety, and seamless compliance.
           </h2>
         </StaggerItem>
       </StaggerContainer>
@@ -45,11 +45,17 @@ export default function ServicesSection() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-5">
         {features.map((feature, index) => (
           <Reveal key={index} delay={0.1 * index}>
-            <div className="bg-muted-foreground/15 rounded-2xl rounded-tr-none overflow-hidden flex flex-col min-h-84 relative">
+            <div className="bg-muted-foreground/15 hover:scale-101 transition-all duration-300 rounded-2xl rounded-tr-none overflow-hidden flex flex-col min-h-84 relative">
               {/* Main content area */}
               <div className="p-6 md:p-8 flex flex-col flex-1">
                 <div className="flex items-start justify-between mb-auto">
-                  <feature.icon className="w-10 h-10 text-background" strokeWidth={1.5} />
+                  <Image
+                    src={feature.iconSrc}
+                    alt={feature.title}
+                    width={40}
+                    height={40}
+                    className="w-10 h-10 invert dark:invert-0"
+                  />
                 </div>
 
                 <div className="mt-8">

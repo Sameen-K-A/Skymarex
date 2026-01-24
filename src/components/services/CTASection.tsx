@@ -1,18 +1,28 @@
 "use client"
 
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { ArrowRight } from "lucide-react"
 import WaveText from "@/components/ui/WaveText"
 import { StaggerContainer, StaggerItem } from "@/components/ui/animations"
-import QuoteDialog from "@/components/shared/QuoteDialog"
+
+const QuoteDialog = dynamic(() => import("@/components/shared/QuoteDialog"), {
+  ssr: false,
+})
 
 export default function CTASection() {
   return (
     <section className="relative py-20 md:py-30 px-4 sm:px-8 overflow-hidden">
 
       <video
-        autoPlay loop muted playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        // poster="/images/services/cta-poster.jpg" // Add a poster image for better UX
+        className="absolute inset-0 w-full h-full object-cover z-0 will-change-transform"
+        style={{ transform: 'translateZ(0)' }}
       >
         <source src="/videos/services/CTA_background.mp4" type="video/mp4" />
       </video>

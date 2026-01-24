@@ -6,7 +6,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -145,7 +145,6 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
   }
 
   /* Stretch text elements vertically for taller letter proportions */
@@ -160,6 +159,7 @@
   }
 }
 
+/* 
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -184,4 +184,42 @@
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+} */
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ensure reCAPTCHA challenge is on top of Radix Dialog */
+@layer base {
+
+  .g-recaptcha-bubble-arrow,
+  iframe[name^="a-"][src*="https://www.google.com/recaptcha/api2/anchor"],
+  iframe[name^="c-"][src*="https://www.google.com/recaptcha/api2/bframe"] {
+    z-index: 2147483647 !important;
+  }
+}
+
+body>div[style*="visibility: visible"] {
+  z-index: 2147483647 !important;
+}
+
+/* Fix for reCAPTCHA popup being unreachable in Dialog */
+.g-recaptcha-bubble-arrow,
+.g-recaptcha-bubble-arrow+div {
+  z-index: 2147483647 !important;
 }

@@ -12,7 +12,7 @@ const ImageCard = ({ img, index }: { img: string; index: number }) => {
   return (
     <figure
       className={cn(
-        "relative overflow-hidden rounded-2xl bg-muted-foreground/20 h-96 md:h-105",
+        "relative overflow-hidden rounded-2xl bg-muted-foreground/20 h-80 md:h-105",
         isOdd ? "aspect-square" : "aspect-4/5"
       )}
     >

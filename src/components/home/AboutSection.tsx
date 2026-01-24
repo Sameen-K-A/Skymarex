@@ -54,7 +54,7 @@ export default function AboutSection() {
           <StaggerItem>
             <Link
               href="/about"
-              className="group inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-background text-foreground rounded-lg hover:bg-background/90 transition-colors mb-4"
+              className="group inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-background text-foreground rounded-lg hover:bg-background/90 transition-colors mb-12"
             >
               <WaveText>Learn more</WaveText>
             </Link>

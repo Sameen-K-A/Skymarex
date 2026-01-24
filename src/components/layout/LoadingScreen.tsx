@@ -8,16 +8,16 @@ export default function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    document.body.style.overflow = "hidden"
+    // document.body.style.overflow = "hidden"
 
     const timer = setTimeout(() => {
       setIsLoading(false)
-      document.body.style.overflow = ""
+      // document.body.style.overflow = ""
     }, 2500)
 
     return () => {
       clearTimeout(timer)
-      document.body.style.overflow = ""
+      // document.body.style.overflow = ""
     }
   }, [])
 
@@ -28,8 +28,27 @@ export default function LoadingScreen() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-9999 flex items-center justify-center bg-background"
+          className="fixed inset-0 z-9999 flex items-center justify-center bg-background overflow-hidden"
         >
+          {/* World Map Background */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.09 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0 flex items-center justify-center"
+          >
+            <Image
+              src="/svgs/world.svg"
+              alt=""
+              width={0}
+              height={0}
+              className="h-auto min-w-[95vw] md:min-w-[60vw] dark:invert"
+              priority
+            />
+          </motion.div>
+
+          {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,6 +57,7 @@ export default function LoadingScreen() {
               duration: 0.6,
               ease: [0.25, 0.46, 0.45, 0.94]
             }}
+            className="relative z-10"
           >
             <Image
               src="/svgs/logoMain.svg"

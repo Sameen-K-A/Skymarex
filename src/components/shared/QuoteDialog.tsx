@@ -35,7 +35,6 @@ interface QuoteDialogProps {
 
 export default function QuoteDialog({ children }: QuoteDialogProps) {
   const [open, setOpen] = useState(false)
-  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null)
   const recaptchaRef = useRef<ReCAPTCHA>(null)
 
   const { register, handleSubmit, reset, setValue, watch, formState: { errors, isSubmitting } } = useForm<QuoteFormData>({
@@ -44,6 +43,7 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
     reValidateMode: "onChange",
     defaultValues: {
       cargoType: "logistics",
+      recaptchaToken: "",
     },
   })
 
@@ -51,17 +51,11 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
 
   const onSubmit = async (data: QuoteFormData) => {
     try {
-      // Verify reCAPTCHA
-      if (!recaptchaToken) {
-        toast.error("Please complete the reCAPTCHA verification")
-        return
-      }
-
       // Verify token with backend
       const verifyResponse = await fetch("/api/verify-recaptcha", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: recaptchaToken }),
+        body: JSON.stringify({ token: data.recaptchaToken }),
       })
 
       const verifyResult = await verifyResponse.json()
@@ -70,7 +64,7 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
           description: "Please try again.",
         })
         recaptchaRef.current?.reset()
-        setRecaptchaToken(null)
+        setValue("recaptchaToken", "", { shouldValidate: true })
         return
       }
 
@@ -101,7 +95,6 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
 
       reset()
       recaptchaRef.current?.reset()
-      setRecaptchaToken(null)
       setOpen(false)
     } catch (error) {
       console.error("Error submitting form:", error)
@@ -290,13 +283,18 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
             </div>
 
             {RECAPTCHA_SITE_KEY && (
-              <div className="overflow-hidden w-[302px]" style={{ clipPath: 'inset(0 0.5px 2px 0)' }}>
-                <ReCAPTCHA
-                  ref={recaptchaRef}
-                  sitekey={RECAPTCHA_SITE_KEY}
-                  onChange={(token) => setRecaptchaToken(token)}
-                  onExpired={() => setRecaptchaToken(null)}
-                />
+              <div className="space-y-2">
+                <div className="w-[302px]">
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={RECAPTCHA_SITE_KEY}
+                    onChange={(token) => setValue("recaptchaToken", token || "", { shouldValidate: true })}
+                    onExpired={() => setValue("recaptchaToken", "", { shouldValidate: true })}
+                  />
+                </div>
+                {errors.recaptchaToken && (
+                  <p className="text-sm text-destructive">{errors.recaptchaToken.message}</p>
+                )}
               </div>
             )}
           </div>
@@ -305,7 +303,7 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
             <Button
               type="submit"
               size="lg"
-              disabled={isSubmitting || !recaptchaToken}
+              disabled={isSubmitting}
               className="group w-full bg-primary hover:bg-primary/90 text-white font-semibold h-12 disabled:opacity-70"
             >
               <WaveText>{isSubmitting ? "Submitting..." : "Submit"}</WaveText>
