@@ -1,16 +1,16 @@
 "use client"
 
 import Link from "next/link"
-import { Package } from "lucide-react"
+import Image from "next/image"
 import { NumberTicker } from "@/components/ui/number-ticker"
 import WaveText from "../ui/WaveText"
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 const stats = [
-  { value: 576, label: "Shipment Completed", icon: Package },
-  { value: 687, label: "Happy Customers", icon: Package },
-  { value: 890, label: "Industry experience", icon: Package },
-  { value: 24, label: "Delivered in Time", icon: Package },
+  { value: 576, label: "Shipment Completed" },
+  { value: 687, label: "Happy Customers" },
+  { value: 890, label: "Industry experience" },
+  { value: 24, label: "Delivered in Time" },
 ]
 
 export default function AboutSection() {
@@ -39,14 +39,14 @@ export default function AboutSection() {
               <strong>SKYMAREX</strong> is a specialized logistics company focused on the safe and compliant handling of
               Dangerous Goods. Backed by a team with <strong>15+</strong> years of industry experience and expertise
               across air and sea freight, multimodal transport, and secure warehousing, we deliver
-              seamless, reliable, and precision-driven logistics solutions tailored to our clients’ needs.
+              seamless, reliable, and precision-driven logistics solutions tailored to our clients' needs.
             </p>
           </StaggerItem>
           <StaggerItem>
             <p className="text-muted/90 text-base sm:text-lg font-medium mb-4">
               Driven by a customer-first approach and practical innovation, SKYMAREX partners with
               businesses to streamline supply chains, eliminate operational headaches, and deliver lasting
-              peace of mind. We don’t just move cargo—we manage responsibility, safety, and trust at
+              peace of mind. We don't just move cargo—we manage responsibility, safety, and trust at
               every step.
             </p>
           </StaggerItem>
@@ -73,7 +73,13 @@ export default function AboutSection() {
             <Reveal key={index} delay={0.1 * index}>
               <div className="flex items-center gap-4">
                 <div className="w-24 h-22 bg-muted-foreground/20 flex items-center justify-center shrink-0">
-                  <stat.icon className="w-12 h-12 text-background" strokeWidth={0.8} />
+                  <Image
+                    src="/images/icons/package.png"
+                    alt="Package icon"
+                    width={48}
+                    height={48}
+                    className="invert dark:invert-0"
+                  />
                 </div>
                 <div>
                   <div className="text-2xl md:text-3xl text-background font-semibold tracking-tighter" style={{ transform: 'scaleY(0.852)' }}>
