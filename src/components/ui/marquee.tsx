@@ -65,6 +65,7 @@ export function Marquee({
               "group-hover:paused": pauseOnHover,
               "direction-[reverse]": reverse,
             })}
+            style={{ willChange: "transform" }}
           >
             {children}
           </div>

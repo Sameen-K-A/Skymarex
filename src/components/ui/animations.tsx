@@ -15,6 +15,7 @@ interface RevealProps {
 }
 
 const getDirectionVariants = (direction: string, distance: number) => {
+  // Using translate3d for GPU acceleration
   const directions: Record<string, { x?: number; y?: number }> = {
     up: { y: distance },
     down: { y: -distance },
@@ -28,13 +29,14 @@ export function Reveal({
   children,
   className,
   delay = 0,
-  duration = 0.5,
+  duration = 0.4, // Reduced from 0.5
   direction = "up",
-  distance = 30,
+  distance = 20, // Reduced from 30 for subtler animation
   once = true,
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once, margin: "-50px" })
+  // Trigger earlier with larger margin, use amount for better performance
+  const isInView = useInView(ref, { once, amount: 0.1, margin: "-10px" })
   const { isLoading } = useLoading()
 
   const directionOffset = getDirectionVariants(direction, distance)
@@ -51,7 +53,6 @@ export function Reveal({
     } as Variant,
   }
 
-  // Wait for loading screen to finish before animating
   const shouldAnimate = isInView && !isLoading
 
   return (
@@ -66,6 +67,7 @@ export function Reveal({
         ease: [0.25, 0.46, 0.45, 0.94],
       }}
       className={className}
+      style={{ willChange: "opacity, transform" }}
     >
       {children}
     </motion.div>
@@ -82,14 +84,13 @@ interface StaggerContainerProps {
 export function StaggerContainer({
   children,
   className,
-  staggerDelay = 0.1,
+  staggerDelay = 0.08, // Reduced from 0.1
   once = true,
 }: StaggerContainerProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once, margin: "-50px" })
+  const isInView = useInView(ref, { once, amount: 0.1, margin: "-10px" })
   const { isLoading } = useLoading()
 
-  // Wait for loading screen to finish before animating
   const shouldAnimate = isInView && !isLoading
 
   return (
@@ -123,7 +124,7 @@ export function StaggerItem({
   children,
   className,
   direction = "up",
-  distance = 30,
+  distance = 20, // Reduced from 30
 }: StaggerItemProps) {
   const directionOffset = getDirectionVariants(direction, distance)
 
@@ -139,12 +140,13 @@ export function StaggerItem({
           x: 0,
           y: 0,
           transition: {
-            duration: 0.5,
+            duration: 0.4, // Reduced from 0.5
             ease: [0.25, 0.46, 0.45, 0.94],
           },
         },
       }}
       className={className}
+      style={{ willChange: "opacity, transform" }}
     >
       {children}
     </motion.div>
@@ -163,14 +165,13 @@ export function FadeIn({
   children,
   className,
   delay = 0,
-  duration = 0.5,
+  duration = 0.4, // Reduced from 0.5
   once = true,
 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once, margin: "-50px" })
+  const isInView = useInView(ref, { once, amount: 0.1, margin: "-10px" })
   const { isLoading } = useLoading()
 
-  // Wait for loading screen to finish before animating
   const shouldAnimate = isInView && !isLoading
 
   return (
@@ -184,6 +185,7 @@ export function FadeIn({
         ease: "easeOut",
       }}
       className={className}
+      style={{ willChange: "opacity" }}
     >
       {children}
     </motion.div>

@@ -32,6 +32,8 @@ const ImageCard = ({ img, index, variant = "horizontal" }: ImageCardProps) => {
         fill
         sizes={variant === "vertical" ? "200px" : "250px"}
         className="object-cover"
+        placeholder="blur"
+        blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNzA3MDcwIi8+PC9zdmc+"
         priority={variant === "vertical" || index <= 4}
         loading={variant === "vertical" || index <= 4 ? "eager" : "lazy"}
       />

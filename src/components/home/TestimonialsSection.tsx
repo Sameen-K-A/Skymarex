@@ -29,6 +29,8 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
                   fill
                   sizes="64px"
                   className="object-cover"
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNzA3MDcwIi8+PC9zdmc+"
                 />
               ) : (
                 <FaUserAlt className="w-7 h-7 text-muted-foreground/60" />
@@ -51,6 +53,8 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
             fill
             sizes="(max-width: 640px) 288px, 360px"
             className="object-cover"
+            placeholder="blur"
+            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNzA3MDcwIi8+PC9zdmc+"
           />
         ) : (
           <div className="w-full h-full bg-muted-foreground/30 flex items-center justify-center">

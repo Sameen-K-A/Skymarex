@@ -1,6 +1,7 @@
 "use client"
 
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
+import { LazyVideo } from "@/components/ui/LazyVideo"
 
 const perks = [
   {
@@ -34,17 +35,10 @@ export default function PerksSection() {
   return (
     <section className="relative py-16 px-4 sm:px-8 lg:px-16">
 
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover z-0 will-change-transform"
-        style={{ transform: 'translateZ(0)' }}
-      >
-        <source src="/videos/services/CTA_background.mp4" type="video/mp4" />
-      </video>
+      <LazyVideo
+        src="/videos/services/CTA_background.mp4"
+        className="absolute inset-0 w-full h-full z-0"
+      />
 
       <div className="absolute inset-0 bg-black/70 z-0" />
 
