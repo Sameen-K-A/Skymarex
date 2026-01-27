@@ -1,31 +1,31 @@
 "use client"
 
 import Link from "next/link"
-import { RefreshCw, Award, UserCog, Lightbulb } from "lucide-react"
+import Image from "next/image"
 import WaveText from "../ui/WaveText"
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 const features = [
   {
-    icon: RefreshCw,
+    iconSrc: "/images/icons/360°-Coverage.png",
     number: "01",
     title: "360° Coverage",
     description: "Our end-to-end approach covers every angle of the logistics process, from planning and compliance to delivery, ensuring seamless coordination and peace of mind.",
   },
   {
-    icon: Award,
+    iconSrc: "/images/icons/Experience-Expertise.png",
     number: "02",
     title: "Experience & Expertise",
     description: "Backed by a team with 15+ years of industry experience, we bring unmatched expertise to every shipment, delivering safe, reliable, and efficient logistics solutions.",
   },
   {
-    icon: UserCog,
+    iconSrc: "/images/icons/Personalized-Service.png",
     number: "03",
     title: "Personalized Service",
-    description: "We understand that every shipment is unique. That’s why we offer tailored solutions to meet your specific needs, ensuring your cargo is handled with the highest care.",
+    description: "We understand that every shipment is unique. That's why we offer tailored solutions to meet your specific needs, ensuring your cargo is handled with the highest care.",
   },
   {
-    icon: Lightbulb,
+    iconSrc: "/images/icons/Commitment-to-Innovation.png",
     number: "04",
     title: "Commitment to Innovation",
     description: "Constantly evolving, we push the boundaries of logistics excellence through innovative solutions, cutting-edge tracking, and forward-thinking strategies.",
@@ -50,7 +50,13 @@ export default function WhatMakesUsDifferentSection() {
               {/* Main content area */}
               <div className="p-6 md:p-8 flex flex-col flex-1">
                 <div className="flex items-start justify-between mb-auto">
-                  <feature.icon className="w-10 h-10 text-background" strokeWidth={1.8} />
+                  <Image
+                    src={feature.iconSrc}
+                    alt={feature.title}
+                    width={40}
+                    height={40}
+                    className="w-10 h-10 invert dark:invert-0"
+                  />
                 </div>
 
                 <div className="mt-8">
