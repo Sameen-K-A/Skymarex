@@ -23,6 +23,7 @@ const ImageCard = ({ img, index }: { img: string; index: number }) => {
         sizes="(max-width: 768px) 50vw, 33vw"
         className="object-cover"
         placeholder="blur"
+        quality={100}
         blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNzA3MDcwIi8+PC9zdmc+"
         priority={index <= 4}
         loading={index <= 4 ? "eager" : "lazy"}

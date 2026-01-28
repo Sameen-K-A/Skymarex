@@ -17,6 +17,8 @@ export const ABOUT_GALLERY_IMAGES: GalleryImage[] = [
   { img: "/images/about/hero/img4.jpg", id: 4 },
   { img: "/images/about/hero/img5.jpg", id: 5 },
   { img: "/images/about/hero/img6.jpg", id: 6 },
+  { img: "/images/about/hero/img7.jpg", id: 7 },
+  { img: "/images/about/hero/img8.jpg", id: 8 },
 ]
 
 export const TEAM_MEMBERS: TeamMember[] = [

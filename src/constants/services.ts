@@ -8,7 +8,7 @@ export interface IService {
 export const services: IService[] = [
   {
     id: 1,
-    title: "Dangerous Goods Logistics Excellence",
+    title: "Dangerous Goods Logistics Mastery",
     description: "SKYMAREX is purpose-built for the safe and compliant movement of Dangerous Goods. From classification to final delivery, our specialists manage regulated cargo in strict accordance with IATA DGR, IMDG Code, and UAE authority requirements. Precision, safety, and accountability define every shipment we handle.",
     image: "/images/services/Dangerous-Goods-Logistics-Excellence.png",
   },
