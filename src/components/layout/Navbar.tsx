@@ -52,16 +52,16 @@ export default function Navbar() {
       <nav
         ref={navRef}
         data-state={menuState ? "active" : undefined}
-        className={`fixed left-0 w-full z-20 px-4 sm:px-6 transition-all duration-500 ease-in-out ${isScrolled ? "" : "bg-background"}`}
+        className={`fixed left-0 w-full z-20 px-4 sm:px-6 transition-all duration-500 ease-in-out ${isScrolled ? "" : "bg-background py-1"}`}
       >
         <div
           className={cn(
             "mx-auto max-w-7xl",
             "transition-[padding,max-width,margin-top,border-radius,background-color,backdrop-filter] duration-500 ease-in-out",
-            isScrolled && "px-6 bg-background/50 max-w-4xl rounded-2xl border border-border/30 dark:border-border backdrop-blur-lg lg:px-5 mt-2"
+            isScrolled && "px-3 bg-background/50 max-w-4xl rounded-2xl border border-border/30 dark:border-border backdrop-blur-lg lg:px-5 mt-2"
           )}
         >
-          <div className="relative flex flex-wrap items-center justify-between gap-2 lg:gap-0 py-1.5">
+          <div className="relative flex flex-wrap items-center justify-between gap-2 lg:gap-0 py-1">
 
             <div className="flex w-full justify-between lg:w-auto py-2">
               <Link href="/" aria-label="home" className="flex gap-2 items-center">
@@ -83,25 +83,36 @@ export default function Navbar() {
                 </div>
               </Link>
 
-              <Button
-                onClick={() => setMenuState(!menuState)}
-                aria-label={menuState ? "Close Menu" : "Open Menu"}
-                className="relative z-20 block cursor-pointer lg:hidden"
-                size={"icon-sm"}
-              >
-                <Equal
-                  className={cn(
-                    "absolute inset-0 m-auto size-6 transition-all duration-300 ease-in-out",
-                    menuState ? "rotate-180 scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"
-                  )}
-                />
-                <X
-                  className={cn(
-                    "absolute inset-0 m-auto size-6 transition-all duration-300 ease-in-out",
-                    menuState ? "rotate-0 scale-100 opacity-100" : "-rotate-180 scale-0 opacity-0"
-                  )}
-                />
-              </Button>
+              <div className={cn("lg:hidden", "flex items-center justify-center gap-2")}>
+                <div className={cn("transition-all duration-300 ease-in-out", menuState ? "opacity-0" : "opacity-100")}>
+                  <QuoteDialog>
+                    <ShinyButton className="border-none shadow-none">
+                      Get a Quote
+                    </ShinyButton>
+                  </QuoteDialog>
+                </div>
+
+                <Button
+                  onClick={() => setMenuState(!menuState)}
+                  aria-label={menuState ? "Close Menu" : "Open Menu"}
+                  className="relative z-20 block cursor-pointer lg:hidden rounded-lg text-white"
+                  size={"icon"}
+                >
+                  <Equal
+                    className={cn(
+                      "absolute inset-0 m-auto size-6 transition-all duration-300 ease-in-out",
+                      menuState ? "rotate-180 scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"
+                    )}
+                  />
+                  <X
+                    className={cn(
+                      "absolute inset-0 m-auto size-6 transition-all duration-300 ease-in-out",
+                      menuState ? "rotate-0 scale-100 opacity-100" : "-rotate-180 scale-0 opacity-0"
+                    )}
+                  />
+                </Button>
+              </div>
+
             </div>
 
             <div className="absolute inset-0 m-auto hidden size-fit lg:block">

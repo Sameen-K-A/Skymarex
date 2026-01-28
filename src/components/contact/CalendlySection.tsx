@@ -27,7 +27,7 @@ export default function CalendlySection() {
             Talk with a DG Expert
           </h2>
           <p className="text-background/80 text-sm md:text-base max-w-xl mx-auto">
-            Schedule a consultation with our IATA Dangerous Goods Certified professionals to ensure safe and compliant transport for your cargo.
+            Schedule a consultation with our IATA/DGR Dangerous Goods Certified professionals to ensure safe and compliant transport for your cargo.
           </p>
         </div>
       </Reveal>

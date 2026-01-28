@@ -106,7 +106,7 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger asChild className="border-none">
         {children}
       </DialogTrigger>
       <DialogContent className="sm:max-w-4xl max-h-[90vh] flex flex-col p-0">
