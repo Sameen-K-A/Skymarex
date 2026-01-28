@@ -2,10 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaInstagram, FaFacebook, FaPhone, FaPhoneAlt } from "react-icons/fa";
+import { FaXTwitter, FaLocationDot } from "react-icons/fa6";
+import { MapPin } from "lucide-react";
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations";
 import { GradientLogo } from "@/components/ui/GradientLogo";
+import { Button } from "@/components/ui/button";
+import WaveText from "../ui/WaveText";
 
 const footerLinks = [
   { href: "/", label: "Home" },
@@ -16,6 +19,12 @@ const footerLinks = [
 
 export default function Footer() {
   const pathname = usePathname();
+
+  const handleOpenMap = () => {
+    const address = `${process.env.NEXT_PUBLIC_ADDRESS_LINE_1}, ${process.env.NEXT_PUBLIC_ADDRESS_LINE_2}, ${process.env.NEXT_PUBLIC_ADDRESS_LINE_3}, ${process.env.NEXT_PUBLIC_ADDRESS_LINE_4}`;
+    const encodedAddress = encodeURIComponent(address);
+    window.open(`https://www.google.com/maps/search/?api=1&query=${encodedAddress}`, "_blank");
+  };
 
   return (
     <footer className="container mx-auto p-4 sm:p-8 border-t">
@@ -31,14 +40,44 @@ export default function Footer() {
             </Link>
           </StaggerItem>
 
-          {/* Right Column: Address */}
+          {/* Right Column: Reach Us */}
           <StaggerItem className="lg:flex-1 order-3 lg:order-3">
-            <address className="not-italic leading-relaxed flex flex-col text-center lg:text-left lg:ml-auto lg:w-fit text-sm text-muted-foreground">
-              <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_1}</span>
-              <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_2}</span>
-              <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_3}</span>
-              <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_4}</span>
-            </address>
+            <div className="text-center lg:text-left lg:ml-auto lg:w-fit">
+              <h3 className="text-base md:text-lg font-semibold text-foreground mb-3">REACH US</h3>
+
+              {/* Address with map icon */}
+              <div className="flex items-start gap-2 justify-center lg:justify-start mb-3">
+                <FaLocationDot className="w-4 h-4 mt-0.5 text-muted-foreground shrink-0 hidden lg:block" />
+                <address className="not-italic leading-relaxed flex flex-col text-sm text-muted-foreground">
+                  <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_1}</span>
+                  <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_2}</span>
+                  <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_3}</span>
+                  <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_4}</span>
+                </address>
+              </div>
+
+              {/* Our Location button */}
+              <Button
+                size="sm"
+                className="mb-6 text-xs md:ml-5 text-white group"
+                onClick={handleOpenMap}
+              >
+                <WaveText>
+                  Our Location
+                </WaveText>
+              </Button>
+
+              {/* Phone number */}
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
+                <FaPhoneAlt className="w-3.5 h-3.5 text-muted-foreground hidden lg:block" />
+                <a
+                  href={`tel:${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}
+                </a>
+              </div>
+            </div>
           </StaggerItem>
 
           {/* Center Column: Logo (Desktop only) */}
@@ -50,9 +89,10 @@ export default function Footer() {
             </div>
           </StaggerItem>
 
-          {/* Left Column: Links */}
+          {/* Left Column: Sitemap */}
           <StaggerItem className="lg:flex-1 order-2 lg:order-1">
             <div className="lg:text-left">
+              <h3 className="text-base md:text-lg font-semibold text-foreground mb-3 text-center lg:text-left">SITEMAP</h3>
               <div className="flex flex-row lg:flex-col lg:items-start gap-6 lg:gap-2">
                 {footerLinks.map((link) => {
                   const isActive = pathname === link.href;

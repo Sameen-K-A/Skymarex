@@ -37,7 +37,7 @@ export default function AboutSection() {
           <StaggerItem>
             <p className="text-muted/90 text-base sm:text-lg font-medium mb-4">
               <strong>SKYMAREX</strong> is a specialized logistics company focused on the safe and compliant handling of
-              Dangerous Goods. Backed by a team with <strong>15+</strong> years of industry experience and expertise
+              Dangerous Goods. <strong>Backed by a team with 15+ years of industry experience and expertise </strong>
               across air and sea freight, multimodal transport, and secure warehousing, we deliver
               seamless, reliable, and precision-driven logistics solutions tailored to our clients' needs.
             </p>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import ContactFormSection from "@/components/contact/ContactFormSection"
+import GetInTouchSection from "@/components/contact/GetInTouchSection"
+import CalendlySection from "@/components/contact/CalendlySection"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -8,7 +10,9 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="container mx-auto overflow-hidden pt-20">
+    <div className="container mx-auto overflow-hidden">
+      <GetInTouchSection />
+      <CalendlySection />
       <ContactFormSection />
     </div>
   )

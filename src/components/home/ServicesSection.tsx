@@ -32,7 +32,7 @@ export default function ServicesSection() {
       <StaggerContainer className="text-center mb-12 md:mb-16 max-w-4xl mx-auto" staggerDelay={0.15}>
         <StaggerItem>
           <span className="text-sm font-medium text-background mb-5 block tracking-tight">
-            Driven by purpose
+            Driven by Purpose
           </span>
         </StaggerItem>
         <StaggerItem>

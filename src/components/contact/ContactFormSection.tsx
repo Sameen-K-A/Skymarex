@@ -88,10 +88,10 @@ export default function ContactFormSection() {
             <StaggerItem className="mb-15">
               <div>
                 <h1 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-foreground mb-4">
-                  Get in touch with us
+                  Contact With Us
                 </h1>
-                <p className="text-muted-foreground font-medium max-w-lg leading-tight tracking-tighter">
-                  Our friendly team is here to help. Reach out by phone, email, or through our contact form, we&apos;ll get back to you promptly and make your moving experience smooth from start to finish.
+                <p className="text-muted-foreground font-medium max-w-sm leading-tight tracking-tighter">
+                  Tell us about your idea, Questions, or challenge. We'd love to hear from you.
                 </p>
               </div>
             </StaggerItem>

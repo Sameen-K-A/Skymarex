@@ -3,21 +3,18 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
+import { GradientLogo } from "@/components/ui/GradientLogo"
 
 export default function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // document.body.style.overflow = "hidden"
-
     const timer = setTimeout(() => {
       setIsLoading(false)
-      // document.body.style.overflow = ""
     }, 2500)
 
     return () => {
       clearTimeout(timer)
-      // document.body.style.overflow = ""
     }
   }, [])
 
@@ -59,15 +56,7 @@ export default function LoadingScreen() {
             }}
             className="relative z-10"
           >
-            <Image
-              src="/svgs/logoMain.svg"
-              alt="Skymarex"
-              width={0}
-              height={0}
-              sizes="100vw"
-              className="dark:invert w-48 md:w-75 h-auto"
-              priority
-            />
+            <GradientLogo className="w-[200px] h-[60px] md:w-[270px] md:h-[80px]" />
           </motion.div>
         </motion.div>
       )}

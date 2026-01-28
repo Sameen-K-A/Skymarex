@@ -58,7 +58,7 @@ export default function HeroSection() {
         <StaggerItem>
           <p className="text-sm sm:text-base mb-4 opacity-80 leading-loose max-w-6xl">
             At SKYMAREX, we are driven by expertise, compliance, and a strong commitment to safety.
-            Our management partners are IATA Dangerous Goods Certified Professional Trainers,
+            Our managing partners are IATA Dangerous Goods Certified Professional Trainers,
             bringing decades of world-class experience to the organization.
           </p>
         </StaggerItem>
@@ -82,6 +82,6 @@ export default function HeroSection() {
           <ImageMarquee />
         </div>
       </Reveal>
-    </section>
+    </section >
   )
 }

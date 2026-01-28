@@ -2,11 +2,20 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
+import { FaWhatsapp } from "react-icons/fa"
 import { services, IService } from "@/constants/services"
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
+import { Button } from "@/components/ui/button"
+import WaveText from "@/components/ui/WaveText"
 
 const ServiceCard = ({ service }: { service: IService }) => {
   const [isFlipped, setIsFlipped] = useState(false)
+
+  const handleWhatsAppClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    window.open(`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=Hi, I'm interested in ${service.title}`, "_blank")
+  }
 
   return (
     <div
@@ -60,7 +69,29 @@ const ServiceCard = ({ service }: { service: IService }) => {
           <p className="text-sm md:text-base text-foreground leading-relaxed tracking-tight flex-1 overflow-y-auto">
             {service.description}
           </p>
-          <p className="text-xs text-muted-foreground mt-4 hover:underline">Click to go back</p>
+
+          {/* Bottom row: Click to go back (left) + Buttons (right) */}
+          <div className="flex items-center justify-between mt-4 pt-2">
+            <p className="text-xs text-muted-foreground hover:underline">Click to go back</p>
+            <div className="flex items-center gap-2">
+              <Button
+                size="icon"
+                variant="outline"
+                className="h-8 w-8 rounded-lg"
+                onClick={handleWhatsAppClick}
+              >
+                <FaWhatsapp className="h-4 w-4" />
+              </Button>
+              <Link href="/contact" onClick={(e) => e.stopPropagation()}>
+                <Button
+                  size="sm"
+                  className="h-8 px-3 text-xs font-semibold group text-white"
+                >
+                  <WaveText>Book Now</WaveText>
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>

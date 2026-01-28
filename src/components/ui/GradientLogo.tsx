@@ -3,8 +3,8 @@
 import React from "react"
 
 interface GradientLogoProps {
-  width: number
-  height: number
+  width?: number
+  height?: number
   className?: string
   logoSrc?: string
 }
@@ -27,6 +27,9 @@ export function GradientLogo({
     maskPosition: "center",
   } as React.CSSProperties
 
+  // Only apply inline width/height if no className is provided for sizing
+  const sizeStyles = width && height ? { width, height } : {}
+
   return (
     <>
 
@@ -34,8 +37,7 @@ export function GradientLogo({
       <div
         className={`dark:hidden ${className}`}
         style={{
-          width,
-          height,
+          ...sizeStyles,
           background: "linear-gradient(180deg, rgba(120, 120, 120, 1) 10%, rgba(0, 0, 0, 1) 100%)",
           ...maskStyles,
         }}
@@ -45,8 +47,7 @@ export function GradientLogo({
       <div
         className={`hidden dark:block ${className}`}
         style={{
-          width,
-          height,
+          ...sizeStyles,
           background: "linear-gradient(180deg,rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 50%, rgba(201, 201, 201, 1) 60%)",
           ...maskStyles,
         }}

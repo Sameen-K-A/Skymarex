@@ -68,8 +68,8 @@ export const services: IService[] = [
   },
   {
     id: 11,
-    title: "Documentation & Regulatory Support",
-    description: "Comprehensive support for export and import documentation, including DG declarations, MSDS verification, permits, and regulatory submissions—ensuring accuracy, compliance, and smooth shipment execution.",
+    title: "Export & Import / DG Documentation Support",
+    description: "End-to-end documentation services for export and import shipments, including Dangerous Goods (DG) documentation. Our team manages airway bills, bills of lading, DG declarations, MSDS verification, permits, and regulatory submissions in full compliance with IATA DGR, IMDG Code, and UAE authority requirements—ensuring accuracy, approval, and smooth cargo movement without delays.",
     image: "/images/services/Documentation-Regulatory-Support.jpeg",
   },
   {

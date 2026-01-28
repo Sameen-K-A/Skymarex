@@ -105,7 +105,7 @@ export default function HeroSection() {
 
             <StaggerItem>
               <div className="flex flex-col sm:flex-row items-left gap-4">
-                <Link href="/contact">
+                <Link href="/contact#calendly">
                   <ShinyButton className="group px-6 py-[0.900rem] text-base w-fit font-semibold">
                     Talk to a DG Expert
                   </ShinyButton>
