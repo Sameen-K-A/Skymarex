@@ -33,11 +33,11 @@ const perks = [
 
 export default function PerksSection() {
   return (
-    <section className="relative py-16 px-4 sm:px-8 lg:px-16">
+    <section className="relative py-16 px-4 sm:px-8 lg:px-16 max-w-[1550px] mx-auto">
 
       <LazyVideo
         src="/videos/services/CTA_background.mp4"
-        className="absolute inset-0 w-full h-full z-0"
+        className="absolute inset-0 w-full h-full z-0 "
       />
 
       <div className="absolute inset-0 bg-black/70 z-0" />

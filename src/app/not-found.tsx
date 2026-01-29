@@ -7,7 +7,7 @@ import { StaggerContainer, StaggerItem } from "@/components/ui/animations"
 
 export default function NotFound() {
   return (
-    <div className="h-dvh container mx-auto flex flex-col items-center justify-center px-4 bg-background">
+    <div className="h-dvh max-w-[1550px] mx-auto flex flex-col items-center justify-center px-4 bg-background">
       <StaggerContainer className="text-center space-y-6 max-w-md" staggerDelay={0.15}>
         <StaggerItem>
           <h1 className="text-8xl md:text-9xl font-bold text-primary">404</h1>

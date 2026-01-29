@@ -11,7 +11,7 @@ export default function GetInTouchSection() {
 
   return (
     <section className="min-h-dvh xl:h-[min(100dvh,900px)] bg-[radial-gradient(ellipse_at_center,oklch(73.691%_0.15828_235.877/0.2),var(--background)_60%)] dark:bg-[radial-gradient(ellipse_at_center,oklch(73.691%_0.15828_235.877/0.2),var(--background)_90%)] overflow-hidden flex items-center justify-center">
-      <div className="container mx-auto px-4">
+      <div className="max-w-[1550px] mx-auto px-4">
 
         <StaggerContainer className="max-w-2xl mx-auto text-center" staggerDelay={0.15}>
           <StaggerItem>

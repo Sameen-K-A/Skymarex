@@ -82,7 +82,7 @@ export default function ContactFormSection() {
 
   return (
     <section className="py-16 bg-background">
-      <div className="px-4 sm:px-8">
+      <div className="px-4 sm:px-8 max-w-[1550px] mx-auto">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:gap-12">
           <StaggerContainer className="space-y-6" staggerDelay={0.1}>
             <StaggerItem className="mb-15">

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className="container mx-auto overflow-hidden">
+    <div className="overflow-hidden">
       <HeroSection />
       <div className="bg-foreground">
         <AboutSection />

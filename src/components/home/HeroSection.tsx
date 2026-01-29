@@ -87,7 +87,7 @@ export default function HeroSection() {
   return (
     <section className="min-h-dvh xl:h-[min(100dvh,900px)] bg-[radial-gradient(ellipse_at_center,oklch(73.691%_0.15828_235.877/0.2),var(--background)_60%)] dark:bg-[radial-gradient(ellipse_at_center,oklch(73.691%_0.15828_235.877/0.2),var(--background)_90%)] overflow-hidden">
 
-      <div className="container mx-auto h-full pt-32 pb-16 xl:py-0">
+      <div className="max-w-[1550px] mx-auto h-full pt-32 pb-16 xl:py-0">
         <div className="flex flex-col xl:flex-row h-full gap-8 xl:gap-12">
 
           <StaggerContainer className="flex flex-col justify-center xl:w-3/5 px-4 sm:px-8 md:px-12" staggerDelay={0.15}>

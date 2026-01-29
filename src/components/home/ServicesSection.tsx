@@ -28,7 +28,7 @@ const features = [
 
 export default function ServicesSection() {
   return (
-    <section className="py-13 px-4 sm:px-8">
+    <section className="py-13 px-4 sm:px-8 max-w-[1550px] mx-auto">
       <StaggerContainer className="text-center mb-12 md:mb-16 max-w-4xl mx-auto" staggerDelay={0.15}>
         <StaggerItem>
           <span className="text-sm font-medium text-background mb-5 block tracking-tight">

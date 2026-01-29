@@ -35,74 +35,76 @@ const features = [
 export default function WhatMakesUsDifferentSection() {
   return (
     <section className="py-13 px-4 sm:px-8 bg-foreground">
-      <StaggerContainer className="text-center mb-6 md:mb-12 max-w-4xl mx-auto" staggerDelay={0.15}>
-        <StaggerItem>
-          <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background">
-            What Makes Us Different
-          </h2>
-        </StaggerItem>
-      </StaggerContainer>
+      <div className="max-w-[1550px] mx-auto">
+        <StaggerContainer className="text-center mb-6 md:mb-12 max-w-4xl mx-auto" staggerDelay={0.15}>
+          <StaggerItem>
+            <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background">
+              What Makes Us Different
+            </h2>
+          </StaggerItem>
+        </StaggerContainer>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-5">
-        {features.map((feature, index) => (
-          <Reveal key={index} delay={0.1 * index}>
-            <div className="bg-muted-foreground/15 cursor-default hover:scale-101 transition-all duration-300 rounded-2xl rounded-tr-none overflow-hidden flex flex-col min-h-84 relative">
-              {/* Main content area */}
-              <div className="p-6 md:p-8 flex flex-col flex-1">
-                <div className="flex items-start justify-between mb-auto">
-                  <Image
-                    src={feature.iconSrc}
-                    alt={feature.title}
-                    width={40}
-                    height={40}
-                    className="w-10 h-10 invert dark:invert-0"
-                  />
-                </div>
-
-                <div className="mt-8">
-                  <h3 className="text-xl md:text-2xl font-medium mb-3 text-background">{feature.title}</h3>
-                  <p className="text-sm text-muted/80 font-medium leading-tight">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Inverted radius corner with number */}
-              <div className="absolute top-0 right-0">
-                <div className="relative">
-                  {/* Number badge */}
-                  <div className="bg-foreground/50 text-background font-mono text-base px-2 py-2 aspect-square h-12 w-12 rounded-bl-2xl flex justify-center items-center">
-                    {feature.number}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-5">
+          {features.map((feature, index) => (
+            <Reveal key={index} delay={0.1 * index}>
+              <div className="bg-muted-foreground/15 cursor-default hover:scale-101 transition-all duration-300 rounded-2xl rounded-tr-none overflow-hidden flex flex-col min-h-84 relative">
+                {/* Main content area */}
+                <div className="p-6 md:p-8 flex flex-col flex-1">
+                  <div className="flex items-start justify-between mb-auto">
+                    <Image
+                      src={feature.iconSrc}
+                      alt={feature.title}
+                      width={40}
+                      height={40}
+                      className="w-10 h-10 invert dark:invert-0"
+                    />
                   </div>
-                  {/* Inverted radius - left side */}
-                  <div
-                    className="absolute -left-4 top-0 w-4 h-4 bg-transparent -rotate-90"
-                    style={{
-                      background: 'radial-gradient(circle at 0 0, transparent 16px, color-mix(in srgb, var(--foreground) 50%, transparent) 16px)'
-                    }}
-                  />
-                  {/* Inverted radius - bottom side */}
-                  <div
-                    className="absolute right-0 -bottom-4 w-4 h-4 bg-transparent rotate-90 scale-y-[-1]"
-                    style={{
-                      background: 'radial-gradient(circle at 100% 0, transparent 16px, color-mix(in srgb, var(--foreground) 50%, transparent) 16px)'
-                    }}
-                  />
+
+                  <div className="mt-8">
+                    <h3 className="text-xl md:text-2xl font-medium mb-3 text-background">{feature.title}</h3>
+                    <p className="text-sm text-muted/80 font-medium leading-tight">
+                      {feature.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Inverted radius corner with number */}
+                <div className="absolute top-0 right-0">
+                  <div className="relative">
+                    {/* Number badge */}
+                    <div className="bg-foreground/50 text-background font-mono text-base px-2 py-2 aspect-square h-12 w-12 rounded-bl-2xl flex justify-center items-center">
+                      {feature.number}
+                    </div>
+                    {/* Inverted radius - left side */}
+                    <div
+                      className="absolute -left-4 top-0 w-4 h-4 bg-transparent -rotate-90"
+                      style={{
+                        background: 'radial-gradient(circle at 0 0, transparent 16px, color-mix(in srgb, var(--foreground) 50%, transparent) 16px)'
+                      }}
+                    />
+                    {/* Inverted radius - bottom side */}
+                    <div
+                      className="absolute right-0 -bottom-4 w-4 h-4 bg-transparent rotate-90 scale-y-[-1]"
+                      style={{
+                        background: 'radial-gradient(circle at 100% 0, transparent 16px, color-mix(in srgb, var(--foreground) 50%, transparent) 16px)'
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
+            </Reveal>
+          ))}
+        </div>
 
-      <Reveal delay={0.3}>
-        <Link
-          href="/services"
-          className="group inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-background rounded-lg hover:bg-background/90 transition-colors"
-        >
-          <WaveText>Explore Our Services</WaveText>
-        </Link>
-      </Reveal>
+        <Reveal delay={0.3}>
+          <Link
+            href="/services"
+            className="group inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-background rounded-lg hover:bg-background/90 transition-colors"
+          >
+            <WaveText>Explore Our Services</WaveText>
+          </Link>
+        </Reveal>
+      </div>
     </section>
   )
 }

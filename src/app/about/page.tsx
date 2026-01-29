@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto overflow-hidden">
+    <div className="overflow-hidden">
       <HeroSection />
       <YourTrustedPartnerSection />
       <MissionVisionSection />

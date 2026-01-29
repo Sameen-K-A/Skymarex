@@ -21,28 +21,30 @@ export default function CalendlySection() {
 
   return (
     <section id="calendly" className="pt-16 px-4 sm:px-8 bg-foreground">
-      <Reveal>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-[2.42rem] font-medium tracking-tighter leading-tight mb-4 text-background">
-            Talk with a DG Expert
-          </h2>
-          <p className="text-background/80 text-sm md:text-base max-w-xl mx-auto">
-            Schedule a consultation with our IATA/DGR Dangerous Goods Certified professionals to ensure safe and compliant transport for your cargo.
-          </p>
-        </div>
-      </Reveal>
+      <div className="max-w-[1550px] mx-auto">
+        <Reveal>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-[2.42rem] font-medium tracking-tighter leading-tight mb-4 text-background">
+              Talk with a DG Expert
+            </h2>
+            <p className="text-background/80 text-sm md:text-base max-w-xl mx-auto">
+              Schedule a consultation with our IATA/DGR Dangerous Goods Certified professionals to ensure safe and compliant transport for your cargo.
+            </p>
+          </div>
+        </Reveal>
 
-      <Reveal delay={0.2}>
-        <div className="w-full py-10 md:py-0 h-[550px] md:h-[600px] xl:h-[700px]">
-          <InlineWidget
-            url={calendlyUrl}
-            styles={{
-              height: "100%",
-              width: "100%",
-            }}
-          />
-        </div>
-      </Reveal>
+        <Reveal delay={0.2}>
+          <div className="w-full py-10 md:py-0 h-[550px] md:h-[600px] xl:h-[700px]">
+            <InlineWidget
+              url={calendlyUrl}
+              styles={{
+                height: "100%",
+                width: "100%",
+              }}
+            />
+          </div>
+        </Reveal>
+      </div>
     </section>
   )
 }

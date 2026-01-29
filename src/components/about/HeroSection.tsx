@@ -44,7 +44,7 @@ function ImageMarquee() {
 
 export default function HeroSection() {
   return (
-    <section className="container mx-auto min-h-[min(100dvh,900px)] flex flex-col pt-20 pb-10 mt-10">
+    <section className="max-w-[1550px] mx-auto min-h-[min(100dvh,900px)] flex flex-col pt-20 pb-10 mt-10">
       <StaggerContainer className="text-left px-4 sm:px-8 mb-10" staggerDelay={0.15}>
         <StaggerItem>
           <span className="inline-flex items-center px-4 py-2 text-xs font-semibold bg-foreground text-background rounded-full tracking-wider mb-6">

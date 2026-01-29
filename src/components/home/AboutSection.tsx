@@ -15,7 +15,7 @@ const stats = [
 
 export default function AboutSection() {
   return (
-    <section className="py-12 px-4">
+    <section className="py-12 px-4 max-w-[1550px] mx-auto">
       <div className="max-w-7xl mx-auto">
         <StaggerContainer staggerDelay={0.12}>
           <StaggerItem>
