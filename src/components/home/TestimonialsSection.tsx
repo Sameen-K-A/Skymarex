@@ -66,7 +66,7 @@ function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] 
         <div className="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent" />
 
         <div className="absolute bottom-0 left-0 right-0 p-6">
-          <p className="text-white text-xs sm:text-base leading-tight mb-4">
+          <p className="text-white text-sm sm:text-base leading-tight mb-4 font-light">
             {testimonial.quote}
           </p>
           <div className="border-t border-white border-dashed pt-4 mt-4 min-h-16 flex items-center">
@@ -87,8 +87,9 @@ export default function TestimonialsSection() {
   const checkScrollPosition = useCallback(() => {
     if (scrollContainerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
-      setCanScrollLeft(scrollLeft > 0)
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1)
+      const threshold = 50 // Minimum scroll distance before enabling buttons
+      setCanScrollLeft(scrollLeft > threshold)
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - threshold)
     }
   }, [])
 
@@ -107,11 +108,26 @@ export default function TestimonialsSection() {
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
       const scrollAmount = 320 // Card width + gap
-      scrollContainerRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth"
-      })
+      const threshold = 50
+
+      if (direction === "left") {
+        // Snap to start if close to beginning
+        if (scrollLeft < scrollAmount + threshold) {
+          scrollContainerRef.current.scrollTo({ left: 0, behavior: "smooth" })
+        } else {
+          scrollContainerRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" })
+        }
+      } else {
+        // Snap to end if close to end
+        const maxScroll = scrollWidth - clientWidth
+        if (scrollLeft > maxScroll - scrollAmount - threshold) {
+          scrollContainerRef.current.scrollTo({ left: maxScroll, behavior: "smooth" })
+        } else {
+          scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" })
+        }
+      }
     }
   }
 

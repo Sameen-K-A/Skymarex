@@ -67,7 +67,7 @@ export default function RootLayout({
                 href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="fixed bottom-6 right-6 md:bottom-8 md:right-8 cursor-pointer z-50 flex h-16 w-16 items-center justify-center rounded-full bg-black shadow-lg hover:scale-103 transition-all duration-300 ease-in-out"
+                className="fixed bottom-4 right-4 md:bottom-8 md:right-8 cursor-pointer z-50 flex h-16 w-16 items-center justify-center rounded-full bg-black shadow-lg hover:scale-103 transition-all duration-300 ease-in-out"
                 aria-label="Contact us on WhatsApp"
               >
                 <ShineBorder borderWidth={4} shineColor="#00b7ff" />

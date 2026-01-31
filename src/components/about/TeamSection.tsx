@@ -16,8 +16,9 @@ export default function TeamSection() {
   const checkScrollPosition = useCallback(() => {
     if (scrollContainerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
-      setCanScrollLeft(scrollLeft > 0)
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1)
+      const threshold = 50 // Minimum scroll distance before enabling buttons
+      setCanScrollLeft(scrollLeft > threshold)
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - threshold)
     }
   }, [])
 
@@ -36,11 +37,26 @@ export default function TeamSection() {
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
       const scrollAmount = 280 // Card width + gap
-      scrollContainerRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth"
-      })
+      const threshold = 50
+
+      if (direction === "left") {
+        // Snap to start if close to beginning
+        if (scrollLeft < scrollAmount + threshold) {
+          scrollContainerRef.current.scrollTo({ left: 0, behavior: "smooth" })
+        } else {
+          scrollContainerRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" })
+        }
+      } else {
+        // Snap to end if close to end
+        const maxScroll = scrollWidth - clientWidth
+        if (scrollLeft > maxScroll - scrollAmount - threshold) {
+          scrollContainerRef.current.scrollTo({ left: maxScroll, behavior: "smooth" })
+        } else {
+          scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" })
+        }
+      }
     }
   }
 
@@ -90,7 +106,7 @@ export default function TeamSection() {
               const hasImage = member.img && member.img.trim() !== "";
 
               return (
-                <div key={member.id} className="flex flex-col shrink-0 w-44 sm:w-80 md:w-96">
+                <div key={member.id} className="flex flex-col shrink-0 w-72 sm:w-80 md:w-96">
                   <div className="relative aspect-square rounded-2xl overflow-hidden bg-muted-foreground/20 mb-4 flex items-center justify-center">
                     {hasImage ? (
                       <Image
