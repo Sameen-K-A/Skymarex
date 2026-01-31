@@ -8,70 +8,63 @@ import { testimonials } from "@/constants/testimonials";
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 function TestimonialCard({ testimonial }: { testimonial: typeof testimonials[0] }) {
+  const [isFlipped, setIsFlipped] = useState(false)
   const hasImage = testimonial.image && testimonial.image.trim() !== ""
 
   return (
-    <div className="group relative w-72 sm:w-90 shrink-0 h-102 rounded-2xl overflow-hidden cursor-default hover:scale-101 transition-all duration-300 ">
-      {/* Default State - White card */}
-      {/* <div className="absolute inset-0 bg-muted-foreground/20 p-8 flex flex-col transition-opacity duration-300 group-hover:opacity-0">
-        <p className="text-background text-base md:text-lg font-medium leading-relaxed flex-1">
-          {testimonial.quote}
-        </p>
+    <div
+      className="perspective-1000 cursor-pointer w-72 sm:w-90 shrink-0 h-102"
+      style={{ perspective: "1000px" }}
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <div
+        className="relative w-full h-full transition-transform duration-500 ease-out"
+        style={{
+          transformStyle: "preserve-3d",
+          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+        }}
+      >
+        {/* Front Side - Image & Name */}
+        <div
+          className="group absolute inset-0 rounded-2xl overflow-hidden"
+          style={{ backfaceVisibility: "hidden" }}
+        >
+          {hasImage && (
+            <Image
+              src={testimonial.image!}
+              alt={testimonial.name}
+              fill
+              sizes="(max-width: 640px) 288px, 360px"
+              className="object-cover"
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNzA3MDcwIi8+PC9zdmc+"
+            />
+          )}
+          {/* Gradient overlay at bottom */}
+          <div className="absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-transparent transition-all duration-300" />
 
-        <div className="border-t border-muted-foreground/50 border-dashed pt-4 mt-4">
-          <div className="flex items-center gap-3">
-            <div className="w-16 h-16 rounded-xl bg-muted-foreground/20 overflow-hidden relative flex items-center justify-center">
-              {hasImage ? (
-                <Image
-                  src={testimonial.image!}
-                  alt={testimonial.name}
-                  fill
-                  sizes="64px"
-                  className="object-cover"
-                  placeholder="blur"
-                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNzA3MDcwIi8+PC9zdmc+"
-                />
-              ) : (
-                <FaUserAlt className="w-7 h-7 text-muted-foreground/60" />
-              )}
-            </div>
-            <div>
-              <p className="font-medium text-background">{testimonial.name}</p>
-              <p className="text-xs text-muted-foreground">{testimonial.location}</p>
-            </div>
+          {/* Name at bottom */}
+          <div className="absolute bottom-0 left-0 right-0 p-6">
+            <p className="text-white font-medium text-base sm:text-lg">{testimonial.name}</p>
+            <p className="text-white/70 text-xs mt-1 group-hover:underline">Tap to read</p>
           </div>
         </div>
-      </div> */}
 
-      {/* Hover State - Full image or gradient only */}
-      {/* opacity-0 group-hover:opacity-100 transition-opacity duration-300 */}
-      <div className="absolute inset-0">
-        {hasImage && (
-          <Image
-            src={testimonial.image!}
-            alt={testimonial.name}
-            fill
-            sizes="(max-width: 640px) 288px, 360px"
-            className="object-cover"
-            placeholder="blur"
-            blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNzA3MDcwIi8+PC9zdmc+"
-          />
-        )
-          // : (
-          //   <div className="w-full h-full bg-muted-foreground/30 flex items-center justify-center">
-          //     <FaUserAlt className="w-[70%] h-auto text-muted-foreground/40" />
-          //   </div>
-          // )
-        }
-        <div className="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent" />
-
-        <div className="absolute bottom-0 left-0 right-0 p-6">
-          <p className="text-white text-sm sm:text-base leading-tight mb-4 font-light">
-            {testimonial.quote}
+        {/* Back Side - Quote */}
+        <div
+          className="absolute inset-0 bg-muted-foreground/15 rounded-2xl p-6 flex flex-col"
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
+        >
+          <p className="text-background text-sm sm:text-base leading-relaxed flex-1 overflow-y-auto">
+            &ldquo;{testimonial.quote}&rdquo;
           </p>
-          <div className="border-t border-white border-dashed pt-4 mt-4 min-h-16 flex items-center">
-            <p className="text-white font-medium text-sm sm:text-base">{testimonial.name}</p>
-            {/* <p className="text-white/70 text-sm">{testimonial.location}</p> */}
+
+          <div className="border-t border-dashed border-background/20 pt-4 mt-4">
+            <p className="text-background font-medium text-sm sm:text-base">{testimonial.name}</p>
+            <p className="text-background/60 text-xs mt-1 hover:underline">Tap to go back</p>
           </div>
         </div>
       </div>
