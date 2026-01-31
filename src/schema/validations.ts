@@ -36,6 +36,11 @@ export const quoteFormSchema = z.object({
     .regex(/^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/, "Please enter a valid phone number"),
   email: z
     .email("Please enter a valid email address"),
+  companyName: z
+    .string()
+    .max(100, "Company name must be less than 100 characters")
+    .optional()
+    .or(z.literal("")),
   destination: z
     .string()
     .min(2, "Destination must be at least 2 characters")
@@ -52,9 +57,14 @@ export const quoteFormSchema = z.object({
     .min(2, "Commodity must be at least 2 characters")
     .max(100, "Commodity must be less than 100 characters"),
   volume: z
-    .string()
-    .min(1, "Potential volume is required")
+    .string({ message: "Volume is required" })
+    .min(1, "Volume is required")
     .max(50, "Volume must be less than 50 characters"),
+  dimensions: z
+    .string()
+    .max(100, "Dimensions must be less than 100 characters")
+    .optional()
+    .or(z.literal("")),
   comments: z
     .string()
     .max(2000, "Comments must be less than 2000 characters")

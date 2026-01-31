@@ -7,6 +7,8 @@ import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
 import LoadingScreen from "@/components/layout/LoadingScreen"
 import { Toaster } from "@/components/ui/sonner"
+import { FaWhatsapp } from "react-icons/fa"
+import { ShineBorder } from "@/components/ui/shine-border"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -60,6 +62,17 @@ export default function RootLayout({
               <Navbar />
               <main className="flex-1">{children}</main>
               <Footer />
+
+              <a
+                href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fixed bottom-6 right-6 md:bottom-8 md:right-8 cursor-pointer z-50 flex h-16 w-16 items-center justify-center rounded-full bg-black shadow-lg hover:scale-103 transition-all duration-300 ease-in-out"
+                aria-label="Contact us on WhatsApp"
+              >
+                <ShineBorder borderWidth={4} shineColor="#00b7ff" />
+                <FaWhatsapp className="h-8 w-8 text-white" strokeWidth={1.5} />
+              </a>
             </div>
           </LoadingProvider>
           <Toaster richColors position="bottom-center" theme="light" closeButton={true} />

@@ -24,7 +24,7 @@ export default function CalendlySection() {
       <div className="max-w-[1550px] mx-auto">
         <Reveal>
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-[2.42rem] font-medium tracking-tighter leading-tight mb-4 text-background">
+            <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background mb-4">
               Talk with a DG Expert
             </h2>
             <p className="text-background/80 text-sm md:text-base max-w-xl mx-auto">

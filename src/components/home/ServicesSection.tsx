@@ -37,7 +37,7 @@ export default function ServicesSection() {
         </StaggerItem>
         <StaggerItem>
           <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium leading-tight text-background">
-            We're not just about moving cargo—we're about trust, safety, and seamless compliance.
+            We&apos;re not just about moving cargo&mdash;we&apos;re about trust, safety, and seamless compliance.
           </h2>
         </StaggerItem>
       </StaggerContainer>

@@ -7,10 +7,10 @@ import WaveText from "../ui/WaveText"
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 
 const stats = [
-  { value: 576, label: "Shipment Completed" },
-  { value: 687, label: "Happy Customers" },
-  { value: 890, label: "Industry experience" },
-  { value: 24, label: "Delivered in Time" },
+  { value: 150, label: "Shipment Completed" },
+  { value: 59, label: "Happy Customers" },
+  { value: 15, label: "Industry experience" },
+  { value: 100, label: "Delivered in Time" },
 ]
 
 export default function AboutSection() {
@@ -29,7 +29,7 @@ export default function AboutSection() {
           </StaggerItem>
 
           <StaggerItem>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.45rem] font-medium tracking-tight leading-[1.2] mb-4 text-background">
+            <h2 className="text-3xl sm:text-4xl md:text-[2.9rem] font-medium tracking-tight leading-[1.2] mb-4 text-background">
               Logistics Without<br />the Headaches
             </h2>
           </StaggerItem>
@@ -37,16 +37,16 @@ export default function AboutSection() {
           <StaggerItem>
             <p className="text-muted/90 text-base sm:text-lg font-medium mb-4">
               <strong>SKYMAREX</strong> is a specialized logistics company focused on the safe and compliant handling of
-              Dangerous Goods. <strong>Backed by a team with 15+ years of industry experience and expertise </strong>
+              Dangerous Goods. <strong>Backed by a team with 15+ years of industry experience </strong>and expertise
               across air and sea freight, multimodal transport, and secure warehousing, we deliver
-              seamless, reliable, and precision-driven logistics solutions tailored to our clients' needs.
+              seamless, reliable, and precision-driven logistics solutions tailored to our clients&apos; needs.
             </p>
           </StaggerItem>
           <StaggerItem>
             <p className="text-muted/90 text-base sm:text-lg font-medium mb-4">
               Driven by a customer-first approach and practical innovation, SKYMAREX partners with
               businesses to streamline supply chains, eliminate operational headaches, and deliver lasting
-              peace of mind. We don't just move cargo—we manage responsibility, safety, and trust at
+              peace of mind. We don&apos;t just move cargo&mdash;we manage responsibility, safety, and trust at
               every step.
             </p>
           </StaggerItem>
@@ -84,7 +84,7 @@ export default function AboutSection() {
                 <div>
                   <div className="text-2xl md:text-3xl text-background font-semibold tracking-tighter" style={{ transform: 'scaleY(0.852)' }}>
                     <NumberTicker value={stat.value} className="tracking-tighter" />
-                    <span>+</span>
+                    <span>{stat.value === 100 ? "%" : "+"}</span>
                   </div>
                   <p className="text-muted font-medium opacity-60 text-sm">{stat.label}</p>
                 </div>

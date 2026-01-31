@@ -15,7 +15,7 @@ export default function GetInTouchSection() {
 
         <StaggerContainer className="max-w-2xl mx-auto text-center" staggerDelay={0.15}>
           <StaggerItem>
-            <h2 className="text-3xl sm:text-[2.42rem] font-medium tracking-tighter leading-tight mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-foreground mb-6">
               Get in touch with us
             </h2>
           </StaggerItem>

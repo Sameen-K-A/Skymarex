@@ -38,13 +38,13 @@ export const services: IService[] = [
   },
   {
     id: 6,
-    title: "Door-to-Door Logistics",
+    title: "Door to Door Logistics",
     description: "End-to-end logistics management from pickup to final delivery. SKYMAREX coordinates transportation, customs, and documentation to provide a seamless, single-point solution tailored to each client’s operational needs.",
     image: "/images/services/Door-to-Door-Logistics.png",
   },
   {
     id: 7,
-    title: "Airport-to-Door & Door-to-Airport Services",
+    title: "Airport to Door & Door to Airport Services",
     description: "Reliable first-mile and last-mile logistics solutions for urgent, sensitive, and regulated shipments. Every transfer is handled with care, discretion, and operational precision.",
     image: "/images/services/Airport-to-Door-Door-to-Airport-Services.jpg",
   },

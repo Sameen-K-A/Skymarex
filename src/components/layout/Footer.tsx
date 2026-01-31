@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaInstagram, FaFacebook, FaPhone, FaPhoneAlt } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaPhoneAlt } from "react-icons/fa";
 import { FaXTwitter, FaLocationDot } from "react-icons/fa6";
-import { MapPin } from "lucide-react";
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations";
 import { GradientLogo } from "@/components/ui/GradientLogo";
 import { Button } from "@/components/ui/button";
@@ -41,18 +40,19 @@ export default function Footer() {
           </StaggerItem>
 
           {/* Right Column: Reach Us */}
-          <StaggerItem className="lg:flex-1 order-3 lg:order-3">
-            <div className="text-center lg:text-left lg:ml-auto lg:w-fit">
-              <h3 className="text-base md:text-lg font-semibold text-foreground mb-3">REACH US</h3>
+          <StaggerItem className="lg:flex-1 order-3 lg:order-1">
+            <div className="text-center lg:text-left">
+              <h3 className="text-base md:text-lg font-semibold text-foreground mb-3 mr-2">REACH US</h3>
 
               {/* Address with map icon */}
               <div className="flex items-start gap-2 justify-center lg:justify-start mb-3">
                 <FaLocationDot className="w-4 h-4 mt-0.5 text-muted-foreground shrink-0 hidden lg:block" />
-                <address className="not-italic leading-relaxed flex flex-col text-sm text-muted-foreground">
+                <address className="not-italic leading-relaxed flex flex-col text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
                   <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_1}</span>
                   <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_2}</span>
                   <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_3}</span>
                   <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_4}</span>
+                  <span>{process.env.NEXT_PUBLIC_ADDRESS_LINE_5}</span>
                 </address>
               </div>
 
@@ -90,10 +90,10 @@ export default function Footer() {
           </StaggerItem>
 
           {/* Left Column: Sitemap */}
-          <StaggerItem className="lg:flex-1 order-2 lg:order-1">
-            <div className="lg:text-left">
-              <h3 className="text-base md:text-lg font-semibold text-foreground mb-3 text-center lg:text-left">SITEMAP</h3>
-              <div className="flex flex-row lg:flex-col lg:items-start gap-6 lg:gap-2">
+          <StaggerItem className="lg:flex-1 order-2 lg:order-2">
+            <div className="lg:text-right">
+              <h3 className="text-base md:text-lg font-semibold text-foreground mb-3 text-center lg:text-right">SITEMAP</h3>
+              <div className="flex flex-row lg:flex-col lg:items-end gap-6 lg:gap-2">
                 {footerLinks.map((link) => {
                   const isActive = pathname === link.href;
                   return (

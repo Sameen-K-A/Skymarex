@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import { useRef, useEffect } from "react"
 import { useInView } from "framer-motion"
 
 interface LazyVideoProps {
@@ -10,37 +10,29 @@ interface LazyVideoProps {
   style?: React.CSSProperties
 }
 
-/**
- * LazyVideo - A video component that only loads and plays when visible in viewport.
- * This dramatically reduces memory usage and prevents scroll lag caused by
- * multiple background videos playing simultaneously.
- */
 export function LazyVideo({ src, poster, className, style }: LazyVideoProps) {
   const ref = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [shouldLoad, setShouldLoad] = useState(false)
 
-  // Start loading when 20% of the element is visible, with 200px margin
   const isInView = useInView(ref, {
     amount: 0.1,
     margin: "200px",
-    once: false // Allow re-triggering when scrolling back
+    once: false
   })
 
-  // Load video when first comes into view
-  useEffect(() => {
-    if (isInView && !shouldLoad) {
-      setShouldLoad(true)
-    }
-  }, [isInView, shouldLoad])
+  // Track if video has ever been in view (for loading)
+  const hasBeenInView = useRef(false)
+  if (isInView && !hasBeenInView.current) {
+    hasBeenInView.current = true
+  }
+  const shouldLoad = hasBeenInView.current
 
   // Pause/play based on visibility
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (videoRef.current) {
       if (isInView) {
-        videoRef.current.play().catch(() => {
-          // Autoplay was prevented, that's okay
-        })
+        videoRef.current.play().catch(() => { })
       } else {
         videoRef.current.pause()
       }
@@ -64,7 +56,6 @@ export function LazyVideo({ src, poster, className, style }: LazyVideoProps) {
           <source src={src} type="video/mp4" />
         </video>
       ) : (
-        // Placeholder while video is not loaded
         poster ? (
           <div
             className="w-full h-full bg-cover bg-center"

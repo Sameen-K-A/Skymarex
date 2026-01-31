@@ -39,7 +39,7 @@ export default function YourTrustedPartnerSection() {
 
             <StaggerItem>
               <h2 className="text-[1.2rem] md:text-3xl lg:text-[2.40rem] font-medium text-background leading-tight mb-8">
-                We're more than movers—we're your partners in making logistics simple, secure, and
+                We&apos;re more than movers—we&apos;re your partners in making logistics simple, secure, and
                 worry-free from start to finish.
               </h2>
             </StaggerItem>
@@ -81,12 +81,18 @@ export default function YourTrustedPartnerSection() {
                 Explore our full range of tailored logistics and compliance services.
               </p>
             </Reveal>
-            <Reveal delay={0.2}>
+            <Reveal delay={0.2} className="flex justify-center gap-2">
               <Link
                 href="/services"
                 className="group inline-flex items-center justify-center px-6 py-3 mt-6 text-base font-medium bg-background text-foreground rounded-lg hover:bg-background/90 transition-colors"
               >
                 <WaveText>Explore Services</WaveText>
+              </Link>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center px-6 py-3 mt-6 text-base font-medium bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                <WaveText>Contact Us</WaveText>
               </Link>
             </Reveal>
 

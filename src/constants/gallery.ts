@@ -22,10 +22,10 @@ export const ABOUT_GALLERY_IMAGES: GalleryImage[] = [
 ]
 
 export const TEAM_MEMBERS: TeamMember[] = [
-  { img: "", name: "John Carter", role: "Lead Mover", id: 1 },
-  { img: "", name: "Mike Dawson", role: "Packing Specialist", id: 2 },
-  { img: "", name: "Rachel Lee", role: "Logistics Coordinator", id: 3 },
-  { img: "", name: "James Miller", role: "Move Coordinator", id: 4 },
+  { img: "/images/about/team/Business-Development-Manager.jpeg", name: "John Carter", role: "Lead Mover", id: 1 },
+  { img: "/images/about/team/Operations-Manager.jpg.jpeg", name: "Mike Dawson", role: "Packing Specialist", id: 2 },
+  { img: "/images/about/team/Operations-Team-Leader.jpg", name: "Rachel Lee", role: "Logistics Coordinator", id: 3 },
+  { img: "/images/about/team/Strategic-Partner.png", name: "James Miller", role: "Move Coordinator", id: 4 },
 ]
 
 export const HOME_GALLERY_IMAGES: GalleryImage[] = [

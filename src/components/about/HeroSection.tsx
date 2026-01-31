@@ -52,28 +52,18 @@ export default function HeroSection() {
           </span>
         </StaggerItem>
         <StaggerItem>
-          <h1 className="text-4xl md:text-5xl font-medium max-w-md md:max-w-2xl leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-[2.9rem] font-medium max-w-md md:max-w-2xl leading-tight mb-6">
             Where emotion meets efficiency in every move
           </h1>
         </StaggerItem>
         <StaggerItem>
-          <p className="text-sm sm:text-base mb-4 opacity-80 leading-loose max-w-6xl">
-            At SKYMAREX, we are driven by expertise, compliance, and a strong commitment to safety.
-            Our managing partners are IATA & DGR Dangerous Goods Certified Professional Trainers,
-            bringing decades of world-class experience to the organization.
+          <p className="text-sm sm:text-base mb-4 opacity-80 leading-relaxed max-w-6xl">
+            At SKYMAREX, we are driven by expertise, compliance, and a strong commitment to safety. Our managing partners are IATA & DGR Dangerous Goods Certified Professional Trainers, bringing decades of experience and ensuring professionals remain in line with the latest regulations and safety standards throughout our organization.
           </p>
         </StaggerItem>
         <StaggerItem>
-          <p className="text-sm sm:text-base mb-4 opacity-80 leading-loose max-w-6xl">
-            This unique knowledge empowers us to go beyond standard logistics operations, training
-            and guiding professionals in line with latest international regulations and safety standards.
-          </p>
-        </StaggerItem>
-        <StaggerItem>
-          <p className="text-sm sm:text-base mb-4 opacity-80 leading-loose max-w-6xl">
-            100% of our staff are Dangerous Goods qualified, combining operational excellence with
-            training expertise to make SKYMAREX not just a logistics provider, but a trusted partner for
-            safe and compliant Dangerous Goods solutions.
+          <p className="text-sm sm:text-base mb-4 opacity-80 leading-relaxed max-w-6xl">
+            100% of our staff are Dangerous Goods qualified, combining operational excellence with training expertise to make SKYMAREX not just a logistics provider, but a trusted partner for safe and compliant Dangerous Goods solutions.
           </p>
         </StaggerItem>
       </StaggerContainer>

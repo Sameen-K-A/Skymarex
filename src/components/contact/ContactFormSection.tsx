@@ -91,7 +91,7 @@ export default function ContactFormSection() {
                   Contact With Us
                 </h1>
                 <p className="text-muted-foreground font-medium max-w-sm leading-tight tracking-tighter">
-                  Tell us about your idea, Questions, or challenge. We'd love to hear from you.
+                  Tell us about your idea, Questions, or challenge. We&apos;d love to hear from you.
                 </p>
               </div>
             </StaggerItem>
@@ -137,7 +137,7 @@ export default function ContactFormSection() {
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="+1 (555) 000-0000"
+                    placeholder="+971 5X XXX XXXX"
                     {...register("phone")}
                     className="bg-muted dark:bg-muted-foreground/40 border-none text-foreground placeholder:text-muted-foreground h-12"
                   />

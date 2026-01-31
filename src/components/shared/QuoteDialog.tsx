@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import WaveText from "@/components/ui/WaveText"
 import { quoteFormSchema, QuoteFormData } from "@/schema/validations"
 
@@ -21,12 +21,10 @@ const EMAILJS_QUOTE_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_QUOTE_TEMPLATE
 const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
 
 const cargoTypes = [
-  { value: "sea-cargo", label: "Sea Cargo" },
-  { value: "air-cargo", label: "Air Cargo" },
-  { value: "20ft-container", label: "20ft Container" },
-  { value: "40ft-container", label: "40ft Container" },
-  { value: "domestic", label: "Domestic" },
-  { value: "logistics", label: "Logistics" },
+  { value: "air-freight", label: "Air Freight" },
+  { value: "sea-freight-fcl", label: "FCL (Full Container Load)", parent: "Sea Freight" },
+  { value: "sea-freight-lcl", label: "LCL (Less than Container Load)", parent: "Sea Freight" },
+  { value: "land-transport", label: "Land Transport (GCC / UAE)" }
 ]
 
 interface QuoteDialogProps {
@@ -36,18 +34,30 @@ interface QuoteDialogProps {
 export default function QuoteDialog({ children }: QuoteDialogProps) {
   const [open, setOpen] = useState(false)
   const recaptchaRef = useRef<ReCAPTCHA>(null)
+  const seaFreightTriggerRef = useRef<HTMLButtonElement>(null)
 
   const { register, handleSubmit, reset, setValue, watch, formState: { errors, isSubmitting } } = useForm<QuoteFormData>({
     resolver: zodResolver(quoteFormSchema),
     mode: "onChange",
     reValidateMode: "onChange",
     defaultValues: {
-      cargoType: "logistics",
+      cargoType: "air-freight",
       recaptchaToken: "",
     },
   })
 
   const selectedCargoType = watch("cargoType")
+  const prevCargoTypeRef = useRef(selectedCargoType)
+  const isFCL = selectedCargoType === "sea-freight-fcl"
+  const wasFCL = prevCargoTypeRef.current === "sea-freight-fcl"
+
+  // Reset volume only when switching between FCL and other cargo types
+  if (wasFCL !== isFCL) {
+    prevCargoTypeRef.current = selectedCargoType
+    queueMicrotask(() => {
+      setValue("volume", "", { shouldValidate: false })
+    })
+  }
 
   const onSubmit = async (data: QuoteFormData) => {
     try {
@@ -69,7 +79,10 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
       }
 
       // Get cargo type label
-      const cargoTypeLabel = cargoTypes.find(c => c.value === data.cargoType)?.label || data.cargoType
+      const cargoTypeData = cargoTypes.find(c => c.value === data.cargoType)
+      const cargoTypeLabel = cargoTypeData?.parent
+        ? `${cargoTypeData.parent} (${cargoTypeData.label.split(' ')[0]})`
+        : cargoTypeData?.label || data.cargoType
 
       // Send email via EmailJS
       await emailjs.send(
@@ -79,11 +92,13 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
           fullName: data.fullName,
           email: data.email,
           phoneNumber: data.phoneNumber,
+          companyName: data.companyName || "Not provided",
           source: data.source,
           destination: data.destination,
           cargoType: cargoTypeLabel,
           commodity: data.commodity,
           volume: data.volume,
+          dimensions: data.dimensions || "Not provided",
           comments: data.comments || "No additional comments",
         },
         EMAILJS_PUBLIC_KEY
@@ -115,7 +130,7 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
             Need A Quotation
           </DialogTitle>
           <DialogDescription className="text-xs">
-            Dear Customers, If you wish to recieve a quotation, we kindly ask you to fill in below form. Once the form has been duly filled and submitted, the rates will be quoted to you.
+            Dear Customers, If you wish to recieve a quotation, we kindly ask you to fill in below form. Once the form has been fully filled and submitted, the rates will be quoted to you.
           </DialogDescription>
         </DialogHeader>
 
@@ -130,7 +145,7 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
                 <Input
                   id="fullName"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="Your full name"
                   {...register("fullName")}
                   className="bg-muted/50 border border-border h-11"
                 />
@@ -145,7 +160,7 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
                 <Input
                   id="phoneNumber"
                   type="tel"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder="+971 5X XXX XXXX"
                   {...register("phoneNumber")}
                   className="bg-muted/50 border border-border h-11"
                 />
@@ -163,12 +178,44 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="yourname@email.com"
                   {...register("email")}
                   className="bg-muted/50 border border-border h-11"
                 />
                 {errors.email && (
                   <p className="text-sm text-destructive">{errors.email.message}</p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="companyName" className="text-foreground">
+                  Company Name
+                </Label>
+                <Input
+                  id="companyName"
+                  type="text"
+                  placeholder="Your company name"
+                  {...register("companyName")}
+                  className="bg-muted/50 border border-border h-11"
+                />
+                {errors.companyName && (
+                  <p className="text-sm text-destructive">{errors.companyName.message}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="source" className="text-foreground">
+                  Source Point<span className="text-primary">*</span>
+                </Label>
+                <Input
+                  id="source"
+                  type="text"
+                  {...register("source")}
+                  className="bg-muted/50 border border-border h-11"
+                />
+                {errors.source && (
+                  <p className="text-sm text-destructive">{errors.source.message}</p>
                 )}
               </div>
               <div className="space-y-2">
@@ -178,7 +225,6 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
                 <Input
                   id="destination"
                   type="text"
-                  placeholder="New York, USA"
                   {...register("destination")}
                   className="bg-muted/50 border border-border h-11"
                 />
@@ -188,47 +234,67 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="source" className="text-foreground">
-                Source Point<span className="text-primary">*</span>
-              </Label>
-              <Input
-                id="source"
-                type="text"
-                placeholder="Los Angeles, USA"
-                {...register("source")}
-                className="bg-muted/50 border border-border h-11"
-              />
-              {errors.source && (
-                <p className="text-sm text-destructive">{errors.source.message}</p>
-              )}
-            </div>
-
             <div className="space-y-3">
               <Label className="text-foreground">
                 Cargo Types<span className="text-primary">*</span>
               </Label>
-              <RadioGroup
-                value={selectedCargoType}
-                onValueChange={(value) => setValue("cargoType", value, { shouldValidate: true })}
-                className="flex flex-wrap gap-x-6 gap-y-3"
-              >
-                {cargoTypes.map((type) => (
-                  <div key={type.value} className="flex items-center space-x-2">
-                    <RadioGroupItem
-                      value={type.value}
-                      id={type.value}
-                      className="border-muted-foreground text-primary"
-                    />
-                    <Label
-                      htmlFor={type.value}
-                      className="text-sm font-normal text-foreground cursor-pointer"
-                    >
-                      {type.label}
-                    </Label>
+              <div className="flex flex-wrap gap-4 items-center">
+                {/* Air Freight - Radio */}
+                <div
+                  className="flex items-center gap-2 cursor-pointer transition-colors"
+                  onClick={() => setValue("cargoType", "air-freight", { shouldValidate: true })}
+                >
+                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${selectedCargoType === "air-freight" ? "border-primary" : "border-muted-foreground"}`}>
+                    {selectedCargoType === "air-freight" && (
+                      <div className="w-2 h-2 rounded-full bg-primary" />
+                    )}
                   </div>
-                ))}
-              </RadioGroup>
+                  <span className="text-sm font-normal text-foreground">Air Freight</span>
+                </div>
+
+                {/* Sea Freight - Select with Radio */}
+                <div
+                  className="flex items-center gap-2 cursor-pointer transition-colors"
+                  onClick={() => seaFreightTriggerRef.current?.click()}
+                >
+                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${selectedCargoType?.startsWith("sea-freight") ? "border-primary" : "border-muted-foreground"}`}>
+                    {selectedCargoType?.startsWith("sea-freight") && (
+                      <div className="w-2 h-2 rounded-full bg-primary" />
+                    )}
+                  </div>
+                  <Select
+                    key={selectedCargoType?.startsWith("sea-freight") ? "sea" : "other"}
+                    value={selectedCargoType?.startsWith("sea-freight") ? selectedCargoType : undefined}
+                    onValueChange={(value) => setValue("cargoType", value, { shouldValidate: true })}
+                  >
+                    <SelectTrigger
+                      ref={seaFreightTriggerRef}
+                      className="w-auto border-0 bg-background p-0 h-auto focus-visible:ring-0 cursor-pointer"
+                      onClick={(e) => e.stopPropagation()}
+                      showChevron={false}
+                    >
+                      <SelectValue placeholder="Sea Freight" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="sea-freight-fcl">Sea Freight - FCL</SelectItem>
+                      <SelectItem value="sea-freight-lcl">Sea Freight - LCL</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Land Transport - Radio */}
+                <div
+                  className="flex items-center gap-2 cursor-pointer transition-colors"
+                  onClick={() => setValue("cargoType", "land-transport", { shouldValidate: true })}
+                >
+                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${selectedCargoType === "land-transport" ? "border-primary" : "border-muted-foreground"}`}>
+                    {selectedCargoType === "land-transport" && (
+                      <div className="w-2 h-2 rounded-full bg-primary" />
+                    )}
+                  </div>
+                  <span className="text-sm font-normal text-foreground">Land Transport</span>
+                </div>
+              </div>
               {errors.cargoType && (
                 <p className="text-sm text-destructive">{errors.cargoType.message}</p>
               )}
@@ -242,7 +308,7 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
                 <Input
                   id="commodity"
                   type="text"
-                  placeholder="Electronics, Furniture, etc."
+                  placeholder="Electronics, Flammable Materials, Machinery, etc."
                   {...register("commodity")}
                   className="bg-muted/50 border border-border h-11"
                 />
@@ -254,15 +320,48 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
                 <Label htmlFor="volume" className="text-foreground">
                   Potential Volume<span className="text-primary">*</span>
                 </Label>
-                <Input
-                  id="volume"
-                  type="text"
-                  placeholder="500 kg, 10 CBM, etc."
-                  {...register("volume")}
-                  className="bg-muted/50 border border-border h-11"
-                />
+                {selectedCargoType === "sea-freight-fcl" ? (
+                  <Select
+                    value={watch("volume")}
+                    onValueChange={(value) => setValue("volume", value, { shouldValidate: true })}
+                  >
+                    <SelectTrigger className="w-full data-placeholder:text-muted-foreground border-border cursor-pointer bg-muted/50 dark:bg-muted/40 shadow-xs transition-[color,box-shadow]">
+                      <SelectValue placeholder="Select container size" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="20ft">20ft Container</SelectItem>
+                      <SelectItem value="40ft">40ft Container</SelectItem>
+                    </SelectContent>
+                  </Select>
+                ) : (
+                  <Input
+                    id="volume"
+                    type="text"
+                    placeholder="500 kg / 10 CBM / 1 x 20ft container"
+                    {...register("volume")}
+                    className="bg-muted/50 border border-border h-11"
+                  />
+                )}
                 {errors.volume && (
                   <p className="text-sm text-destructive">{errors.volume.message}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="dimensions" className="text-foreground">
+                  Dimensions
+                </Label>
+                <Input
+                  id="dimensions"
+                  type="text"
+                  placeholder="Length x Width x Height (cm)"
+                  {...register("dimensions")}
+                  className="bg-muted/50 border border-border h-11"
+                />
+                {errors.dimensions && (
+                  <p className="text-sm text-destructive">{errors.dimensions.message}</p>
                 )}
               </div>
             </div>
@@ -283,7 +382,7 @@ export default function QuoteDialog({ children }: QuoteDialogProps) {
             </div>
 
             {RECAPTCHA_SITE_KEY && (
-              <div className="space-y-2">
+              <div className="space-y-2 flex flex-col items-center justify-center text-center">
                 <div className="w-[302px]">
                   <ReCAPTCHA
                     ref={recaptchaRef}
