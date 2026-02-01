@@ -239,3 +239,20 @@ body>div[style*="visibility: visible"] {
 .g-recaptcha-bubble-arrow+div {
   z-index: 2147483647 !important;
 }
+
+/* Content Protection - Cross-browser + iOS */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  pointer-events: auto;
+}
