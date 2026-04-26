@@ -62,7 +62,7 @@ export default function TeamSection() {
 
   return (
     <section className="py-8 px-4 sm:px-8 bg-foreground pb-15 overflow-hidden">
-      <div className="max-w-[1550px] mx-auto">
+      <div className="mx-auto">
         {/* Header with arrows */}
         <div className="relative mb-6">
           <Reveal>
@@ -115,6 +115,8 @@ export default function TeamSection() {
                         fill
                         sizes="(max-width: 640px) 176px, (max-width: 768px) 224px, 256px"
                         className="object-cover"
+                        quality={100}
+                        unoptimized
                       />
                     ) : (
                       <FaUserAlt className="w-[40%] h-auto text-muted-foreground/40" />

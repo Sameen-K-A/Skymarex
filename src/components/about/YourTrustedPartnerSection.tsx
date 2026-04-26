@@ -26,7 +26,7 @@ const features = [
 export default function YourTrustedPartnerSection() {
   return (
     <section className="py-18 px-4 sm:px-8 bg-foreground">
-      <div className="max-w-[1550px] mx-auto">
+      <div className="mx-auto">
 
         <div className="max-w-4xl mx-auto text-center">
 

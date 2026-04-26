@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="max-w-[1550px] mx-auto overflow-hidden pt-15">
+    <div className="mx-auto overflow-hidden pt-15">
       <ServicesGridSection />
       {/* 
         <FAQSection

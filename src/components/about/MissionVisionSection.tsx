@@ -6,7 +6,7 @@ import { StaggerContainer, Reveal } from "@/components/ui/animations"
 export default function MissionVisionSection() {
   return (
     <section className="py-16 px-4 sm:px-8 bg-foreground">
-      <div className="max-w-[1550px] mx-auto">
+      <div className="mx-auto">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <StaggerContainer className="space-y-10" staggerDelay={0.15}>

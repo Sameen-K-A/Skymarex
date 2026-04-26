@@ -33,7 +33,7 @@ const perks = [
 
 export default function PerksSection() {
   return (
-    <section className="relative py-16 px-4 sm:px-8 lg:px-16 max-w-[1550px] mx-auto">
+    <section className="relative py-16 px-4 sm:px-8 lg:px-16 mx-auto">
 
       <LazyVideo
         src="/videos/services/CTA_background.mp4"

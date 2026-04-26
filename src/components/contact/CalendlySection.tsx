@@ -21,7 +21,7 @@ export default function CalendlySection() {
 
   return (
     <section id="calendly" className="pt-16 px-4 sm:px-8 bg-foreground">
-      <div className="max-w-[1550px] mx-auto">
+      <div className="mx-auto">
         <Reveal>
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl lg:text-[2.40rem] font-medium leading-tight text-background mb-4">

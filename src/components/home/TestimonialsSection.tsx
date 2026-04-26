@@ -125,7 +125,7 @@ export default function TestimonialsSection() {
   }
 
   return (
-    <section className="py-12 px-4 sm:px-8 overflow-hidden max-w-[1550px] mx-auto ">
+    <section className="py-12 px-4 sm:px-8 overflow-hidden mx-auto ">
       {/* Header with arrows (desktop only) */}
       <div className="relative mb-6 md:mb-12">
         <StaggerContainer className="text-center mb-12" staggerDelay={0.15}>
