@@ -8,14 +8,14 @@ export interface ICertificate {
 export const certificates: ICertificate[] = [
   {
     id: 1,
-    title: "Certificate 1",
-    description: "From apartments to large homes, we handle every detail with care.",
-    image: "/images/home/certificate/certificate1.jpg",
+    title: "GCAA-Approved DGR Certification",
+    description: "Awarded to Midhun Thottappurath Manoharan, demonstrating certified expertise in the safe handling, acceptance, and regulatory compliance of dangerous goods shipments in aviation logistics.",
+    image: "/images/home/certificates/certificate01.png",
   },
   {
     id: 2,
-    title: "Certificate 2",
-    description: "From apartments to large homes, we handle every detail with care.",
-    image: "/images/home/certificate/certificate1.jpg",
+    title: "GCAA-Approved DGR Certification",
+    description: "Awarded to Rithujith Mohan, demonstrating certified expertise in the safe handling, acceptance, and regulatory compliance of dangerous goods shipments in aviation logistics.",
+    image: "/images/home/certificates/certificate02.png",
   }
 ]
