@@ -17,9 +17,9 @@ import { contactFormSchema, ContactFormData } from "@/schema/validations"
 
 const MAP_URL = process.env.NEXT_PUBLIC_GOOGLE_MAP_EMBED_URL!
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID!
 const EMAILJS_CONTACT_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID!
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_PUBLIC_KEY!
 
 export default function ContactFormSection() {
   const { resolvedTheme } = useTheme()

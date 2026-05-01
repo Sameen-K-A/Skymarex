@@ -16,9 +16,9 @@ import WaveText from "@/components/ui/WaveText"
 import { quoteFormSchema, QuoteFormData } from "@/schema/validations"
 
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
-const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!
+const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_QUOTE_SERVICE_ID!
 const EMAILJS_QUOTE_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_QUOTE_TEMPLATE_ID!
-const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_QUOTE_PUBLIC_KEY!
 
 const cargoTypes = [
   { value: "air-freight", label: "Air Freight" },
