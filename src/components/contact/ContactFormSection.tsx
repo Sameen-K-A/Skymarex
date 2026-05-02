@@ -15,7 +15,8 @@ import WaveText from "../ui/WaveText"
 import { StaggerContainer, StaggerItem, Reveal } from "@/components/ui/animations"
 import { contactFormSchema, ContactFormData } from "@/schema/validations"
 
-const MAP_URL = process.env.NEXT_PUBLIC_GOOGLE_MAP_EMBED_URL!
+const address = `${process.env.NEXT_PUBLIC_ADDRESS_LINE_1}, ${process.env.NEXT_PUBLIC_ADDRESS_LINE_2}, ${process.env.NEXT_PUBLIC_ADDRESS_LINE_3}, ${process.env.NEXT_PUBLIC_ADDRESS_LINE_4}`;
+const MAP_URL = `https://maps.google.com/maps?q=${encodeURIComponent(address)}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_SERVICE_ID!
 const EMAILJS_CONTACT_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID!
